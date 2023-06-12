@@ -15,7 +15,24 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from . import views_alumnos,views_profesores,views_materia
 
 urlpatterns = [
     path('', views.index),
+    path('alumnos', views_alumnos.index),
+    path('alumnos/nuevo2/', views_alumnos.guardar_alumnos),
+    path('alumnos/delete/', views_alumnos.eliminar_alumno),
+    path('alumnos/editar/', views_alumnos.editar_alumno),
+    path('alumnos/guardar/', views_alumnos.guardar_edit),
+    path('alumnos/curso/', views_alumnos.curso),
+    path('profesores', views_profesores.index),
+    path('profesores/nuevo2/', views_profesores.guardar_profesores),
+    path('profesores/delete/', views_profesores.eliminar_profesores),
+    path('profesores/editar/', views_profesores.editar_profesores),
+    path('profesores/guardar/', views_profesores.guardar_edit),
+    path('materias', views_materia.index),
+    path('materias/nuevo2/', views_materia.guardar_materia),
+    path('materias/delete/', views_materia.eliminar_materia),
+    path('materias/editar/', views_materia.editar_materia),
+    path('materias/guardar/', views_materia.guardar_materia),
 ]
