@@ -1,0 +1,90 @@
+{% extends "base_template.html" %}
+{% block title %}Proa - Profesores{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form action="/materias/nuevo2/" method="POST">
+      {% csrf_token %} 
+        <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="ingrese la materia" name="materia" required="required">
+            </div>
+            <div class="col">
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                {% for i in profesores %}
+                <option value = {{ i.id }}>{{ i.nombre }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                {% for curso in cursos %}
+                <option value = {{ curso.id }}>{{ curso.curso }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="col">Nuevo</button>
+          </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">materia</th>
+                <th scope="col">profesor</th>
+                <th scope="col">Curso</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for materia in materias %}
+              <tr>
+                {% if materia.id == materias_edit.id %}
+                  <form action="/proa/profesores/guardar/?id={{materia.id}}" method="POST">
+                  {% csrf_token %} 
+                  <div class="row">
+                    <th scope="row">{{materia.id}}</th>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese la materia" name="materia" required="required" value = {{materia.materia}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese el profesor" name="profesor" required="required" value = {{materia.profesor.nombre}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="number" class="form-control" placeholder="Curso donde se dicta" name="curso" value = {{materia.curso.curso}}>
+                      </div>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                      <a class="btn btn-primary" href="/proa/materias" role="button">cancelar</a>
+                    </td>
+                  </div>
+                  </form>
+                {% else %}
+                  <th scope="row">{{ materia.id}}</th>
+                  <td>{{ materia.materia}}</td>
+                  <td>{{ materia.profesor.nombre}}</td>
+                  <td>{{ materia.curso.curso}}</td>
+                  <td>
+                    <a class="btn btn-primary" href="/proa/materias/delete?id={{materia.id}}" role="button">eliminar</a>
+                    <a class="btn btn-primary" href="/proa/materias/editar?id={{materia.id}}" role="button">editar</a>
+                  </td> 
+                {% endif %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+  
+{% if mensaje%}
+<script type="text/javascript">
+  alert("{{ mensaje }}" );
+</script>
+{% endif %}
+{% endblock %}
