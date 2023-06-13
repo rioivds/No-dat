@@ -1,0 +1,93 @@
+{% extends "base_template.html" %}
+{% block title %}Proa - Profesores{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form action="/profesores/nuevo2/" method="POST">
+      {% csrf_token %} 
+        <div class="row">
+            
+            <div class="col">
+              <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" required="required">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" required="required">
+            </div>
+            <div class="col">
+              <input type="email" class="form-control" placeholder="ingrese el mail" name="email">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" required="required">
+            </div>
+            <button type="submit" class="col">Nuevo</button>
+          </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Documento</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+              <tr>
+                {% if profesor.documento == profesores_edit.documento %}
+                  <form action="/proa/profesores/guardar/?id={{profesor.id}}" method="POST">
+                  {% csrf_token %} 
+                  <div class="row">
+                    <th scope="row">{{profesor.id}}</th>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value = {{profesor.nombre}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" value = {{profesor.apellido}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="email" class="form-control" placeholder="ingrese el mail" name="email" value = {{profesor.email}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value = {{profesor.documento}}>
+                      </div>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                      <a class="btn btn-primary" href="/proa/profesores" role="button">cancelar</a>
+                    </td>
+                  </div>
+                  </form>
+                {% else %}
+                  <th scope="row">{{ profesor.id_alumno}}</th>
+                  <td>{{ profesor.nombre}}</td>
+                  <td>{{ profesor.apellido}}</td>
+                  <td>{{ profesor.email}}</td>
+                  <td>{{ profesor.documento }}</td>
+                  <td>
+                    <a class="btn btn-primary" href="/proa/profesores/delete?id={{profesor.id}}" role="button">eliminar</a>
+                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.documento}}" role="button">editar</a>
+                  </td> 
+                {% endif %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+  
+{% if mensaje%}
+<script type="text/javascript">
+  alert("{{ mensaje }}" );
+</script>
+{% endif %}
+{% endblock %}
