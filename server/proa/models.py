@@ -8,19 +8,19 @@ from .choices import cursos
 
 
 class Curso(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    anio = models.IntegerField(max_length=10, verbose_name='Año')
+    id = models.BigAutoField(primary_key=True,verbose_name='ID Curso')
+    anio = models.IntegerField(verbose_name='Año')
 
 class Profesor(models.Model):
-    dni = models.CharField(max_length=10, primary_key=True, verbose_name='DNI')
+    dni = models.CharField(max_length=8, primary_key=True, verbose_name='DNI Profesor')
     nombre = models.CharField(max_length=100, verbose_name='Nombre')
     apellido = models.CharField(max_length=100, verbose_name='Apellido')
     telefono = models.CharField(max_length=20, verbose_name='Telefono')
     email = models.EmailField(verbose_name='Email')
 
 class Materia(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, verbose_name='Nombre')
+    id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre Materia')
     horas_catedra = models.IntegerField(verbose_name='Horas Catedra')
     horario = models.CharField(max_length=100, verbose_name='Horario')
     profesor = models.ForeignKey(Profesor, null=True, on_delete=models.CASCADE)
@@ -40,8 +40,8 @@ class Calificaciones(models.Model):
     final = models.BooleanField(verbose_name='final')
     fecha = models.DateField(verbose_name='Fecha')
     nota = models.FloatField(verbose_name='Nota')
-    alumno = models.ForeignKey(Alumno, null=True, on_delete=models.CASCADE)
-    profesor = models.ForeignKey(Profesor, null=True, on_delete=models.CASCADE)
+    alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
 
