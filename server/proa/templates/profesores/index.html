@@ -3,25 +3,47 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <form action="/profesores/nuevo2/" method="POST">
-      {% csrf_token %} 
-        <div class="row">
-            
-            <div class="col">
-              <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" required="required">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" required="required">
-            </div>
-            <div class="col">
-              <input type="email" class="form-control" placeholder="ingrese el mail" name="email">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" required="required">
-            </div>
-            <button type="submit" class="col">Nuevo</button>
-          </div>
-    </form>
+  <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir profesor</h1>
+        </div>
+        <div class="modal-body">
+          <form action="/profesores/nuevo2/" method="POST">
+            {% csrf_token %} 
+              <ul class="list-group"> 
+                  <div class="list-group-item">
+                    <label for="nombre" class="col-form-label">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
+                  </div>
+                  <div class="list-group-item">
+                    <label for="apellido" class="col-form-label">Apellido:</label>
+                    <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
+                  </div>
+                  <div class="list-group-item">
+                    <label for="email" class="col-form-label">E-mail:</label>
+                    <input type="email" class="form-control" placeholder="Ingrese el mail" name="email">
+                  </div>
+                  <div class="list-group-item">
+                    <label for="DNI" class="col-form-label">DNI:</label>
+                    <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
+                  </div>
+                  <button type="submit" class="btn btn-success mt-3">Nuevo</button>
+                </ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
+    Añadir profesor
+  </button>
+  
     <table class="table">
         <thead>
             <tr>
