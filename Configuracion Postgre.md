@@ -1,5 +1,6 @@
 # Conexion Postgre-Django
 
+
 ### Cambiar en /settings.py
     DATABASES = {
         'default': {
@@ -11,22 +12,28 @@
             }
         }
 
-### Instalar
-- Postgre (Instalador en .\Documentacion\ )
-- Psycopg2 
 
-    pip install psycopg2
+### Instalar
+- Postgres
+
+>https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+- Psycopg2 
+    
+>pip install psycopg2
+
 
 ### Desde pgAdmin 4
-Crear DB, sentencia SQL Query TOOL
+- Crear DB, sentencia SQL Query TOOL
 
-    create database <nombre database>
+>create database <nombre database>
+
 
 ### Links
 
-Conexion con Django    
-    https://www.youtube.com/watch?v=jMPTz5NWIPY&t=492s
-    https://www.youtube.com/watch?v=RNFrlYO4_6g&t=223s
+- Conexion con Django    
 
-Instalar Postgres
-    https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+>https://www.youtube.com/watch?v=jMPTz5NWIPY&t=492s
+>https://www.youtube.com/watch?v=RNFrlYO4_6g&t=223s
+
+
