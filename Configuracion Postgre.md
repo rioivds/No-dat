@@ -14,7 +14,7 @@
 
 
 ### Instalar
-- Postgres
+- Postgre
 - Psycopg2: 
 
 >pip install psycopg2
@@ -34,7 +34,7 @@
 
 >https://www.youtube.com/watch?v=RNFrlYO4_6g&t=223s
 
-- Instalar Postgres
+- Instalar Postgre
 
 >https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
