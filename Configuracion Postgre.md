@@ -2,15 +2,15 @@
 
 ### Cambiar en /settings.py
 
-    >DATABASES = {
-    >    'default': {
-    >        'ENGINE': 'django.db.backends.postgresql',
-    >        'NAME': 'nodat',
-    >        'PASSWORD': 'root', # 
-    >        'HOST': 'localhost',
-    >        'PORT': '', # Dejar vacio para referirse al port por default
-    >    }
-    >}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nodat',
+        'PASSWORD': 'root', # 
+        'HOST': 'localhost',
+        'PORT': '', # Dejar vacio para referirse al port por default
+        }
+    }
 
 ### Instalar
     - Postgre (Instalador en .\Documentacion\) 
