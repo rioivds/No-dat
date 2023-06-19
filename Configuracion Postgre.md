@@ -20,13 +20,13 @@
 
 - Psycopg2 
     
->pip install psycopg2
+    pip install psycopg2
 
 
 ### Desde pgAdmin 4
 - Crear DB, sentencia SQL Query TOOL
 
->create database <nombre database>
+    create database 'nombre database'
 
 
 ### Links
@@ -34,6 +34,7 @@
 - Conexion con Django    
 
 >https://www.youtube.com/watch?v=jMPTz5NWIPY&t=492s
+
 >https://www.youtube.com/watch?v=RNFrlYO4_6g&t=223s
 
 
