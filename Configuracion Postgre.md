@@ -19,13 +19,11 @@
 >https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 - Psycopg2 
-    
     pip install psycopg2
 
 
 ### Desde pgAdmin 4
 - Crear DB, sentencia SQL Query TOOL
-
     create database 'nombre database'
 
 
