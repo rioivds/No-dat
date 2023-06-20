@@ -61,8 +61,6 @@
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
     Añadir alumno
   </button>
-  
-  
   <table class="table">
       <thead>
           <tr>
@@ -70,20 +68,20 @@
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Email</th> 
-              <th scope="col">Documento</th>
+              <th scope="col">DNI</th>
               <th scope="col">Fecha de Nacimiento</th>
-              <th scope="col">Repitente?</th>
               <th scope="col">Curso</th>
+              <th scope="col">Repitente?</th>
           </tr>
       </thead>
       <tbody>
           {% for alumno in alumnos %}
             <tr>
-              {% if alumno.documento == alumnos_edit.documento %}
-                <form action="/proa/alumnos/guardar/?id={{alumno.id}}" method="POST">
+              {% if alumno.dni == alumnos_edit.dni %}
+                <form action="/proa/alumnos/guardar/?id={{alumno.dni}}" method="POST">
                 {% csrf_token %} 
                 <div class="row">
-                  <th scope="row">{{alumno.id}}</th>
+                  <th scope="row">{{alumno.dni}}</th>
                   <td>
                     <div class="col">
                       <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value="{{alumno.nombre}}">
@@ -101,7 +99,7 @@
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value="{{alumno.documento}}">
+                      <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value="{{alumno.dni}}">
                     </div>
                   </td>
                   <td>
@@ -144,11 +142,22 @@
                 <td>{{ alumno.nombre}}</td>
                 <td>{{ alumno.apellido}}</td>
                 <td>{{ alumno.email}}</td>
-                <td>{{ alumno.documento }}</td>
-                <td>{{ alumno.curso.curso}}</td>
+                <td>{{ alumno.dni }}</td>
+                <td>{{ alumno.fecha_nacimiento }}</td>
+                <td>{{ alumno.curso. }}</td>
                 <td>
-                  <a class="btn btn-primary" href="/proa/alumnos/delete?id={{alumno.id}}" role="button">eliminar</a>
-                  <a class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.documento}}" role="button">editar</a>
+                  <div class="col">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" name="repitio" {% if alumno.repitio %}checked{% endif %}>
+                      <label class="form-check-label" for="repitio">
+                        Repitió
+                      </label>
+                    </div>
+                  </div>
+                </td>                
+                <td>
+                  <a class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">eliminar</a>
+                  <a class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">editar</a>
                 </td> 
               {% endif %}
             </tr>

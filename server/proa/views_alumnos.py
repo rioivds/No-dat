@@ -25,11 +25,14 @@ def guardar_alumnos(request):
     fecha_nacimiento = request.POST["fecha_nacimiento"]
     repitio = request.POST.get("repitio") == "on"  # Conversión a True si está marcado
     curso = request.POST["curso"]
-
-    insert = Alumno(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
-    insert.save()
-    alumnos = Alumno.objects.all()
-    return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
+    if Alumno.objects.filter(dni=DNI).exists():
+        alumnos = Alumno.objects.all()
+        return render(request, 'alumnos/index.html',{ "mensaje": "este alumno ya existe", "alumno": alumnos})
+    else:
+        insert = Alumno(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
+        insert.save()
+        alumnos = Alumno.objects.all()
+        return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
 
 def eliminar_alumno(request):
     id = request.GET["id"]
@@ -41,22 +44,24 @@ def eliminar_alumno(request):
 def editar_alumno(request):
     DNI = request.GET["DNI"]
     alumnos = Alumno.objects.all()
-    alumnos_editar = Alumno.objects.get(documento=DNI)
+    alumnos_editar = Alumno.objects.get(dni=DNI)
     print("editar",alumnos_editar.nombre)
-    return render(request, 'alumnos/index.html',{ "mensaje": "", "alumnos": alumnos, "alumnos_edit": alumnos_editar})
+    return render(request, 'alumnos/index.html', {"mensaje": "", "alumnos": alumnos, "alumnos_edit": alumnos_editar})
 
 def guardar_edit(request):
-    DNI = request.POST ["DNI"]
-    nombre = request.POST ["nombre"]
-    apellido = request.POST ["apellido"]
-    email = request.POST ["email"]
-    fecha_nacimiento = request.POST ["fecha_nacimiento"]
+    id = request.GET["id"]
+    DNI = request.POST["DNI"]
+    nombre = request.POST["nombre"]
+    apellido = request.POST["apellido"]
+    email = request.POST["email"]
+    fecha_nacimiento = request.POST["fecha_nacimiento"]
     repitio = request.POST.get("repitio", False)  # Valor predeterminado: False
-    curso = request.POST ["curso"]
+    curso = request.POST["curso"]
 
     alumnos = Alumno.objects.all()
-    Alumno.objects.filter(id = id).update(nombre = nombre, apellido = apellido, email = email, dni = DNI, curso = Curso.objects.get(id=curso),fecha_nacimiento = fecha_nacimiento,repitio = repitio)
-    return render(request, 'alumnos/index.html',{ "mensaje": "se edito correctamente", "alumnos": alumnos})
+    Alumno.objects.filter(dni = DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
+    return render(request, 'alumnos/index.html', {"mensaje": "se editó correctamente", "alumnos": alumnos})
+
 
 def curso(request):
     año = request.GET["curso"]

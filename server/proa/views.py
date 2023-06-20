@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from proa.models import Curso
+from django.shortcuts import get_object_or_404
 # Create your views here.
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
