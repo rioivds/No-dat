@@ -29,6 +29,10 @@
                     <label for="DNI" class="col-form-label">DNI:</label>
                     <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
                   </div>
+                  <div class="list-group-item">
+                    <label for="telefono" class="col-form-label">Telefono:</label>
+                    <input type="number" class="form-control" placeholder="Ingrese el Telefono" name="telefono" required="required">
+                  </div>
                   <button type="submit" class="btn btn-success mt-3">Nuevo</button>
                 </ul>
           </form>
@@ -51,15 +55,15 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Email</th>
-                <th scope="col">Documento</th>
-                <th> </th>
+                <th scope="col">DNI</th>
+                <th scope="col">Telefono </th>
                 <th> </th>
             </tr>
         </thead>
         <tbody>
             {% for profesor in profesores %}
               <tr>
-                {% if profesor.documento == profesores_edit.documento %}
+                {% if profesor.dni == profesores_edit.dni %}
                   <form action="/proa/profesores/guardar/?id={{profesor.id}}" method="POST">
                   {% csrf_token %} 
                   <div class="row">
@@ -81,7 +85,12 @@
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value = {{profesor.documento}}>
+                        <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value = {{profesor.dni}}>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="ingrese el Telefono" name="telefono" value = {{profesor.telefono}}>
                       </div>
                     </td>
                     <td>
@@ -95,10 +104,11 @@
                   <td>{{ profesor.nombre}}</td>
                   <td>{{ profesor.apellido}}</td>
                   <td>{{ profesor.email}}</td>
-                  <td>{{ profesor.documento }}</td>
+                  <td>{{ profesor.dni }}</td>
+                  <td>{{ profesor.telefono }}</td>
                   <td>
                     <a class="btn btn-primary" href="/proa/profesores/delete?id={{profesor.id}}" role="button">eliminar</a>
-                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.documento}}" role="button">editar</a>
+                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">editar</a>
                   </td> 
                 {% endif %}
               </tr>

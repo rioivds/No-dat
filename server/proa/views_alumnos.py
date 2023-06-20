@@ -23,7 +23,7 @@ def guardar_alumnos(request):
     apellido = request.POST["apellido"]
     email = request.POST["email"]
     fecha_nacimiento = request.POST["fecha_nacimiento"]
-    repitio = request.POST.get("repitio", False)  # Valor predeterminado: False
+    repitio = request.POST.get("repitio") == "on"  # Conversión a True si está marcado
     curso = request.POST["curso"]
 
     insert = Alumno(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
@@ -51,7 +51,7 @@ def guardar_edit(request):
     apellido = request.POST ["apellido"]
     email = request.POST ["email"]
     fecha_nacimiento = request.POST ["fecha_nacimiento"]
-    repitio = request.POST ["repitio?"]
+    repitio = request.POST.get("repitio", False)  # Valor predeterminado: False
     curso = request.POST ["curso"]
 
     alumnos = Alumno.objects.all()

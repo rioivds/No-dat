@@ -22,11 +22,11 @@ def guardar_profesores(request):
     apellido = request.POST ["apellido"]
     email = request.POST ["email"]
 
-    if Profesor.objects.filter(documento=DNI).exists():
+    if Profesor.objects.filter(dni=DNI).exists():
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "este alumno ya existe", "profesores": profesores})
     else:
-        insert = Profesor(nombre = nombre, apellido = apellido, email = email, documento = DNI)
+        insert = Profesor(nombre = nombre, apellido = apellido, email = email, dni = DNI)
         insert.save()
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "Se inserto con exito", "profesores": profesores})
@@ -41,7 +41,7 @@ def eliminar_profesores(request):
 def editar_profesores(request):
     DNI = request.GET["DNI"]
     profesores = Profesor.objects.all()
-    profesores_editar = Profesor.objects.get(documento=DNI)
+    profesores_editar = Profesor.objects.get(dni=DNI)
     print("editar",profesores_editar.nombre)
     return render(request, 'profesores/index.html',{ "mensaje": "", "profesores": profesores, "profesores_edit": profesores_editar})
 
@@ -53,5 +53,5 @@ def guardar_edit(request):
     email = request.POST ["email"]
 
     profesores = Profesor.objects.all()
-    Profesor.objects.filter(id_profesor = id).update(documento = DNI, nombre = nombre, apellido = apellido, email = email)
+    Profesor.objects.filter(dni = DNI).update(dni = DNI, nombre = nombre, apellido = apellido, email = email)
     return render(request, 'profesores/index.html',{ "mensaje": "se edito correctamente", "profesores": profesores})

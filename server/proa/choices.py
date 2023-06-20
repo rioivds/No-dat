@@ -1,10 +1,10 @@
 cursos=(
-    ('1er', '1er año'),
-    ('2do', '2do año'),
-    ('3er', '3er año'),
-    ('4to', '4to año'),
-    ('5to', '5to año'),
-    ('6to', '6to año')
+    ('1', '1er año'),
+    ('2', '2do año'),
+    ('3', '3er año'),
+    ('4', '4to año'),
+    ('5', '5to año'),
+    ('6', '6to año')
 )
 
 nota_numerica=(
