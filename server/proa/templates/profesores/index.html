@@ -39,6 +39,12 @@
     </div>
   </div>
   
+  {% if mensaje%}
+    <div class="alert alert-success" role="alert">
+      {{ mensaje }}
+    </div>
+  {% endif %}
+
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
     Añadir profesor
   </button>
@@ -111,10 +117,4 @@
         </tbody>
     </table>
 </div>
-  
-{% if mensaje%}
-<script type="text/javascript">
-  alert("{{ mensaje }}" );
-</script>
-{% endif %}
 {% endblock %}
