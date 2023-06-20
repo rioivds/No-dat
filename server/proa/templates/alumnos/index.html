@@ -27,6 +27,9 @@
                     <input type="number" class="form-control" placeholder="ingrese el DNI" name="DNI" required="required">
                   </div>
                   <div class="list-group-item">
+                    <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
+                  </div>
+                  <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         <option value="1">1ro</option>
                         <option value="2">2do</option>
@@ -35,6 +38,14 @@
                         <option value="5">5to</option>
                         <option value="6">6to</option>
                       </select>
+                    </div>
+                  <div class="list-group-item">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="repitio" name="repitio">
+                      <label class="form-check-label" for="repitio">
+                        Repitió?
+                      </label>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Nuevo</button>
                 </ul>
@@ -60,9 +71,9 @@
               <th scope="col">Apellido</th>
               <th scope="col">Email</th> 
               <th scope="col">Documento</th>
+              <th scope="col">Fecha de Nacimiento</th>
+              <th scope="col">Repitente?</th>
               <th scope="col">Curso</th>
-              <th> </th>
-              <th> </th>
           </tr>
       </thead>
       <tbody>
@@ -75,22 +86,27 @@
                   <th scope="row">{{alumno.id}}</th>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value = {{alumno.nombre}}>
+                      <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value="{{alumno.nombre}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" value = {{alumno.apellido}}>
+                      <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" value="{{alumno.apellido}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="email" class="form-control" placeholder="ingrese el mail" name="email" value = {{alumno.email}}>
+                      <input type="email" class="form-control" placeholder="ingrese el mail" name="email" value="{{alumno.email}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value = {{alumno.documento}}>
+                      <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value="{{alumno.documento}}">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento" name="Fecha de nacimiento(YYYY-MM-DD)" value="{{alumno.fecha_nacimiento}}">
                     </div>
                   </td>
                   <td>
@@ -103,9 +119,20 @@
                         <option value="5">5to</option>
                         <option value="6">6to</option>
                       </select>
-                      <!-- <input type="text" class="form-control" placeholder="ingrese el curso" name="curso" value = {{alumno.curso}}> -->
+                      <input type="text" class="form-control" placeholder="ingrese el curso" name="curso" value="{{alumno.curso}}">
                     </div>
                   </td>
+                  <td>
+                    <div class="col">
+                      <div class="form-check">
+                        <input type="checkbox" class="custom-control-input" name="repitio" value="true">
+                        <label class="form-check-label" for="repitio">
+                          Repitió
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+
                   <td>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <a class="btn btn-primary" href="/proa/alumnos" role="button">cancelar</a>

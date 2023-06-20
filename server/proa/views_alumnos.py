@@ -18,19 +18,18 @@ def index(request):
 
 
 def guardar_alumnos(request):
-    DNI = request.POST ["DNI"]
-    nombre = request.POST ["nombre"]
-    apellido = request.POST ["apellido"]
-    email = request.POST ["email"]
-    fecha_nacimiento = request.POST ["fecha_nacimiento"]
-    repitio = request.POST ["repitio?"]
-    curso = request.POST ["curso"]
+    DNI = request.POST["DNI"]
+    nombre = request.POST["nombre"]
+    apellido = request.POST["apellido"]
+    email = request.POST["email"]
+    fecha_nacimiento = request.POST["fecha_nacimiento"]
+    repitio = request.POST.get("repitio", False)  # Valor predeterminado: False
+    curso = request.POST["curso"]
 
-
-    insert = Alumno(nombre = nombre, apellido = apellido, email = email, dni = DNI, curso = Curso.objects.get(id=curso),fecha_nacimiento = fecha_nacimiento,repitio = repitio)
+    insert = Alumno(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
     insert.save()
     alumnos = Alumno.objects.all()
-    return render(request, 'alumnos/index.html',{ "mensaje": "Se inserto con exito", "alumnos": alumnos})
+    return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
 
 def eliminar_alumno(request):
     id = request.GET["id"]
