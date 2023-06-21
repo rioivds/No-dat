@@ -35,4 +35,5 @@ urlpatterns = [
     path('materias/delete/', views_materia.eliminar_materia),
     path('materias/editar/', views_materia.editar_materia),
     path('materias/guardar/', views_materia.guardar_materia),
+
 ]

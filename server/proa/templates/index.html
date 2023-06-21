@@ -1,57 +1,54 @@
 {% extends "base_template.html" %}
 {% load static %}
 {% block content %}
-  <div class="container text-center">
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Alumnos">
-          <div class="card-body">
-            <h5 class="card-title">Registro de Alumnos</h5>
-            <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con los alumnos.</p>
-            <a href="/proa/alumnos" class="btn btn-primary"> Ir a la Sección</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="{% static 'proa/img/profesores.jpg' %}" class="card-img-top" alt="Profesores">
-          <div class="card-body">
-            <h5 class="card-title">Registro de profesores</h5>
-            <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con los profesores.</p>
-            <a href="/proa/profesores" class="btn btn-primary"> Ir a la seccion</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="{% static 'proa/img/materias.jpg' %}" class="card-img-top" alt="Materias">
-          <div class="card-body">
-            <h5 class="card-title">Registro de materias</h5>
-            <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con las materias.</p>
-            <a href="/proa/materias" class="btn btn-primary"> Ir a la seccion</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="{% static 'proa/img/materias.jpg' %}" class="card-img-top" alt="Notas">
-          <div class="card-body">
-            <h5 class="card-title">Registro de calificaciones</h5>
-            <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con las calificaciones.</p>
-            <a href="/proa/materias" class="btn btn-primary"> Ir a la seccion</a>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-              {% for curso in cursos %}
-              <option value = {{ curso.id }}>{{ curso.curso }}</option>
-              {% endfor %}
-            </select>
-          </div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Alumnos">
+        <div class="card-body">
+          <h5 class="card-title">Registro de Alumnos</h5>
+          <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con los alumnos.</p>
+          <a href="/proa/alumnos" class="btn btn-primary"> Ir a la Sección</a>
         </div>
       </div>
     </div>
-
-    <hr/>    
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'proa/img/profesores.jpg' %}" class="card-img-top" alt="Profesores">
+        <div class="card-body">
+          <h5 class="card-title">Registro de profesores</h5>
+          <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con los profesores.</p>
+          <a href="/proa/profesores" class="btn btn-primary"> Ir a la seccion</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'proa/img/materias.jpg' %}" class="card-img-top" alt="Materias">
+        <div class="card-body">
+          <h5 class="card-title">Registro de materias</h5>
+          <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con las materias.</p>
+          <a href="/proa/materias" class="btn btn-primary"> Ir a la seccion</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'proa/img/materias.jpg' %}" class="card-img-top" alt="Notas">
+        <div class="card-body">
+          <h5 class="card-title">Registro de calificaciones</h5>
+          <p class="card-text">En esta sección podras realizar todas las tareas administrativas relacionadas con las calificaciones.</p>
+          <a href="/proa/materias" class="btn btn-primary"> Ir a la seccion</a>
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+            {% for curso in cursos %}
+            <option value = {{ curso.id }}>{{ curso.curso }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
   {% endblock %}

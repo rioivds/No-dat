@@ -3,6 +3,7 @@ Pasos para dar de alta el server:
 -Instalar Python
 -Abrir Carpeta de trabajo en VSCode y abrir la consola
 -Verificar instalacion de Python (escribiendo "pyhton" en la consola)
+-instalar django: "pip install django"
 -Crear migracion en la base de datos: "python manage.py makemigrations" en la consola
 -Hacer la migracion de la base de datos: "python manage.py migrate" en la consola
 -Activamos el server: "python manage.py runserver" en la consola

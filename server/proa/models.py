@@ -6,44 +6,44 @@ from tokenize import blank_re
 from django.db import models
 from .choices import cursos
 
-# Create your models here.
 
-class Cursos(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID Curso')
-    curso = models.CharField(max_length=50, null = False)
-    #curso = models.CharField(choices=cursos, null=False)  <--IGNORAR
+class Curso(models.Model):
+    id = models.BigAutoField(primary_key=True,verbose_name='ID Curso')
+    anio = models.IntegerField(verbose_name='Año')
+
+class Profesor(models.Model):
+    dni = models.CharField(max_length=8, primary_key=True, verbose_name='DNI Profesor')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre')
+    apellido = models.CharField(max_length=100, verbose_name='Apellido')
+    telefono = models.CharField(max_length=20, verbose_name='Telefono')
+    email = models.EmailField(verbose_name='Email')
+
+class Materia(models.Model):
+    id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre Materia')
+    horas_catedra = models.IntegerField(verbose_name='Horas Catedra')
+    horario = models.CharField(max_length=100, verbose_name='Horario')
+    profesor = models.ForeignKey(Profesor, null=True, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
 
 class Alumno(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='id_alumno')
-    nombre = models.CharField(max_length=50, null = False)
-    apellido = models.CharField(max_length=50, null = False)
-    email = models.EmailField(max_length=50)
-    documento = models.IntegerField(null = False)
-    curso = models.ForeignKey(Cursos, null=False, on_delete=models.CASCADE) #Relacion: Alumno-Curso  
-
-class Profesores(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='id_profesor')
-    nombre = models.CharField(max_length=50, null = False)
-    apellido = models.CharField(max_length=50, null = False)
-    email = models.EmailField(max_length=50)
-    documento = models.IntegerField(null = False)
+    dni = models.CharField(max_length=10, primary_key=True, verbose_name='DNI')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre')
+    apellido = models.CharField(max_length=100, verbose_name='Apellido')
+    fecha_nacimiento = models.DateField(verbose_name='Fecha de nacimiento')
+    email = models.EmailField(verbose_name='Email')
+    repitio = models.BooleanField(verbose_name='Repitio?',default=None, null=True)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
 
 class Calificaciones(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID Calificacion')
-    nota = models.IntegerField(null=False)
-    fecha = models.DateTimeField(null=False, blank=False)
-    recuperatorio = models.BooleanField(blank=False, default=False)
-    nota_final = models.IntegerField(null=False)
-    profesor = models.ForeignKey(Profesores, null=True, on_delete=models.CASCADE) #Relacion: Calificacion-Profesor
-    alumno = models.ForeignKey(Alumno, null=True, on_delete=models.CASCADE) #Relacion: Calificacion-Alumno
-
-class Materias(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID Materia')
-    materia = models.CharField(max_length=50) 
-    profesor = models.ForeignKey(Profesores, null=True, on_delete=models.CASCADE) #Relacion: Materia-Profesor 
-    curso = models.ForeignKey(Cursos, null=False, on_delete=models.CASCADE) #Relacion: Materia-Curso 
-    
-
+    id = models.BigAutoField(primary_key=True)
+    final = models.BooleanField(verbose_name='final')
+    fecha = models.DateField(verbose_name='Fecha')
+    nota = models.FloatField(verbose_name='Nota')
+    alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
 
 
     
