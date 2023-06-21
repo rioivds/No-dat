@@ -32,7 +32,7 @@ class Alumno(models.Model):
     apellido = models.CharField(max_length=100, verbose_name='Apellido')
     fecha_nacimiento = models.DateField(verbose_name='Fecha de nacimiento')
     email = models.EmailField(verbose_name='Email')
-    repitio = models.BooleanField(verbose_name='Repitio?')
+    repitio = models.BooleanField(verbose_name='Repitio?',default=None, null=True)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
 
 class Calificaciones(models.Model):

@@ -7,7 +7,7 @@ from django.db.models import F
 from django.db.models import Q
 from proa.models import Alumno, Curso
 from django.db import connection
-
+from django.shortcuts import get_object_or_404
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
@@ -35,8 +35,8 @@ def guardar_alumnos(request):
         return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
 
 def eliminar_alumno(request):
-    id = request.GET["id"]
-    delete = Alumno(id = id)
+    DNI = request.GET["DNI"]
+    delete = get_object_or_404(Alumno, dni=DNI)
     delete.delete()
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "mensaje": "Se elimino el alumno con exito", "alumnos": alumnos})
@@ -49,13 +49,13 @@ def editar_alumno(request):
     return render(request, 'alumnos/index.html', {"mensaje": "", "alumnos": alumnos, "alumnos_edit": alumnos_editar})
 
 def guardar_edit(request):
-    id = request.GET["id"]
+    
     DNI = request.POST["DNI"]
     nombre = request.POST["nombre"]
     apellido = request.POST["apellido"]
     email = request.POST["email"]
     fecha_nacimiento = request.POST["fecha_nacimiento"]
-    repitio = request.POST.get("repitio", False)  # Valor predeterminado: False
+    repitio = request.POST.get("repitio") 
     curso = request.POST["curso"]
 
     alumnos = Alumno.objects.all()

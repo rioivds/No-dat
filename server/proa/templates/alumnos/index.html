@@ -70,7 +70,7 @@
               <th scope="col">Email</th> 
               <th scope="col">DNI</th>
               <th scope="col">Fecha de Nacimiento</th>
-              <th scope="col">Curso</th>
+              <th scope="col">Año</th>
               <th scope="col">Repitente?</th>
           </tr>
       </thead>
@@ -104,31 +104,33 @@
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento" name="Fecha de nacimiento(YYYY-MM-DD)" value="{{alumno.fecha_nacimiento}}">
+                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento" name="fecha_nacimiento" value="{{alumno.fecha_nacimiento}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                        <option value="1">1ro</option>
-                        <option value="2">2do</option>
-                        <option value="3">3ro</option>
-                        <option value="4">4to</option>
-                        <option value="5">5to</option>
-                        <option value="6">6to</option>
-                      </select>
-                      <input type="text" class="form-control" placeholder="ingrese el curso" name="curso" value="{{alumno.curso}}">
+                      {% if alumno.dni == alumnos_edit.dni %}
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                          <option value="1" {% if alumno.curso.id == 1 %}selected{% endif %}>1ro</option>
+                          <option value="2" {% if alumno.curso.id == 2 %}selected{% endif %}>2do</option>
+                          <option value="3" {% if alumno.curso.id == 3 %}selected{% endif %}>3ro</option>
+                          <option value="4" {% if alumno.curso.id == 4 %}selected{% endif %}>4to</option>
+                          <option value="5" {% if alumno.curso.id == 5 %}selected{% endif %}>5to</option>
+                          <option value="6" {% if alumno.curso.id == 6 %}selected{% endif %}>6to</option>
+                        </select>
+                      {% else %}
+                        {{ alumno.curso.nombre }}
+                      {% endif %}
                     </div>
                   </td>
                   <td>
-                    <div class="col">
-                      <div class="form-check">
-                        <input type="checkbox" class="custom-control-input" name="repitio" value="true">
-                        <label class="form-check-label" for="repitio">
-                          Repitió
-                        </label>
-                      </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="custom-control-input" name="repitio" value="True"> {% if alumno.repitio %}checked{% endif %}
+                      <label class="form-check-label" for="repitio_{{ alumno.dni }}">
+                        
+                      </label>
                     </div>
+                    
                   </td>
 
                   <td>
@@ -144,13 +146,11 @@
                 <td>{{ alumno.email}}</td>
                 <td>{{ alumno.dni }}</td>
                 <td>{{ alumno.fecha_nacimiento }}</td>
-                <td>{{ alumno.curso. }}</td>
+                <td>{{ alumno.curso.anio}}</td>
                 <td>
                   <div class="col">
                     <div class="form-check">
-                      <input type="checkbox" class="form-check-input" name="repitio" {% if alumno.repitio %}checked{% endif %}>
-                      <label class="form-check-label" for="repitio">
-                        Repitió
+                      <input type="checkbox" class="custom-control-input" name="repitio" {% if alumno.repitio %}checked disabled{% else %}disabled{% endif %} value="True">
                       </label>
                     </div>
                   </div>
