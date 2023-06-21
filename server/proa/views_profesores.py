@@ -33,7 +33,7 @@ def guardar_profesores(request):
         return render(request, 'profesores/index.html',{ "mensaje": "Se inserto con exito", "profesores": profesores})
 
 def eliminar_profesores(request):
-    DNI = request.GET["id"]
+    DNI = request.GET["DNI"]
     profesor = get_object_or_404(Profesor, dni=DNI)
     profesor.delete()
     profesores = Profesor.objects.all()

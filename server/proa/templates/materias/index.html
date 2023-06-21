@@ -21,7 +21,7 @@
                       <label for="profesor" class="col-form-label">Profesor:</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
-                        <option value ="{{ i.id }}">{{ i.nombre }}</option>
+                        <option value ="{{ i.id }}">{{ i.nombre }} {{ i.apellido }}</option>
                         {% endfor %}
                       </select> 
                     </div>
@@ -29,7 +29,7 @@
                       <label for="curso" class="col-form-label">Curso:</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         {% for curso in cursos %}
-                          <option value ="{{ curso }}">{{ curso }}</option>
+                          <option value ="{{ curso }}">{{ curso.anio }}</option>
                         {% endfor %}
                       </select>
                     </div>
