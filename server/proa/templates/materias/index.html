@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% block title %}Proa - Profesores{% endblock %}
+{% block title %}Proa - Materias{% endblock %}
 {% load static %}
 {% block content %}
 <div class="container">
@@ -7,21 +7,21 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir profesor</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Materia</h1>
           </div>
           <div class="modal-body">
-            <form action="/profesores/nuevo2/" method="POST">
+            <form action="/materias/nuevo2/" method="POST">
               {% csrf_token %} 
                 <ul class="list-group"> 
                     <div class="list-group-item">
-                      <label for="materia" class="col-form-label">Materia:</label>
+                      <label for="materia" class="col-form-label">Nombre Materia:</label>
                       <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
                     </div>
                     <div class="list-group-item">
                       <label for="profesor" class="col-form-label">Profesor:</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
-                        <option value ="{{ i.id }}">{{ i.nombre }} {{ i.apellido }}</option>
+                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
                         {% endfor %}
                       </select> 
                     </div>
@@ -29,10 +29,18 @@
                       <label for="curso" class="col-form-label">Curso:</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         {% for curso in cursos %}
-                          <option value ="{{ curso }}">{{ curso.anio }}</option>
+                          <option value ="{{ curso.id }}">{{ curso.anio }}</option>
                         {% endfor %}
                       </select>
                     </div>
+                    <div class="list-group-item">
+                      <label for="horas_catedra" class="col-form-label">Horas Cátedra:</label>
+                      <input type="number" class="form-control" placeholder="Ingrese las horas cátedra" name="horas_catedra" required="required">
+                  </div>
+                  <div class="list-group-item">
+                      <label for="horario" class="col-form-label">Horario:</label>
+                      <input type="text" class="form-control" placeholder="Ingrese el horario" name="horario" required="required">
+                  </div>                  
                     <button type="submit" class="btn btn-success mt-3">Nuevo</button>
                   </ul>
             </form>
@@ -59,33 +67,43 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Materia</th>
-                <th scope="col">Horas Catedra</th>
-                <th scope="col">Horario</th>
                 <th scope="col">Profesor</th>
                 <th scope="col">Curso</th>
+                <th scope="col">Horas Catedras</th>
+                <th scope="col">Horario</th>
             </tr>
         </thead>
         <tbody>
             {% for materia in materias %}
               <tr>
                 {% if materia.id == materias_edit.id %}
-                  <form action="/proa/profesores/guardar/?id={{materia.id}}" method="POST">
+                  <form action="/proa/materias/guardar/?id={{materia.id}}" method="POST">
                   {% csrf_token %} 
                   <div class="row">
                     <th scope="row">{{materia.id}}</th>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese la materia" name="materia" required="required" value = {{materia.materia}}>
+                        <input type="text" class="form-control" placeholder="ingrese la materia" name="nombre" value="{{materia.nombre}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el profesor" name="profesor" required="required" value = {{materia.profesor.nombre}}>
+                        <input type="text" class="form-control" placeholder="ingrese el profesor" name="profesor" value="{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="number" class="form-control" placeholder="Curso donde se dicta" name="curso" value = {{materia.curso.curso}}>
+                        <input type="number" class="form-control" placeholder="Curso donde se dicta" name="curso" value="{{materia.curso.id}}">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="number" class="form-control" placeholder="Horas catedras" name="horas_catedra" value="{{materia.horas_catedra}}">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col">
+                        <input type="number" class="form-control" placeholder="Horario cuando se dicta" name="horario" value="{{materia.horario}}">
                       </div>
                     </td>
                     <td>
@@ -96,9 +114,11 @@
                   </form>
                 {% else %}
                   <th scope="row">{{ materia.id}}</th>
-                  <td>{{ materia.materia}}</td>
-                  <td>{{ materia.profesor.nombre}}</td>
-                  <td>{{ materia.curso.curso}}</td>
+                  <td>{{ materia.nombre}}</td>
+                  <td>{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
+                  <td>{{ materia.curso.id}}</td>
+                  <td>{{ materia.horas_catedra}}</td>
+                  <td>{{ materia.horario}}</td>
                   <td>
                     <a class="btn btn-primary" href="/proa/materias/delete?id={{materia.id}}" role="button">eliminar</a>
                     <a class="btn btn-primary" href="/proa/materias/editar?id={{materia.id}}" role="button">editar</a>
