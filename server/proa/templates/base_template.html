@@ -18,12 +18,19 @@
 <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function() {
-          $(".datepicker").datepicker({
-            dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
-          });
+      $(document).ready(function() {
+        $(".datepicker").datepicker({
+          dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
         });
-      </script>
+
+        $('.datepicker').click(function() {
+          // Se centra la tabla de fechas.
+          var date = $('.datepicker')[1];
+          date.style.display = 'flex';
+          date.style.justifyContent = 'center';
+        });
+      });
+    </script>
     <nav class="navbar navbar-expand-lg bg-primary rounded">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="/proa">
