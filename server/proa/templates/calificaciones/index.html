@@ -3,7 +3,6 @@
 {% load static %}
 {% block content %}
 <div class="container">
-
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -15,19 +14,23 @@
             {% csrf_token %} 
               <ul class="list-group"> 
                   <div class="list-group-item">
-                    <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre del alumno" name="alumno" required="required">
                   </div>
                   <div class="list-group-item">
-                    <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
+                    <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required"> 
                   </div>
                   <div class="list-group-item">
-                    <input type="email" class="form-control" placeholder="Ingrese el email" name="email">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                      {% for i in profesores %}
+                      <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                      {% endfor %}
+                    </select> 
                   </div>
                   <div class="list-group-item">
-                    <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
+                    <input type="number" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
                   </div>
                   <div class="list-group-item">
-                    <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nacimiento (AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
+                    <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha_nota" id="fecha_nota" required="required">
                   </div>
                   <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">

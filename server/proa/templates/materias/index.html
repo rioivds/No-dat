@@ -14,11 +14,9 @@
               {% csrf_token %} 
                 <ul class="list-group"> 
                     <div class="list-group-item">
-                      <label for="materia" class="col-form-label">Nombre Materia:</label>
                       <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
                     </div>
                     <div class="list-group-item">
-                      <label for="profesor" class="col-form-label">Profesor:</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
                         <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>

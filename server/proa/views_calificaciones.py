@@ -42,31 +42,24 @@ def parse_fecha(fecha_str):
     return f"{anio}-{mes}-{dia}"
 
 def guardar_calificaciones(request):
-    DNI = request.POST["DNI"]
-    nombre = request.POST["nombre"]
-    apellido = request.POST["apellido"]
-    email = request.POST["email"]
-    fecha_nacimiento_str = request.POST["fecha_nacimiento"]
-    fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, "%m/%d/%Y").strftime("%Y-%m-%d")
-    repitio = request.POST.get("repitio") == "on"  # Conversión a True si está marcado
+    id = request.POST["id"]
+    nota = request.POST["nota"]
+    alumno=alumno.POST["alumno"]
+    profesor=profesor.POST["profesor"]
+    fecha_nota = request.POST["fecha_nota"]
+    fecha_nota_str = datetime.strptime(fecha_nota, "%m/%d/%Y").strftime("%Y-%m-%d")
+    final = request.POST.get("final") == "on"  # Conversión a True si está marcado
     curso = request.POST["curso"]
-
-    if Calificaciones.objects.filter(dni=DNI).exists():
-        calificaciones = Calificaciones.objects.all()
-        return render(request, 'alumnos/index.html', {"mensaje": "Este alumno ya existe", "alumnos": calificaciones})
-    else:
-        insert = Alumno(
-            nombre=nombre,
-            apellido=apellido,
-            email=email,
-            dni=DNI,
-            curso=Curso.objects.get(id=curso),
-            fecha_nacimiento=fecha_nacimiento,
-            repitio=repitio
+    insert = Calificaciones(
+        id=id,
+        nota=nota,
+        fecha_nota=fecha_nota_str,
+        final=final,
+        curso=Curso.objects.get(id=curso),
         )
-        insert.save()
-        calificaciones = Calificaciones.objects.all()
-        return render(request, 'alumnos/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaicones": calificaciones})
+    insert.save()
+    calificaciones = Calificaciones.objects.all()
+    return render(request, 'calificaciones/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaicones": calificaciones})
 
 
 def eliminar_calificaciones(request):
