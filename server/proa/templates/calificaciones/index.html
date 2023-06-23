@@ -1,4 +1,4 @@
-"base_template.html" %}
+{% extends "base_template.html" %}
 {% block title %}Proa - Alumnos{% endblock %}
 {% load static %}
 {% block content %}
@@ -62,7 +62,7 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
 
   <table class="table">
       <thead>
