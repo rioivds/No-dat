@@ -10,13 +10,17 @@ from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
 
+
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
 
 def index(request):
     calificaciones = Calificaciones.objects.all()
-    
-    return render(request, 'calificaciones/index.html',{ "calificaciones": calificaciones})
+    profesores = Profesor.objects.all()
+    cursos = Curso.objects.all()
+    materias=Materia.objects.all()
+    alumnos=Alumno.objects.all()
+    return render(request, 'calificaciones/index.html',{ "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos":alumnos})
 
 def parse_fecha(fecha_str):
     meses = {
@@ -42,24 +46,27 @@ def parse_fecha(fecha_str):
     return f"{anio}-{mes}-{dia}"
 
 def guardar_calificaciones(request):
-    id = request.POST["id"]
-    nota = request.POST["nota"]
-    alumno=alumno.POST["alumno"]
-    profesor=profesor.POST["profesor"]
-    fecha_nota = request.POST["fecha_nota"]
-    fecha_nota_str = datetime.strptime(fecha_nota, "%m/%d/%Y").strftime("%Y-%m-%d")
-    final = request.POST.get("final") == "on"  # Conversión a True si está marcado
+    alumno=request.POST["alumno"]
     curso = request.POST["curso"]
+    materia=request.POST["materia"]
+    profesor=request.POST["profesor"]
+    fecha = request.POST["fecha"]
+    fecha_nota_str = datetime.strptime(fecha, "%m/%d/%Y").strftime("%Y-%m-%d")
+    nota = request.POST["nota"]
+    final = request.POST.get("final") == "on"  # Conversión a True si está marcado
+    
     insert = Calificaciones(
-        id=id,
-        nota=nota,
-        fecha_nota=fecha_nota_str,
-        final=final,
+        alumno=Alumno.objects.get(dni=alumno),
         curso=Curso.objects.get(id=curso),
+        materia=Materia.objects.get(id=materia),
+        profesor=Profesor.objects.get(dni=profesor),
+        fecha=fecha_nota_str,
+        nota=nota,
+        final=final,
         )
     insert.save()
     calificaciones = Calificaciones.objects.all()
-    return render(request, 'calificaciones/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaicones": calificaciones})
+    return render(request, 'calificaciones/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaciones": calificaciones})
 
 
 def eliminar_calificaciones(request):
@@ -67,14 +74,14 @@ def eliminar_calificaciones(request):
     delete = get_object_or_404(Calificaciones, dni=DNI)
     delete.delete()
     calificaciones = Calificaciones.objects.all()
-    return render(request, 'calificaciones/index.html',{ "mensaje": "Se elimino la calificacion con exito", "calificacion": calificaciones})
+    return render(request, 'calificaciones/index.html',{ "mensaje": "Se elimino la calificacion con exito", "calificaciones": calificaciones})
 
 def editar_calificaciones(request):
     DNI = request.GET["DNI"]
     calificaciones = Calificaciones.objects.all()
     calificaciones_editar = Calificaciones.objects.get(dni=DNI)
     print("editar", calificaciones_editar.nombre)
-    return render(request, 'alumnos/index.html', {"mensaje": "", "alumnos": calificaciones, "alumnos_edit": calificaciones_editar})
+    return render(request, 'calificaciones/index.html', {"mensaje": "", "alumnos": calificaciones, "alumnos_edit": calificaciones_editar})
 
 def guardar_edit(request):
     
@@ -87,9 +94,9 @@ def guardar_edit(request):
     repitio = request.POST.get("repitio") 
     curso = request.POST["curso"]
 
-    alumnos = Alumno.objects.all()
+    calificaciones = Calificaciones.objects.all()
     Alumno.objects.filter(dni = DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=Curso.objects.get(id=curso), fecha_nacimiento=fecha_nacimiento, repitio=repitio)
-    return render(request, 'alumnos/index.html', {"mensaje": "se editó correctamente", "alumnos": alumnos})
+    return render(request, 'calificaciones/index.html', {"mensaje": "se editó correctamente", "calificaciones": calificaciones})
 
 
 def curso(request):
@@ -97,22 +104,22 @@ def curso(request):
     print (año)
     if año == "1":
         alumnos = Alumno.objects.filter(curso=año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     elif año == "2":
         alumnos = Alumno.objects.filter(curso=año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     elif año == "3":
         alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     elif año == "4":
         alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     elif año == "5":
         alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     elif año == "6":
         alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
     else:
         alumnos = Alumno.objects.all()
-        return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})

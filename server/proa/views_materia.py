@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 from django.db.models import Q
-from proa.models import Alumno, Curso, Materia, Profesor
+from proa.models import Alumno, Curso, Materia, Profesor, Calificaciones
 from django.db import connection
 
 
