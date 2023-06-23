@@ -8,47 +8,41 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir alumno</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir calificacion</h1>
         </div>
         <div class="modal-body">
-          <form action="/alumnos/nuevo2/" method="POST">
+          <form action="/calificaciones/nuevo2/" method="POST">
             {% csrf_token %} 
               <ul class="list-group"> 
                   <div class="list-group-item">
-                    <label for="nombre">Nombre:</label>
                     <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
                   </div>
                   <div class="list-group-item">
-                    <label for="apellido">Apellido:</label>
                     <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
                   </div>
                   <div class="list-group-item">
-                    <label for="email">Email:</label>
                     <input type="email" class="form-control" placeholder="Ingrese el email" name="email">
                   </div>
                   <div class="list-group-item">
-                    <label for="DNI">DNI:</label>
                     <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
                   </div>
                   <div class="list-group-item">
-                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
                     <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nacimiento (AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
                   </div>
                   <div class="list-group-item">
-                    <label for="curso">Curso:</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                      <option value="1">1ro</option>
-                      <option value="2">2do</option>
-                      <option value="3">3ro</option>
-                      <option value="4">4to</option>
-                      <option value="5">5to</option>
-                      <option value="6">6to</option>
-                    </select>
-                  </div>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                        <option value="1">1ro</option>
+                        <option value="2">2do</option>
+                        <option value="3">3ro</option>
+                        <option value="4">4to</option>
+                        <option value="5">5to</option>
+                        <option value="6">6to</option>
+                      </select>
+                    </div>
                   <div class="list-group-item">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="repitio" name="repitio">
-                      <label class="form-check-label" for="repitio">¿Repitió?</label>
+                      <input class="form-check-input" type="checkbox" id="nota final" name="calificacion final">
+                      <label class="form-check-label" for="nota final">calificacion final?</label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Nuevo</button>
@@ -68,26 +62,26 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
 
   <table class="table">
       <thead>
           <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Email</th> 
-              <th scope="col">DNI</th>
-              <th scope="col">Fecha de Nacimiento</th>
-              <th scope="col">Año</th>
-              <th scope="col">¿Repitente?</th>
+              <th scope="col">id</th>
+              <th scope="col">final</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">nota</th> 
+              <th scope="col">alumno</th>
+              <th scope="col">profesor</th>
+              <th scope="col">curso</th>
+              <th scope="col">materia</th>
           </tr>
       </thead>
       <tbody>
           {% for alumno in alumnos %}
             <tr>
               {% if alumno.dni == alumnos_edit.dni %}
-                <form action="/proa/alumnos/guardar/?id={{alumno.dni}}" method="POST">
+                <form action="/proa/calificaciones/guardar/?id={{alumno.dni}}" method="POST">
                 {% csrf_token %} 
                 <div class="row">
                   <th scope="row">{{alumno.dni}}</th>
@@ -113,7 +107,7 @@
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
+                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
                     </div>
                   </td>
                   <td>
@@ -141,7 +135,7 @@
                   </td>
                   <td>
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <a class="btn btn-primary" href="/proa/alumnos" role="button">Cancelar</a>
+                    <a class="btn btn-primary" href="/proa/calificaciones" role="button">Cancelar</a>
                   </td>
                 </div>
                 </form>
@@ -172,3 +166,4 @@
   </table>
 </div>
 {% endblock %}
+

@@ -33,15 +33,15 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
   
-  {% if mensaje%}
+  {% if mensaje %}
     <div class="alert alert-success" role="alert">
-      {{ mensaje }}
+      {{mensaje}}
     </div>
   {% endif %}
 
@@ -57,7 +57,7 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Email</th>
                 <th scope="col">DNI</th>
-                <th scope="col">Telefono </th>
+                <th scope="col">Teléfono</th>
                 <th> </th>
             </tr>
         </thead>
@@ -71,45 +71,47 @@
                     <th scope="row">{{profesor.id}}</th>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value = "{{profesor.nombre}}">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" value = "{{profesor.nombre}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" value = "{{profesor.apellido}}">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" value = "{{profesor.apellido}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="email" class="form-control" placeholder="ingrese el mail" name="email" value = "{{profesor.email}}">
+                        <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value = "{{profesor.email}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value = "{{profesor.dni}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el DNI" name="DNI" value = "{{profesor.dni}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el Telefono" name="telefono" value = "{{profesor.telefono}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el teléfono" name="telefono" value = "{{profesor.telefono}}">
                       </div>
                     </td>
                     <td>
-                      <button type="submit" class="btn btn-primary">Guardar</button>
-                      <a class="btn btn-primary" href="/proa/profesores" role="button">cancelar</a>
+                      <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+                      <a class="btn btn-primary" href="/proa/profesores" role="button">Cancelar</a>
                     </td>
                   </div>
                   </form>
                 {% else %}
-                  <th scope="row">{{ profesor.id_profesor}}</th>
-                  <td>{{ profesor.nombre}}</td>
-                  <td>{{ profesor.apellido}}</td>
-                  <td>{{ profesor.email}}</td>
-                  <td>{{ profesor.dni }}</td>
-                  <td>{{ profesor.telefono }}</td>
+                  <th scope="row">{{profesor.id_profesor}}</th>
+                  <td>{{profesor.nombre}}</td>
+                  <td>{{profesor.apellido}}</td>
+                  <td>{{profesor.email}}</td>
+                  <td>{{profesor.dni}}</td>
+                  <td>{{profesor.telefono}}</td>
                   <td>
-                    <a class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">eliminar</a>
-                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">editar</a>
+                    <a class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
+                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">Editar</a>
                   </td> 
                 {% endif %}
               </tr>
