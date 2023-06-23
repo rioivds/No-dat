@@ -11,12 +11,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <html>
-
 <head>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <title>{% block title %}Proa - Inicio{% endblock %}</title>
+    <title>{% block title %}ProA - Inicio{% endblock %}</title>
 </head>
-
 <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
@@ -40,9 +38,7 @@
                         <a class="nav-link active text-white fs-5" aria-current="page" href="/proa">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Registros
-                        </a>
+                        <a class="nav-link dropdown-toggle text-white fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registros</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/proa/alumnos">Alumnos</a></li>
                             <li><a class="dropdown-item" href="/proa/profesores">Profesores</a></li>
@@ -55,7 +51,6 @@
             </div>
         </div>
     </nav>
-
     <hr />
 
     {% block content %}{% endblock %}
@@ -65,28 +60,19 @@
             <div class="container text-center text-md-start mt-5">
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 pb-3">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                        Proyecto Integrador
-                        </h6>
-                        <p>
-                            Proyecto integrado de quinto y sexto año. Realizado en marco de
-                            "Capacitaciones que emplean" del ISPC.
-                        </p>
+                        <h6 class="text-uppercase fw-bold mb-4">Proyecto Integrador</h6>
+                        <p>Proyecto integrador de quinto y sexto año. Realizado en marco de "Capacitaciones que emplean" del ISPC.</p>
                     </div>
-
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 pb-3">
                         <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
-                        <p>Calle Arroyo Piedras Blancas, Rio Cuarto, Cordoba</p>
-                        <p>
-                        riocuarto.ds@escuelasproa.edu.ar
-                        </p>
-                        <a class="link-light" href="https://wa.link/uhcs7b" target="_blank">Whatsapp</a> <br />
+                        <p>Calle Arroyo Piedras Blancas, Río Cuarto, Córdoba</p>
+                        <p>riocuarto.ds@escuelasproa.edu.ar</p>
+                        <a class="link-light" href="https://wa.link/uhcs7b" target="_blank">Whatsapp</a><br />
                         <a class="link-light" href="https://instagram.com/proa_ds_rioiv" target="_blank">Instagram</a>
                     </div>
                 </div>
             </div>
         </section>
     </footer>
-
 </body>
 </html>

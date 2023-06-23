@@ -15,19 +15,19 @@
             {% csrf_token %} 
               <ul class="list-group"> 
                   <div class="list-group-item">
-                    <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" required="required">
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
                   </div>
                   <div class="list-group-item">
-                    <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" required="required"> 
+                    <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
                   </div>
                   <div class="list-group-item">
-                    <input type="email" class="form-control" placeholder="ingrese el mail" name="email">
+                    <input type="email" class="form-control" placeholder="Ingrese el email" name="email">
                   </div>
                   <div class="list-group-item">
-                    <input type="number" class="form-control" placeholder="ingrese el DNI" name="DNI" required="required">
+                    <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
                   </div>
                   <div class="list-group-item">
-                    <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
+                    <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nacimiento (AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
                   </div>
                   <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
@@ -42,9 +42,7 @@
                   <div class="list-group-item">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="repitio" name="repitio">
-                      <label class="form-check-label" for="repitio">
-                        Repitió?
-                      </label>
+                      <label class="form-check-label" for="repitio">¿Repitió?</label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Nuevo</button>
@@ -52,21 +50,19 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
 
-  {% if mensaje%}
+  {% if mensaje %}
     <div class="alert alert-primary" role="alert">
-      {{ mensaje }}
+      {{mensaje}}
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
-    Añadir alumno
-  </button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
 
   <table class="table">
       <thead>
@@ -78,7 +74,7 @@
               <th scope="col">DNI</th>
               <th scope="col">Fecha de Nacimiento</th>
               <th scope="col">Año</th>
-              <th scope="col">Repitente?</th>
+              <th scope="col">¿Repitente?</th>
           </tr>
       </thead>
       <tbody>
@@ -91,30 +87,29 @@
                   <th scope="row">{{alumno.dni}}</th>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el nombre" name="nombre" value="{{alumno.nombre}}">
+                      <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" value="{{alumno.nombre}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el apellido" name="apellido" value="{{alumno.apellido}}">
+                      <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" value="{{alumno.apellido}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="email" class="form-control" placeholder="ingrese el mail" name="email" value="{{alumno.email}}">
+                      <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value="{{alumno.email}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="ingrese el DNI" name="DNI" value="{{alumno.dni}}">
+                      <input type="text" class="form-control" placeholder="Ingrese el DNI" name="DNI" value="{{alumno.dni}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{ alumno.fecha_nacimiento }}">
+                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
                     </div>
                   </td>
-                  
                   <td>
                     <div class="col">
                       {% if alumno.dni == alumnos_edit.dni %}
@@ -127,7 +122,7 @@
                           <option value="6" {% if alumno.curso.id == 6 %}selected{% endif %}>6to</option>
                         </select>
                       {% else %}
-                        {{ alumno.curso.nombre }}
+                        {{alumno.curso.nombre}}
                       {% endif %}
                     </div>
                   </td>
@@ -135,26 +130,23 @@
                     <div class="form-check">
                       <input type="checkbox" class="custom-control-input" name="repitio" value="True"> {% if alumno.repitio %}checked{% endif %}
                       <label class="form-check-label" for="repitio_{{ alumno.dni }}">
-                        
                       </label>
                     </div>
-                    
                   </td>
-
                   <td>
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <a class="btn btn-primary" href="/proa/alumnos" role="button">cancelar</a>
+                    <a class="btn btn-primary" href="/proa/alumnos" role="button">Cancelar</a>
                   </td>
                 </div>
                 </form>
               {% else %}
-                <th scope="row">{{ alumno.id}}</th>
-                <td>{{ alumno.nombre}}</td>
-                <td>{{ alumno.apellido}}</td>
-                <td>{{ alumno.email}}</td>
-                <td>{{ alumno.dni }}</td>
-                <td>{{ alumno.fecha_nacimiento }}</td>
-                <td>{{ alumno.curso.anio}}</td>
+                <th scope="row">{{alumno.id}}</th>
+                <td>{{alumno.nombre}}</td>
+                <td>{{alumno.apellido}}</td>
+                <td>{{alumno.email}}</td>
+                <td>{{alumno.dni}}</td>
+                <td>{{alumno.fecha_nacimiento}}</td>
+                <td>{{alumno.curso.anio}}</td>
                 <td>
                   <div class="col">
                     <div class="form-check">
@@ -164,8 +156,8 @@
                   </div>
                 </td>                
                 <td>
-                  <a class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">eliminar</a>
-                  <a class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">editar</a>
+                  <a class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
+                  <a class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
                 </td> 
               {% endif %}
             </tr>
@@ -173,6 +165,4 @@
       </tbody>
   </table>
 </div>
-
-
 {% endblock %}
