@@ -17,6 +17,17 @@
                     <input type="text" class="form-control" placeholder="Ingrese el nombre del alumno" name="alumno" required="required">
                   </div>
                   <div class="list-group-item">
+                    <select class="form-select form-select-lg mb-3"  aria-label=".form-select-lg example" name="curso">
+                      <option value="1">1ro</option>
+                      <option value="2">2do</option>
+                      <option value="3">3ro</option>
+                      <option value="4">4to</option>
+                      <option value="5">5to</option>
+                      <option value="6">6to</option>
+                    </select>
+                  </div>
+              
+                  <div class="list-group-item">
                     <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required"> 
                   </div>
                   <div class="list-group-item">
@@ -24,24 +35,18 @@
                       {% for i in profesores %}
                       <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
                       {% endfor %}
+
                     </select> 
                   </div>
-                  <div class="list-group-item">
-                    <input type="number" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
-                  </div>
+
                   <div class="list-group-item">
                     <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha_nota" id="fecha_nota" required="required">
                   </div>
+                  
                   <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                        <option value="1">1ro</option>
-                        <option value="2">2do</option>
-                        <option value="3">3ro</option>
-                        <option value="4">4to</option>
-                        <option value="5">5to</option>
-                        <option value="6">6to</option>
-                      </select>
-                    </div>
+                    <input type="number" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
+                  </div>
+                
                   <div class="list-group-item">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="nota final" name="calificacion final">
@@ -71,13 +76,13 @@
       <thead>
           <tr>
               <th scope="col">id</th>
-              <th scope="col">final</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">nota</th> 
               <th scope="col">alumno</th>
-              <th scope="col">profesor</th>
               <th scope="col">curso</th>
               <th scope="col">materia</th>
+              <th scope="col">profesor</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">nota</th>
+              <th scope="col">final</th>
           </tr>
       </thead>
       <tbody>
