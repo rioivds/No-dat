@@ -85,13 +85,21 @@
                       </div>
                     </td>
                     <td>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese el profesor" name="profesor" value="{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}">
+                      <div class="list-group-item">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                          {% for i in profesores %}
+                          <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                          {% endfor %}
+                        </select> 
                       </div>
                     </td>
                     <td>
-                      <div class="col">
-                        <input type="number" class="form-control" placeholder="Curso donde se dicta" name="curso" value="{{materia.curso.id}}">
+                      <div class="list-group-item">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                          {% for curso in cursos %}
+                            <option value ="{{ curso.id }}">{{ curso.anio }}</option>
+                          {% endfor %}
+                        </select>
                       </div>
                     </td>
                     <td>
@@ -101,7 +109,7 @@
                     </td>
                     <td>
                       <div class="col">
-                        <input type="number" class="form-control" placeholder="Horario cuando se dicta" name="horario" value="{{materia.horario}}">
+                        <input type="text" class="form-control" placeholder="Horario cuando se dicta" name="horario" value="{{materia.horario}}">
                       </div>
                     </td>
                     <td>
