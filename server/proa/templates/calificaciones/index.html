@@ -96,45 +96,50 @@
                 {% csrf_token %} 
                 <div class="row">
                   <th scope="row">{{calificacion.id}}</th>
+                  <td>  
+                    <div class="list-group-item">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
+                        {% for i in alumnos %}
+                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                        {% endfor %}
+                      </select> 
+                    </div>
+                  </td>
                   <td>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" value="{{alumno.nombre}}">
+                    <div class="list-group-item">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="cursos">
+                        {% for i in cursos %}
+                        <option value ="{{ i.id }}">{{ i.anio }}</option>
+                        {% endfor %}
+                      </select> 
+                    </div>
+                  </td>
+                  <td>
+                    <div class="list-group-item">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materias">
+                        {% for i in materias %}
+                        <option value ="{{ i.id }}">{{ i.nombre }}</option>
+                        {% endfor %}
+                      </select> 
+                    </div>
+                  </td>
+                  <td>
+                    <div class="list-group-item">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                        {% for i in profesores %}
+                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                        {% endfor %}
+                      </select> 
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" value="{{alumno.apellido}}">
+                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificacion(AAAA-MM-DD)" name="fecha" id="fecha_nacimiento" required="required" value="{{calificacion.fecha}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value="{{alumno.email}}">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese el DNI" name="DNI" value="{{alumno.dni}}">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="col">
-                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="col">
-                      {% if calificacion.id == calificaciones_edit.id %}
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                          <option value="1" {% if calificacion.curso.id == 1 %}selected{% endif %}>1ro</option>
-                          <option value="2" {% if calificacion.curso.id == 2 %}selected{% endif %}>2do</option>
-                          <option value="3" {% if calificacion.curso.id == 3 %}selected{% endif %}>3ro</option>
-                          <option value="4" {% if calificacion.curso.id == 4 %}selected{% endif %}>4to</option>
-                          <option value="5" {% if calificacion.curso.id == 5 %}selected{% endif %}>5to</option>
-                          <option value="6" {% if calificacion.curso.id == 6 %}selected{% endif %}>6to</option>
-                        </select>
-                      {% else %}
-                        {{calificacion.curso.nombre}}
-                      {% endif %}
+                      <input type="number" class="form-control" placeholder="ingrese la nota" name="nota" value="{{calificacion.nota}}">
                     </div>
                   </td>
                   <td>
