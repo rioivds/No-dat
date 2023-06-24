@@ -48,7 +48,7 @@
                   <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha" id="fecha" required="required">
                 </div>
                 <div class="list-group-item">
-                  <input type="number" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
+                  <input type="text" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
                 </div>
                   <div class="list-group-item">
                     <div class="form-check">
@@ -100,25 +100,25 @@
                     <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
                         {% for i in alumnos %}
-                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                        <option value="{{ i.dni }}" {% if calificacion.alumno.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
                         {% endfor %}
                       </select> 
                     </div>
                   </td>
                   <td>
                     <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="cursos">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         {% for i in cursos %}
-                        <option value ="{{ i.id }}">{{ i.anio }}</option>
+                        <option value ="{{ i.id }}"{% if calificacion.curso.id == i.id %}selected{% endif %}>{{ i.anio }}</option>
                         {% endfor %}
                       </select> 
                     </div>
                   </td>
                   <td>
                     <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materias">
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materia">
                         {% for i in materias %}
-                        <option value ="{{ i.id }}">{{ i.nombre }}</option>
+                        <option value ="{{ i.id }}"{% if calificacion.materia.id == i.id %}selected{% endif %}>{{ i.nombre }}</option>
                         {% endfor %}
                       </select> 
                     </div>
@@ -127,25 +127,25 @@
                     <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
-                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                        <option value ="{{ i.dni }}"{% if calificacion.profesor.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
                         {% endfor %}
                       </select> 
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificacion(AAAA-MM-DD)" name="fecha" id="fecha_nacimiento" required="required" value="{{calificacion.fecha}}">
+                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificacion(AAAA-MM-DD)" name="fecha" id="fecha" required="required" value="{{calificacion.fecha}}">
                     </div>
                   </td>
                   <td>
                     <div class="col">
-                      <input type="number" class="form-control" placeholder="ingrese la nota" name="nota" value="{{calificacion.nota}}">
+                      <input type="text" class="form-control" placeholder="Calificacion" name="nota" id="nota" value="{{ calificacion.nota }}" required="required" >
                     </div>
                   </td>
                   <td>
                     <div class="col">
                       <div class="form-check">
-                        <input type="checkbox" class="custom-control-input" name="final" value="True"> {% if calificacion.final %}checked{% endif %}
+                        <input type="checkbox" class="custom-control-input" name="final" value="True" {% if calificacion.final %}checked{% endif %}>
                         <label class="form-check-label" for="final_{{ calificacion.id }}">
                         </label>
                       </div>
@@ -169,10 +169,12 @@
                   <div class="col">
                     <div class="form-check">
                       <input type="checkbox" class="custom-control-input" name="final" {% if calificacion.final %}checked disabled{% else %}disabled{% endif %} value="True">
+                      <label class="form-check-label" for="final_{{ calificacion.id }}">
+                        {% if calificacion.final %}Si{% else %}No{% endif %}
                       </label>
                     </div>
                   </div>
-                </td>             
+                </td>                          
                 <td>
                   <a class="btn btn-primary" href="/proa/calificaciones/delete?id={{calificacion.id}}" role="button">Eliminar</a>
                   <a class="btn btn-primary" href="/proa/calificaciones/editar?id={{calificacion.id}}" role="button">Editar</a>

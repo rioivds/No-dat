@@ -96,44 +96,23 @@ def editar_calificaciones(request):
     return render(request, 'calificaciones/index.html', {"mensaje": "","calificaciones_edit":calificaciones_editar, "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 def guardar_edit(request):
+    id = request.GET["id"]
     alumno=request.POST["alumno"]
-    curso = request.POST["curso"]
+    curso=request.POST["curso"]
     materia=request.POST["materia"]
     profesor=request.POST["profesor"]
     fecha = request.POST["fecha"]
-    fecha_nota_str = datetime.strptime(fecha, "%m/%d/%Y").strftime("%Y-%m-%d")
+    fecha_nota_str = parse_fecha(fecha)
     nota = request.POST["nota"]
-    final = request.POST.get("final") == "on"  # Conversión a True si está marcado
+    nota = request.POST["nota"].replace(",", ".")
+    nota = float(nota)
+    final = request.POST.get('final', False) == 'True'
     calificaciones = Calificaciones.objects.all()
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
     alumnos = Alumno.objects.all()
-    Alumno.objects.filter(id = id).update(alumno=Alumno.objects.get(dni=alumno.dni), curso=Curso.objects.get(id=curso), materia=Materia.objects.get(id=materia.id), profesor=Profesor.objects.get(dni=profesor.dni),  fecha=fecha_nota_str, nota=nota, final=final)
+    Calificaciones.objects.filter(id = id).update(alumno=Alumno.objects.get(dni=alumno), curso=Curso.objects.get(id=curso), materia=Materia.objects.get(id=materia), profesor=Profesor.objects.get(dni=profesor),  fecha=fecha_nota_str, nota=nota, final=final)
     return render(request, 'calificaciones/index.html', {"mensaje": "se editó correctamente", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 
-def curso(request):
-    año = request.GET["curso"]
-    print (año)
-    if año == "1":
-        alumnos = Alumno.objects.filter(curso=año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    elif año == "2":
-        alumnos = Alumno.objects.filter(curso=año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    elif año == "3":
-        alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    elif año == "4":
-        alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    elif año == "5":
-        alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    elif año == "6":
-        alumnos = Alumno.objects.filter(curso = año)
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
-    else:
-        alumnos = Alumno.objects.all()
-        return render(request, 'calificaciones/index.html',{ "alumnos": alumnos})
