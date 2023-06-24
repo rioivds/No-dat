@@ -37,13 +37,13 @@ class Alumno(models.Model):
 
 class Calificaciones(models.Model):
     id = models.BigAutoField(primary_key=True)
-    final = models.BooleanField(verbose_name='final')
-    fecha = models.DateField(verbose_name='Fecha')
-    nota = models.FloatField(verbose_name='Nota')
     alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
-    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
+    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    fecha = models.DateField(verbose_name='Fecha')
+    nota = models.FloatField(verbose_name='Nota')
+    final = models.BooleanField(verbose_name='final')
 
 
     
