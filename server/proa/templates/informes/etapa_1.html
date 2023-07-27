@@ -75,7 +75,7 @@
     <h1>Informe Escolar</h1>
     <div class="student-info">
         <div>
-            <p>Nombre del estudiante: Juan Pérez</p>
+            <p>Nombre del estudiante: {{alumno.nombre}}</p>
         </div>
         <div>
             <p>Curso: {{curso}}</p>
@@ -92,12 +92,13 @@
             {%for notas in lista_notas%}
                 <tr>
                     {%for i in notas%}
-                        {%if i != ""%}
+                        {%if i%}
                         <td> {{i}}</td>
                         {% else %}
                         <td>1</td>
                         {%endif%}
                     {%endfor%}
+                    
                 </tr>
             {%endfor%}
         </table>
