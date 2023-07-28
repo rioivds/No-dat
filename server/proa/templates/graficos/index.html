@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gráfico de Torta</title>
+    <title>Graficos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Gráfico de Torta</h1>
+    <h1>Promedio de notas por año en la materia Desarrollo de Apps Moviles</h1>
     <canvas id="graficoTorta" width="500" height="500"></canvas>
 
     <script>
@@ -16,7 +16,7 @@
         var promedios = datos.map(dato => dato.promedio);
 
         var grafico = new Chart(ctx, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels: nombresCursos,
                 datasets: [{
@@ -42,15 +42,26 @@
                 }]
             },
             options: {
-                responsive: false,
-                maintainAspectRatio: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+            responsive: false,
+            maintainAspectRatio: true,
+            scales: {
+                x: {
+                    display: true, // Mostrar el eje X
+                    title: {
+                        display: true,
+                        text: 'Cursos' // Título del eje X
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Promedio de Notas' // Título del eje Y
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>

@@ -24,12 +24,12 @@ def index(request):
 
     for curso in cursos:
         notas = Calificaciones.objects.filter(materia_id=4, curso=curso)  # Reemplaza 1 con el ID de la materia específica que deseas
-        promedio = notas.aggregate(promedio=Count('nota'))['promedio']
+        promedio = notas.aggregate(promedio=Avg('nota'))['promedio']
         datos_grafico.append({
             'nombre_curso': curso.anio,
             'promedio': promedio,
         })
-
+    print(promedio)
     datos_json = json.dumps(datos_grafico)
 
     return render(request, 'graficos/index.html', {'datos_grafico': datos_json})
