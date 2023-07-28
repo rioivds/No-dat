@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Torta</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Gráfico de Torta</h1>
+    <canvas id="graficoTorta" width="100" height="100"></canvas>
+
+    <script>
+        var ctx = document.getElementById('graficoTorta').getContext('2d');
+        var datos = {{ datos_grafico|safe }};
+
+        var nombresCursos = datos.map(dato => dato.nombre_curso);
+        var promedios = datos.map(dato => dato.promedio);
+
+        var grafico = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: nombresCursos,
+                datasets: [{
+                    label: 'Notas',
+                    data: promedios,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
