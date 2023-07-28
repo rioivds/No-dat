@@ -92,10 +92,10 @@
             {%for notas in lista_notas%}
                 <tr>
                     {%for i in notas%}
-                        {%if i%}
+                        {%if i != ""%}
                         <td> {{i}}</td>
                         {% else %}
-                        <td>1</td>
+                        <td></td>
                         {%endif%}
                     {%endfor%}
                     

@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Gráfico de Torta</h1>
-    <canvas id="graficoTorta" width="100" height="100"></canvas>
+    <canvas id="graficoTorta" width="500" height="500"></canvas>
 
     <script>
         var ctx = document.getElementById('graficoTorta').getContext('2d');
@@ -42,7 +42,7 @@
                 }]
             },
             options: {
-                responsive: true,
+                responsive: false,
                 maintainAspectRatio: true,
                 scales: {
                     y: {

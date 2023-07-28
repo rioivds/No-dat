@@ -22,10 +22,15 @@ def generar_informe(request):
     materias = Materia.objects.filter(curso = alumno.curso)
     for materia in materias:
         notas = Calificaciones.objects.filter(alumno = alumno, materia = materia, curso = alumno.curso)
+        print(notas)
         notass= []
+        
         for aux in notas:
             notass.append(int(aux.nota))
-        notass.sort()
+
+        while len(notass)  < 3:
+            notass.append("")
+            
         notass.insert(0, materia.nombre)
         lista_notas.append(notass)
     return render(request, 'informes/etapa_1.html',{ "alumno": alumno, "curso": alumno.curso.anio, "materias": materias, "lista_notas": lista_notas, "i": 0})
