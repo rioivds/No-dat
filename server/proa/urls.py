@@ -43,4 +43,9 @@ urlpatterns = [
     path('informes', views_informes.index),
     path('informes/generar', views_informes.generar_informe),
     path('graficos/', views_graficos.index, name='index'),
+    path('graficos/grafico_torta/', views_graficos.grafico_torta),
+    path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
+    path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
+    path('materias/importar_materias/', views.importar_materias, name='importar_materias'),
+    path('calificaciones/importar_calificaciones/', views.importar_calificaciones, name='importar_calificaciones'),
 ]

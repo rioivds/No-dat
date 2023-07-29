@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graficos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Promedio de notas 6to año en la materia Programacion IV</h1>
+    <canvas id="graficoTorta" width="500" height="500"></canvas>
+
+    <script>
+        var ctx = document.getElementById('graficoTorta').getContext('2d');
+        var datos = {{ datos_grafico_torta|safe }};
+
+        var nombresCursos = datos.map(dato => dato.curso__anio + 'to año');
+        var datosGrafico = datos.map(dato => [
+            dato.aprobados_mas_de_nueve,
+            dato.aprobados_entre_siete_y_nueve,
+            dato.aprobados_entre_cuatro_y_seis,
+            dato.desaprobados_entre_cero_y_tres
+        ]);
+
+        var grafico = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Aprobados > 9', 'Aprobados entre 7 y 9', 'Aprobados entre 4 y 6', 'Desaprobados entre 0 y 3'],
+                datasets: [{
+                    label: 'Porcentaje de Aprobados',
+                    data: datosGrafico[0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: true,
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: 'black'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+

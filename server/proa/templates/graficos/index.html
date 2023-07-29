@@ -5,11 +5,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Promedio de notas por año en la materia Desarrollo de Apps Moviles</h1>
-    <canvas id="graficoTorta" width="500" height="500"></canvas>
+    <h1>Promedio de notas 6to año en la materia Programacion IV</h1>
+    <canvas id="graficoBarra" width="500" height="500"></canvas>
 
     <script>
-        var ctx = document.getElementById('graficoTorta').getContext('2d');
+        var ctx = document.getElementById('graficoBarra').getContext('2d');
         var datos = {{ datos_grafico|safe }};
 
         var nombresCursos = datos.map(dato => dato.nombre_curso);
