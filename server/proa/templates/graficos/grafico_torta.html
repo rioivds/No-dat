@@ -1,71 +1,110 @@
-<!DOCTYPE html>
+{% extends "base_template.html" %}
+{% block title %}Proa - Alumnos{% endblock %}
+{% load static %}
+{% block content %}
 <html>
 <head>
-    <title>Graficos</title>
+    <title>Calificaciones</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Promedio de notas 6to año en la materia Programacion IV</h1>
+    <h1>Selecciona un curso:</h1>
+    <form action="{% url 'grafico_torta' %}" method="GET">
+        <label for="curso">Selecciona un curso:</label>
+        <select name="curso" id="curso">
+            <option value="">--Selecciona un curso--</option>
+            {% for curso in cursos %}
+                <option value="{{ curso.id }}" {% if curso.id == request.GET.curso %}selected{% endif %}>{{ curso.anio }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Mostrar Materias">
+    </form>
+
+    <h1>Selecciona una materia:</h1>
+    <select id="selectMateria">
+        <option value="">-- Seleccionar Materia --</option>
+        {% for materia in materias %}
+            <option value="{{ materia.id }}">{{ materia.nombre }}</option>
+        {% endfor %}
+    </select>
     <canvas id="graficoTorta" width="500" height="500"></canvas>
 
     <script>
-        var ctx = document.getElementById('graficoTorta').getContext('2d');
-        var datos = {{ datos_grafico_torta|safe }};
-
-        var nombresCursos = datos.map(dato => dato.curso__anio + 'to año');
-        var datosGrafico = datos.map(dato => [
-            dato.aprobados_mas_de_nueve,
-            dato.aprobados_entre_siete_y_nueve,
-            dato.aprobados_entre_cuatro_y_seis,
-            dato.desaprobados_entre_cero_y_tres
-        ]);
-
-        var grafico = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Aprobados > 9', 'Aprobados entre 7 y 9', 'Aprobados entre 4 y 6', 'Desaprobados entre 0 y 3'],
-                datasets: [{
-                    label: 'Porcentaje de Aprobados',
-                    data: datosGrafico[0],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: true,
-                scales: {
-                    x: {
-                        display: false
-                    },
-                    y: {
-                        display: false
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: {
-                            fontColor: 'black'
-                        }
-                    }
+        var selectMateria = document.getElementById('selectMateria');
+        var grafico = null; // Variable para almacenar el gráfico actual
+    
+        selectMateria.addEventListener('change', function() {
+            var materiaId = selectMateria.value;
+    
+            if (materiaId !== '') {
+                if (grafico !== null) {
+                    grafico.destroy();
                 }
+    
+                fetch(`/graficos/torta/${materiaId}/`)
+                    .then(response => response.json())
+                    .then(datos => {
+                        console.log(datos); // Imprime los datos en la consola
+    
+                        var dataArray = Object.values(datos);
+    
+                        var porcentajes = {
+                            '1_3': 0,
+                            '4_6': 0,
+                            '7_8': 0,
+                            '9_10': 0,
+                        };
+    
+                        var totalCalificaciones = dataArray.length;
+                        porcentajes['1_3'] = dataArray[0];
+                        porcentajes['4_6'] = dataArray[1];
+                        porcentajes['7_8'] = dataArray[2];
+                        porcentajes['9_10'] = dataArray[3];
+    
+                        var ctx = document.getElementById('graficoTorta').getContext('2d');
+                        grafico = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['de 1 a 3', 'de 4 a 6', 'de 7 a 8', 'de 9 a 10'],
+                                datasets: [{
+                                    data: Object.values(porcentajes),
+                                    backgroundColor: ['red', 'yellow', 'green', 'blue'],
+                                }]
+                            },
+                            options: {
+                                responsive: false,
+                                maintainAspectRatio: true,
+                                title: {
+                                    display: true,
+                                    text: 'Distribución de calificaciones',
+                                    fontSize: 24,
+                                    fontColor: 'black',
+                                },
+                                legend: {
+                                    labels: {
+                                        fontColor: 'black',
+                                    }
+                                },
+                                elements: {
+                                    arc: {
+                                        borderWidth: 3,
+                                        borderColor: 'white',
+                                        shadowOffsetX: 2,
+                                        shadowOffsetY: 2,
+                                        shadowBlur: 5,
+                                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener los datos:', error);
+                    });
             }
         });
     </script>
-
+    
 </body>
 </html>
-
+{% endblock %}

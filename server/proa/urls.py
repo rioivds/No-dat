@@ -13,11 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+
+from django.contrib import admin
+from django.urls import path, include
 from . import views
-from . import views_alumnos,views_profesores,views_materia,views_calificaciones, views_informes, views_graficos
+from django.urls import path, re_path
+from . import views_alumnos,views_profesores,views_materia,views_calificaciones, views_informes, views_graficos_barra,views_graficos_torta
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index),
     path('alumnos', views_alumnos.index),
     path('alumnos/nuevo2/', views_alumnos.guardar_alumnos),
@@ -42,10 +46,17 @@ urlpatterns = [
     path('calificaciones/guardar/', views_calificaciones.guardar_edit),
     path('informes', views_informes.index),
     path('informes/generar', views_informes.generar_informe),
-    path('graficos/', views_graficos.index, name='index'),
-    path('graficos/grafico_torta/', views_graficos.grafico_torta),
+    path('graficos/', views_graficos_barra.index, name='index'),
     path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
     path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
     path('materias/importar_materias/', views.importar_materias, name='importar_materias'),
     path('calificaciones/importar_calificaciones/', views.importar_calificaciones, name='importar_calificaciones'),
+    re_path(r'^graficos/materia/(?P<materia_nombre>.+)/$', views_graficos_barra.grafico_materia, name='grafico_materia'),
+    path('graficos/materias_por_curso/<int:curso_anio>/', views_graficos_barra.materias_por_curso, name='materias_por_curso'),
+    path('graficos/grafico_torta/', views_graficos_torta.grafico_torta, name='grafico_torta'),
+    path('graficos/torta/<int:materia_id>/', views_graficos_torta.grafico_torta_materia, name='grafico_torta_materia'),
+    
+
+
+
 ]

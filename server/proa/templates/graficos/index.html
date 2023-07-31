@@ -1,67 +1,135 @@
-<!DOCTYPE html>
+{% extends "base_template.html" %}
+{% block title %}Proa - Alumnos{% endblock %}
+{% load static %}
+{% block content %}
 <html>
 <head>
     <title>Graficos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Promedio de notas 6to año en la materia Programacion IV</h1>
-    <canvas id="graficoBarra" width="500" height="500"></canvas>
+<h1>Selecciona una materia:</h1>
+<select id="selectMateria">
+    <option value="">-- Seleccionar Materia --</option>
+    {% for materia in materias %}
+        <option value="{{ materia }}">{{ materia }}</option>
+    {% endfor %}
+</select>
+<canvas id="graficoBarra" width="800" height="500"></canvas>
+<script>
+    var selectMateria = document.getElementById('selectMateria');
+    var grafico = null; // Variable para almacenar el gráfico actual
 
-    <script>
-        var ctx = document.getElementById('graficoBarra').getContext('2d');
-        var datos = {{ datos_grafico|safe }};
+    selectMateria.addEventListener('change', function() {
+        var materiaNombre = selectMateria.value; // Obtener el nombre de la materia
+        var materiaNombreEncoded = encodeURIComponent(materiaNombre); // Codificar el nombre de la materia
 
-        var nombresCursos = datos.map(dato => dato.nombre_curso);
-        var promedios = datos.map(dato => dato.promedio);
+        fetch(`/graficos/materia/${materiaNombreEncoded}/`)
+            .then(response => response.json())
+            .then(datos => {
+                // Filtrar las materias con promedio no nulo
+                datos = datos.filter(dato => dato.promedio !== null);
 
-        var grafico = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: nombresCursos,
-                datasets: [{
-                    label: 'Notas',
-                    data: promedios,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-            responsive: false,
-            maintainAspectRatio: true,
-            scales: {
-                x: {
-                    display: true, // Mostrar el eje X
-                    title: {
-                        display: true,
-                        text: 'Cursos' // Título del eje X
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Promedio de Notas' // Título del eje Y
-                    }
+                // Destruir el gráfico anterior antes de generar uno nuevo
+                if (grafico !== null) {
+                    grafico.destroy();
                 }
-            }
-        }
+
+                var ctx = document.getElementById('graficoBarra').getContext('2d');
+
+                var datosPorMateria = {};
+
+                datos.forEach(dato => {
+                    var nombreMateria = dato.nombre_materia;
+                    var curso = dato.curso;
+                    var promedio = dato.promedio;
+
+                    if (!datosPorMateria[nombreMateria]) {
+                        datosPorMateria[nombreMateria] = [];
+                    }
+
+                    datosPorMateria[nombreMateria].push({
+                        curso: curso,
+                        promedio: promedio,
+                    });
+                });
+
+                var labels = [];
+                var datasets = [];
+                var colors = []; // Array para almacenar los colores de las barras
+
+                for (var nombreMateria in datosPorMateria) {
+                    var data = datosPorMateria[nombreMateria].map(dato => dato.promedio);
+                    var backgroundColors = data.map(promedio => getColorByPromedio(promedio));
+                    colors.push(backgroundColors); // Agregar el color al array
+
+                    if (datosPorMateria[nombreMateria][0] && datosPorMateria[nombreMateria][0].curso) {
+                        labels = datosPorMateria[nombreMateria].map(dato => dato.curso);
+                    }
+
+                    datasets.push({
+                        label: nombreMateria,
+                        data: data,
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors,
+                        borderWidth: 1
+                    });
+                }
+
+                grafico = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets,
+                    },
+                    options: {
+                        responsive: false,
+                        maintainAspectRatio: true,
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Año'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Promedio de Calificaciones por año'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error al obtener datos del gráfico:', error));
     });
+
+    function getColorByPromedio(promedio) {
+        // Convertir el promedio a un valor entre 0 y 1
+        var normalizedPromedio = (promedio - 1) / 9;
+
+        // Calcular los valores RGB en función del promedio
+        var r = 255 * (1 - normalizedPromedio);
+        var g = 255 * normalizedPromedio;
+        var b = 0;
+
+        // Convertir los valores RGB a formato hexadecimal
+        var hexColor = rgbToHex(r, g, b);
+
+        return hexColor;
+    }
+
+    function rgbToHex(r, g, b) {
+        var rHex = Math.round(r).toString(16).padStart(2, '0');
+        var gHex = Math.round(g).toString(16).padStart(2, '0');
+        var bHex = Math.round(b).toString(16).padStart(2, '0');
+
+        return `#${rHex}${gHex}${bHex}`;
+    }
 </script>
 </body>
 </html>
+{% endblock %}

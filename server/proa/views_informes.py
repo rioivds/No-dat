@@ -9,6 +9,8 @@ from proa.models import Alumno, Curso, Materia, Calificaciones
 from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+from django.db.models import Case, When, Count, IntegerField, Q
+
 
 def index(request):
     alumnos = Alumno.objects.all()
