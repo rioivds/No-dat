@@ -8,28 +8,48 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Selecciona un curso:</h1>
+    <h3>Selecciona un curso:</h3>
     <form action="{% url 'grafico_torta' %}" method="GET">
-        <label for="curso">Selecciona un curso:</label>
         <select name="curso" id="curso">
-            <option value="">--Selecciona un curso--</option>
+            <option value="">-- Selecciona un curso --</option>
             {% for curso in cursos %}
                 <option value="{{ curso.id }}" {% if curso.id == request.GET.curso %}selected{% endif %}>{{ curso.anio }}</option>
             {% endfor %}
         </select>
-        <input type="submit" value="Mostrar Materias">
+        <input type="submit" value="Aplicar" style="background-color:rgb(13, 110, 253); color:white; border-radius: 15% ">
     </form>
 
-    <h1>Selecciona una materia:</h1>
+    <h3>Selecciona una materia:</h3>
     <select id="selectMateria">
         <option value="">-- Seleccionar Materia --</option>
         {% for materia in materias %}
             <option value="{{ materia.id }}">{{ materia.nombre }}</option>
         {% endfor %}
     </select>
-    <canvas id="graficoTorta" width="500" height="500"></canvas>
+    
+    <style>
+        .text{
+            padding: 20px;
+        }
+        .text h5{
+            display: inline;
+            color: rgb(68, 68, 68);
+        }
+    </style>
+
+    <div class="text">
+        <h5>Cantidad de calificaciones por nota (1 al 10) sobre un total de</h5> <h5 id="numCalificaciones">
+    </div>
+    
+
+    <canvas id="graficoTorta" width="500" height="500" style="margin-bottom: 40px;"></canvas>
+
+    
 
     <script>
+        
+        
+
         var selectMateria = document.getElementById('selectMateria');
         var grafico = null; // Variable para almacenar el gráfico actual
     
@@ -61,6 +81,9 @@
                         porcentajes['7_8'] = dataArray[2];
                         porcentajes['9_10'] = dataArray[3];
     
+                        var numCalificaciones = document.getElementById('numCalificaciones')
+                        numCalificaciones.innerHTML= dataArray[4]
+
                         var ctx = document.getElementById('graficoTorta').getContext('2d');
                         grafico = new Chart(ctx, {
                             type: 'pie',
