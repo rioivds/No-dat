@@ -41,10 +41,7 @@
         <h5>Cantidad de calificaciones por nota (1 al 10) sobre un total de</h5> <h5 id="numCalificaciones">
     </div>
     
-
-    <canvas id="graficoTorta" width="500" height="500" style="margin-bottom: 40px;"></canvas>
-
-    
+    <canvas id="graficoTorta" width="500" height="500" style="margin-bottom: 40px;">   </canvas>
 
     <script>
         
@@ -82,7 +79,7 @@
                         porcentajes['9_10'] = dataArray[3];
     
                         var numCalificaciones = document.getElementById('numCalificaciones')
-                        numCalificaciones.innerHTML= dataArray[4]
+                        numCalificaciones.innerHTML= (dataArray[4])
 
                         var ctx = document.getElementById('graficoTorta').getContext('2d');
                         grafico = new Chart(ctx, {
