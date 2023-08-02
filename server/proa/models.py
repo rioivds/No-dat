@@ -30,10 +30,10 @@ class Alumno(models.Model):
     dni = models.CharField(max_length=10, primary_key=True, verbose_name='DNI')
     nombre = models.CharField(max_length=100, verbose_name='Nombre')
     apellido = models.CharField(max_length=100, verbose_name='Apellido')
-    fecha_nacimiento = models.DateField(verbose_name='Fecha de nacimiento')
+    fecha_nacimiento = models.DateField(verbose_name='Fecha de nacimiento', blank=True, null=True)
     email = models.EmailField(verbose_name='Email')
     repitio = models.BooleanField(verbose_name='Repitio?',default=None, null=True)
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
 
 class Calificaciones(models.Model):
     id = models.BigAutoField(primary_key=True)

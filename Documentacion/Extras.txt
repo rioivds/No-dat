@@ -4,6 +4,7 @@ Pasos para dar de alta el server:
 -Abrir Carpeta de trabajo en VSCode y abrir la consola
 -Verificar instalacion de Python (escribiendo "pyhton" en la consola)
 -instalar django: "pip install django"
+-instalar openpyxl: pip install pandas openpyxl (para manejo de archivos excel)
 -Crear migracion en la base de datos: "python manage.py makemigrations" en la consola  (solo se hace si se cambia base de datos)
 -Hacer la migracion de la base de datos: "python manage.py migrate" en la consola
 -crear superusuario admin: "python3 manage.py createsuperuser"

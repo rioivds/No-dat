@@ -1,6 +1,64 @@
 {% extends "base_template.html" %}
 {% load static %}
 {% block content %}
+<div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir alumno</h1>
+      </div>
+      <div class="modal-body">
+        <form action="/alumnos/nuevo2/" method="POST">
+          {% csrf_token %} 
+            <ul class="list-group"> 
+                <div class="list-group-item">
+                  <label for="nombre">Nombre:</label>
+                  <input class="form-control" name="nombre" maxlength="100" onkeypress="return check(event)" placeholder="Ingrese el nombre" type="text">
+                </div>
+                <div class="list-group-item">
+                  <label for="apellido">Apellido:</label>
+                  <input class="form-control" name="apellido" maxlength="100" onkeypress="return check(event)" placeholder="Ingrese el apellido" type="text">
+                </div>
+                <div class="list-group-item">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" placeholder="Ingrese el email" name="email">
+                </div>
+                <div class="list-group-item">
+                  <label for="DNI">DNI:</label>
+                  <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
+                </div>
+                <div class="list-group-item">
+                  <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                  <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nacimiento (AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required">
+                </div>
+                <div class="list-group-item">
+                  <label for="curso">Curso:</label>
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                    <option value="1">1ro</option>
+                    <option value="2">2do</option>
+                    <option value="3">3ro</option>
+                    <option value="4">4to</option>
+                    <option value="5">5to</option>
+                    <option value="6">6to</option>
+                  </select>
+                </div>
+                <div class="list-group-item">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="repitio" name="repitio">
+                    <label class="form-check-label" for="repitio">¿Repitió?</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Nuevo</button>
+              </ul>
+           
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container text-center">
   <div class="row">
     <div class="col align-self-center">
@@ -40,11 +98,11 @@
           <h5 class="card-title">Registro de calificaciones</h5>
           <p class="card-text">En esta sección podrás realizar todas las tareas administrativas relacionadas con las calificaciones.</p>
           <a href="/proa/calificaciones" class="btn btn-primary">Ir a la sección</a>
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+          <!-- <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
             {% for curso in cursos %}
             <option value={{curso.id}}>{{curso.curso}}</option>
             {% endfor %}
-          </select>
+          </select> -->
         </div>
       </div>
     </div>

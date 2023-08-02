@@ -1,0 +1,24 @@
+{% extends "base_template.html" %}
+{% load static %}
+
+{% block title %}Importar Calificaciones{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Importar Calificaciones</h1>
+  {% if mensaje %}
+    <div class="alert alert-primary" role="alert">
+      {{ mensaje }}
+    </div>
+  {% endif %}
+  
+  <form action="/calificaciones/importar_calificaciones/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="archivo_excel" class="form-label">Seleccione el archivo Excel:</label>
+      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx">
+    </div>
+    <button type="submit" class="btn btn-primary">Importar Calificaciones</button>
+  </form>
+</div>
+{% endblock %}

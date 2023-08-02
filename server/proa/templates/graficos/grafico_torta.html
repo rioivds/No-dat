@@ -1,0 +1,130 @@
+{% extends "base_template.html" %}
+{% block title %}Proa - Alumnos{% endblock %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+    <title>Calificaciones</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h3>Selecciona un curso:</h3>
+    <form action="{% url 'grafico_torta' %}" method="GET">
+        <select name="curso" id="curso">
+            <option value="">-- Selecciona un curso --</option>
+            {% for curso in cursos %}
+                <option value="{{ curso.id }}" {% if curso.id == request.GET.curso %}selected{% endif %}>{{ curso.anio }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Aplicar" style="background-color:rgb(13, 110, 253); color:white; border-radius: 15% ">
+    </form>
+
+    <h3>Selecciona una materia:</h3>
+    <select id="selectMateria">
+        <option value="">-- Seleccionar Materia --</option>
+        {% for materia in materias %}
+            <option value="{{ materia.id }}">{{ materia.nombre }}</option>
+        {% endfor %}
+    </select>
+    
+    <style>
+        .text{
+            padding: 20px;
+        }
+        .text h5{
+            display: inline;
+            color: rgb(68, 68, 68);
+        }
+    </style>
+
+    <div class="text">
+        <h5>Cantidad de calificaciones por nota (1 al 10) sobre un total de</h5> <h5 id="numCalificaciones">
+    </div>
+    
+    <canvas id="graficoTorta" width="500" height="500" style="margin-bottom: 40px;">   </canvas>
+
+    <script>
+        
+        
+
+        var selectMateria = document.getElementById('selectMateria');
+        var grafico = null; // Variable para almacenar el gráfico actual
+    
+        selectMateria.addEventListener('change', function() {
+            var materiaId = selectMateria.value;
+    
+            if (materiaId !== '') {
+                if (grafico !== null) {
+                    grafico.destroy();
+                }
+    
+                fetch(`/graficos/torta/${materiaId}/`)
+                    .then(response => response.json())
+                    .then(datos => {
+                        console.log(datos); // Imprime los datos en la consola
+    
+                        var dataArray = Object.values(datos);
+    
+                        var porcentajes = {
+                            '1_3': 0,
+                            '4_6': 0,
+                            '7_8': 0,
+                            '9_10': 0,
+                        };
+    
+                        var totalCalificaciones = dataArray.length;
+                        porcentajes['1_3'] = dataArray[0];
+                        porcentajes['4_6'] = dataArray[1];
+                        porcentajes['7_8'] = dataArray[2];
+                        porcentajes['9_10'] = dataArray[3];
+    
+                        var numCalificaciones = document.getElementById('numCalificaciones')
+                        numCalificaciones.innerHTML= (dataArray[4])
+
+                        var ctx = document.getElementById('graficoTorta').getContext('2d');
+                        grafico = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['de 1 a 3', 'de 4 a 6', 'de 7 a 8', 'de 9 a 10'],
+                                datasets: [{
+                                    data: Object.values(porcentajes),
+                                    backgroundColor: ['red', 'yellow', 'green', 'blue'],
+                                }]
+                            },
+                            options: {
+                                responsive: false,
+                                maintainAspectRatio: true,
+                                title: {
+                                    display: true,
+                                    text: 'Distribución de calificaciones',
+                                    fontSize: 24,
+                                    fontColor: 'black',
+                                },
+                                legend: {
+                                    labels: {
+                                        fontColor: 'black',
+                                    }
+                                },
+                                elements: {
+                                    arc: {
+                                        borderWidth: 3,
+                                        borderColor: 'white',
+                                        shadowOffsetX: 2,
+                                        shadowOffsetY: 2,
+                                        shadowBlur: 5,
+                                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener los datos:', error);
+                    });
+            }
+        });
+    </script>
+    
+</body>
+</html>
+{% endblock %}

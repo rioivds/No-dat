@@ -95,7 +95,7 @@
                       </div>
                     </td>
                     <td>
-                      <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+                      <button style="border-color: rgb(41, 159, 61); background-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary mb-2">Guardar</button>
                       <a class="btn btn-primary" href="/proa/profesores" role="button">Cancelar</a>
                     </td>
                   </div>
@@ -108,7 +108,7 @@
                   <td>{{profesor.dni}}</td>
                   <td>{{profesor.telefono}}</td>
                   <td>
-                    <a class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
+                    <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
                     <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">Editar</a>
                   </td> 
                 {% endif %}

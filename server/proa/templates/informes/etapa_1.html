@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Informe Escolar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            border-bottom: 1px solid black;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .references {
+            margin-top: 20px;
+        }
+        .references li {
+            list-style-type: none;
+            text-indent: -25px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+        }
+        .references li:before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+        .inasistencias {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'proa/img/logo informe.jpg' %}" alt="Bootstrap" style="width: 100%; height: auto;">
+    </div>
+    <h1> Informe de Evaluación Formativa  Ciclo Lectivo 2023 - Primera Etapa</h1>
+    <div class="student-info">
+        <div>
+            <p>Nombre del estudiante: {{alumno.nombre}} {{alumno.apellido}}</p>
+        </div>
+        <div>
+            <p>Curso: {{curso}}</p>
+        </div>
+    </div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Materia</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+            </tr>
+            {%for notas in lista_notas%}
+                <tr>
+                    {%for i in notas%}
+                        {%if i != ""%}
+                        <td> {{i}}</td>
+                        {% else %}
+                        <td></td>
+                        {%endif%}
+                    {%endfor%}
+                    
+                </tr>
+            {%endfor%}
+        </table>
+    </div>
+    <div class="references">
+        <h2>Referencias de Notas:</h2>
+        <ul>
+            <li>Nivel insuficiente (0-5)</li>
+            <li>Nivel suficiente (5-7)</li>
+            <li>Nivel notable (7-9)</li>
+            <li>Nivel sobresaliente (9-10)</li>
+        </ul>
+    </div>
+    <div class="inasistencias">
+        <p>Inasistencias del alumno: 5</p>
+    </div>
+</body>
+</html>
