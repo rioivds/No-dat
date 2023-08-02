@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>Selecciona una materia:</h1>
-<select id="selectMateria">
+<h3>Selecciona una materia:</h3>
+<select style="color:gray;" id="selectMateria">
     <option value="">-- Seleccionar Materia --</option>
     {% for materia in materias %}
         <option value="{{ materia }}">{{ materia }}</option>

@@ -73,7 +73,7 @@
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
 
   <!-- Botón de exportar a Excel -->
-  <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 6px;">Exportar Alumnos a Excel</a>
+  <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos a Excel</a>
 
 <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -149,7 +149,7 @@
                     </div>
                   </td>
                   <td>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button style="margin-bottom: 5px; border-color: rgb(41, 159, 61); background-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary">Guardar</button>
                     <a class="btn btn-primary" href="/proa/alumnos" role="button">Cancelar</a>
                   </td>
                 </div>
@@ -170,8 +170,8 @@
                   </div>
                 </td>                
                 <td>
-                  <a class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
-                  <a class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
+                  <a style="margin: 2px; background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
+                  <a style="margin: 2px;" class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
                 </td> 
               {% endif %}
             </tr>
