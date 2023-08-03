@@ -10,7 +10,7 @@ def exportar_alumnos(request):
     sheet = workbook.active
     sheet.title = 'Alumnos'
 
-    # Encabezados de las columnas
+    # Encabezados de las columnas 
     sheet['A1'] = 'DNI'
     sheet['B1'] = 'Nombre'
     sheet['C1'] = 'Apellido'

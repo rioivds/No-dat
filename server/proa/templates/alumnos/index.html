@@ -81,9 +81,35 @@
 </form>
 </div>
 
+<style>
+  .sticky{
+    background-color: red;
+  }
+
+  .fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+</style>
+
+<script>
+  var sticky=document.getElementById('sticky');
+  var altura=sticky.offsetTop;
+
+  window.addEventListener('scroll',function(){
+    if(window.pageYOffset>altura){
+      sticky.classList.add('fixed');
+    } else{
+      sticky.classList.remove('fixed');
+    }
+})
+</script>
+
   <table class="table">
       <thead>
-          <tr>
+          <tr class="sticky" id="sticky">
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Email</th> 
@@ -114,6 +140,7 @@
                     <div class="col">
                       <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value="{{alumno.email}}">
                     </div>
+
                   </td>
                   <td>
                     <div class="col">
