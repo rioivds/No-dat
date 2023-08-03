@@ -73,7 +73,7 @@
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
 
   <!-- Botón de exportar a Excel -->
-  <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos a Excel</a>
+  <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos</a>
 
 <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -81,35 +81,9 @@
 </form>
 </div>
 
-<style>
-  .sticky{
-    background-color: red;
-  }
-
-  .fixed{
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-</style>
-
-<script>
-  var sticky=document.getElementById('sticky');
-  var altura=sticky.offsetTop;
-
-  window.addEventListener('scroll',function(){
-    if(window.pageYOffset>altura){
-      sticky.classList.add('fixed');
-    } else{
-      sticky.classList.remove('fixed');
-    }
-})
-</script>
-
   <table class="table">
       <thead>
-          <tr class="sticky" id="sticky">
+          <tr >
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Email</th> 
@@ -119,6 +93,7 @@
               <th scope="col">¿Repitente?</th>
           </tr>
       </thead>
+
       <tbody>
           {% for alumno in alumnos %}
             <tr>
@@ -176,8 +151,8 @@
                     </div>
                   </td>
                   <td>
-                    <button style="margin-bottom: 5px; border-color: rgb(41, 159, 61); background-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary">Guardar</button>
-                    <a class="btn btn-primary" href="/proa/alumnos" role="button">Cancelar</a>
+                    <button style="margin-bottom: 5px;" type="submit" class="btn btn-success">Guardar</button>
+                    <a class="btn btn-secondary" href="/proa/alumnos" role="button">Cancelar</a>
                   </td>
                 </div>
                 </form>
@@ -197,7 +172,7 @@
                   </div>
                 </td>                
                 <td>
-                  <a style="margin: 2px; background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
+                  <a style="margin: 2px;" class="btn btn-danger" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
                   <a style="margin: 2px;" class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
                 </td> 
               {% endif %}
@@ -209,12 +184,10 @@
 <script>
   function check(e) {
     tecla = (document.all) ? e.keyCode : e.which;
-
     //Tecla de retroceso para borrar, siempre la permite
     if (tecla == 8) {
         return true;
     }
-
     // Patrón de entrada, en este caso solo acepta numeros y letras
     patron = /[A-Za-z0]/;
     tecla_final = String.fromCharCode(tecla);
