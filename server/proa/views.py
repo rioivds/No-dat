@@ -139,12 +139,12 @@ def importar_calificaciones(request):
 def index(request):
     cursos = Curso.objects.all()
     today = datetime.datetime.now()
-    return render(request, 'index.html',
-                  {"today": today,
-                   "titulo": ' Titulo desde la vista',
-                   'texto': 'aca ponemos algo de texto desde la base',
-                   'cursos': cursos
-                   })
+    return render(request, 'login/index.html')
 
 def guardar(request):
     return HttpResponse('Hola Sou guardar')
+
+def index_inicio(request):
+    cursos = Curso.objects.all()
+    today = datetime.datetime.now()
+    return render(request, 'index.html')
