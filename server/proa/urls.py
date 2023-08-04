@@ -23,6 +23,7 @@ from . import views_alumnos,views_profesores,views_materia,views_calificaciones,
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('inicio/', views.index_inicio),    
     path('alumnos', views_alumnos.index),
     path('alumnos/nuevo2/', views_alumnos.guardar_alumnos),
     path('alumnos/delete/', views_alumnos.eliminar_alumno),
