@@ -64,16 +64,16 @@ def exportar_alumnos(request):
     alumnos = Alumno.objects.all()
     workbook = openpyxl.Workbook()
     sheet = workbook.active
-    sheet.title = 'Alumnos'
+    sheet.title = 'registro_alumnos-no;dat'
 
     # Encabezados de las columnas
-    sheet['A1'] = 'DNI'
-    sheet['B1'] = 'Nombre'
-    sheet['C1'] = 'Apellido'
-    sheet['D1'] = 'Fecha de Nacimiento'
-    sheet['E1'] = 'Email'
-    sheet['F1'] = 'Repitio'
-    sheet['G1'] = 'Año'
+    sheet['A1'] = 'dni'
+    sheet['B1'] = 'nombre'
+    sheet['C1'] = 'apellido'
+    sheet['D1'] = 'fecha_nacimiento'
+    sheet['E1'] = 'email'
+    sheet['F1'] = 'repitio'
+    sheet['G1'] = 'curso'
 
     # Llenar el contenido con los datos de los alumnos
     for index, alumno in enumerate(alumnos, start=2):

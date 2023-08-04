@@ -55,8 +55,4 @@ urlpatterns = [
     path('graficos/materias_por_curso/<int:curso_anio>/', views_graficos_barra.materias_por_curso, name='materias_por_curso'),
     path('graficos/grafico_torta/', views_graficos_torta.grafico_torta, name='grafico_torta'),
     path('graficos/torta/<int:materia_id>/', views_graficos_torta.grafico_torta_materia, name='grafico_torta_materia'),
-    
-
-
-
 ]
