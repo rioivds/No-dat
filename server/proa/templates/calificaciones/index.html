@@ -3,6 +3,9 @@
 {% load static %}
 {% block content %}
 <div class="container">
+
+
+  <!-- Modal añadir calificacion -->
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -74,11 +77,15 @@
   {% endif %}
 
   <div>
+    <!-- Botón añadir calificacion -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
+      
+    <!-- Botón importar calificacion -->
     <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button">Importar Calificaciones desde Excel</a>
   </div>
   
   <table class="table">
+
       <thead>
           <tr>
               <th scope="col">#</th>
@@ -88,9 +95,10 @@
               <th scope="col">Profesor</th>
               <th scope="col">Fecha de Calificación</th>
               <th scope="col">Calificacion</th>
-              <th scope="col">Calificacion Final?</th>
+              <th scope="col">¿Calificacion Final?</th>
           </tr>
       </thead>
+
       <tbody>
           {% for calificacion in calificaciones %}
             <tr>

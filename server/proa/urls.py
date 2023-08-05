@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.urls import path, re_path
-from . import views_alumnos,views_profesores,views_materia,views_calificaciones, views_informes, views_graficos_barra,views_graficos_torta
+from . import views_alumnos,views_profesores,views_materia,views_calificaciones,views_informes,views_graficos_barra,views_graficos_torta
 
 urlpatterns = [
     path('admin/', admin.site.urls),

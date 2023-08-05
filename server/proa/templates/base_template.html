@@ -15,7 +15,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <title>{% block title %}ProA - Inicio{% endblock %}</title>
 
-    <!-- <link rel="icon" href="/server/proa/static/proa/img/logoproa.png" type="image/png"> -->
 </head>
 <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -35,7 +34,7 @@
     </script>
     <nav class="navbar navbar-expand-lg bg-primary rounded">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="/proa">
+            <a class="navbar-brand text-white" href="/proa/inicio">
                 <img class="img-thumbnail" src="{% static 'proa/img/logoproa.png' %}" alt="Bootstrap" width="72" height="32">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white fs-5" aria-current="page" href="/proa">Inicio</a>
+                        <a class="nav-link active text-white fs-5" aria-current="page" href="/proa/inicio">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registros</a>
@@ -63,10 +62,11 @@
             </div>
         </div>
     </nav>
-    <hr />
+    <hr/>
 
     {% block content %}{% endblock %}
-
+    
+    <hr>
     <footer class="text-center text-lg-start bg-primary text-light mt-auto rounded">
         <section class="">
             <div class="container text-center text-md-start mt-5">
