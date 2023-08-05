@@ -75,10 +75,13 @@
   <!-- Botón de exportar a Excel -->
   <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos</a>
 
-<form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Importar Alumnos</button>
-</form>
+  <!-- Botón bajar planilla vacia para importacion -->
+  <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Descargar Planilla</a>
+
+  <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Importar Alumnos</button>
+  </form>
 </div>
 
   <table class="table">

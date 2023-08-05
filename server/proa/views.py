@@ -64,7 +64,7 @@ def exportar_alumnos(request):
     alumnos = Alumno.objects.all()
     workbook = openpyxl.Workbook()
     sheet = workbook.active
-    sheet.title = 'registro_alumnos-no;dat'
+    sheet.title = 'registro_alumnos-noDat'
 
     # Encabezados de las columnas
     sheet['A1'] = 'dni'
@@ -82,7 +82,7 @@ def exportar_alumnos(request):
         sheet[f'C{index}'] = alumno.apellido
         sheet[f'D{index}'] = alumno.fecha_nacimiento.strftime('%Y-%m-%d')
         sheet[f'E{index}'] = alumno.email
-        sheet[f'F{index}'] = 'Si' if alumno.repitio else 'No'
+        sheet[f'F{index}'] = 'TRUE' if alumno.repitio else 'FALSE'
         sheet[f'G{index}'] = alumno.curso.anio
 
     # Agregar estilo a los encabezados
@@ -92,7 +92,41 @@ def exportar_alumnos(request):
 
     # Generar la respuesta con el archivo Excel
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=alumnos.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=registro_alumnos-noDat'
+    workbook.save(response)
+    return response
+
+def planilla_alumnos(request):
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = 'planilla_alumnos-noDat'
+
+    # Encabezados de las columnas
+    sheet['A1'] = 'dni'
+    sheet['B1'] = 'nombre'
+    sheet['C1'] = 'apellido'
+    sheet['D1'] = 'fecha_nacimiento'
+    sheet['E1'] = 'email'
+    sheet['F1'] = 'repitio'
+    sheet['G1'] = 'curso'
+
+    # Rellenar la segunda fila con datos de ejemplo
+    sheet['A2'] = '12345678'
+    sheet['B2'] = 'Nombre Ejemplo'
+    sheet['C2'] = 'Apellido Ejemplo'
+    sheet['D2'] = '2022-12-18'
+    sheet['E2'] = 'email@ejemplo.com'
+    sheet['F2'] = 'TRUE/FALSE'
+    sheet['G2'] = '1'
+
+    # Agregar estilo a los encabezados
+    header_font = openpyxl.styles.Font(bold=True)
+    for cell in sheet['1']: 
+        cell.font = header_font
+
+    # Generar la respuesta con el archivo Excel
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=planilla_alumnos-noDat'
     workbook.save(response)
     return response
 

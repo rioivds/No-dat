@@ -50,6 +50,9 @@ urlpatterns = [
     path('graficos/', views_graficos_barra.index, name='index'),
     path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
     path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
+
+    path('alumnos/planilla/', views.planilla_alumnos, name='planilla_alumnos'),
+    
     path('materias/importar_materias/', views.importar_materias, name='importar_materias'),
     path('calificaciones/importar_calificaciones/', views.importar_calificaciones, name='importar_calificaciones'),
     re_path(r'^graficos/materia/(?P<materia_nombre>.+)/$', views_graficos_barra.grafico_materia, name='grafico_materia'),
