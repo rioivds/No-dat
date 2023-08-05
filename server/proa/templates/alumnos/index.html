@@ -50,7 +50,7 @@
                       <label class="form-check-label" for="repitio">¿Repitió?</label>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Nuevo</button>
+                  <button type="submit" class="btn btn-success">Nuevo</button>
                 </ul>
              
           </form>
@@ -78,6 +78,7 @@
   <!-- Botón bajar planilla vacia para importacion -->
   <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Descargar Planilla</a>
 
+   <!-- Botón de importar desde Excel -->
   <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Importar Alumnos</button>

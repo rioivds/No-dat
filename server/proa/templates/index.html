@@ -59,8 +59,11 @@
     </div>
   </div>
 </div>
+
 <div class="container text-center">
   <div class="row">
+    
+    <!-- SECCION ALUMNOS -->
     <div class="col align-self-center">
       <div class="card" style="width: 18rem; height: 27rem;">
         <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Alumnos">
@@ -71,43 +74,48 @@
         </div>
       </div>
     </div>
+
+    <!-- SECCION PROFESORES -->
     <div class="col align-self-center">
       <div class="card" style="width: 18rem; height: 27rem;">
-        <img src="{% static 'proa/img/profesores.jpg' %}" class="card-img-top" alt="Profesores">
+        <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Profesores">
         <div class="card-body">
-          <h5 class="card-title">Registro de profesores</h5>
+          <h5 class="card-title">Registro de Profesores</h5>
           <p class="card-text">En esta sección podrás realizar todas las tareas administrativas relacionadas con los profesores.</p>
           <a href="/proa/profesores" class="btn btn-primary">Ir a la sección</a>
         </div>
       </div>
     </div>
+
+    <!-- SECCION MATERIAS -->
     <div class="col align-self-center">
       <div class="card" style="width: 18rem; height: 27rem;">
-        <img src="{% static 'proa/img/materias.jpg' %}" class="card-img-top" alt="Materias">
+        <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Materias">
         <div class="card-body">
-          <h5 class="card-title">Registro de materias</h5>
+          <h5 class="card-title">Registro de Materias</h5>
           <p class="card-text">En esta sección podrás realizar todas las tareas administrativas relacionadas con las materias.</p>
           <a href="/proa/materias" class="btn btn-primary">Ir a la sección</a>
         </div>
       </div>
     </div>
+
+    <!-- SECCION CALIFICACIONES -->
     <div class="col align-self-center">
       <div class="card" style="width: 18rem; height: 27rem;">
-        <img src="{% static 'proa/img/calificaciones.jpg' %}" class="card-img-top" alt="Notas">
+        <img src="{% static 'proa/img/alumnos.png' %}" class="card-img-top" alt="Notas">
         <div class="card-body">
-          <h5 class="card-title">Registro de calificaciones</h5>
+          <h5 class="card-title">Registro de Calificaciones</h5>
           <p class="card-text">En esta sección podrás realizar todas las tareas administrativas relacionadas con las calificaciones.</p>
           <a href="/proa/calificaciones" class="btn btn-primary">Ir a la sección</a>
-
           <!-- <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
             {% for curso in cursos %}
             <option value={{curso.id}}>{{curso.curso}}</option>
             {% endfor %}
           </select> -->
-          
         </div>
       </div>
     </div>
+
   </div>
 </div>
   {% endblock %}
