@@ -44,7 +44,3 @@ class Calificaciones(models.Model):
     fecha = models.DateField(verbose_name='Fecha')
     nota = models.FloatField(verbose_name='Nota')
     final = models.BooleanField(verbose_name='final')
-
-
-    
-

@@ -16,6 +16,7 @@
     {% endfor %}
 </select>
 <canvas id="graficoBarra" width="800" height="500"></canvas>
+
 <script>
     var selectMateria = document.getElementById('selectMateria');
     var grafico = null; // Variable para almacenar el gráfico actual
@@ -107,6 +108,8 @@
             .catch(error => console.error('Error al obtener datos del gráfico:', error));
     });
 
+
+    
     function getColorByPromedio(promedio) {
         // Convertir el promedio a un valor entre 0 y 1
         var normalizedPromedio = (promedio - 1) / 9;
@@ -130,6 +133,9 @@
         return `#${rHex}${gHex}${bHex}`;
     }
 </script>
+
+
+
 </body>
 </html>
 {% endblock %}
