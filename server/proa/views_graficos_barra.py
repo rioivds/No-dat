@@ -73,5 +73,3 @@ def grafico_materia(request, materia_nombre):
     else:
         # Si no se encontraron materias con ese nombre, retornar una respuesta vacía o un mensaje de error
         return JsonResponse([], safe=False)
-
-

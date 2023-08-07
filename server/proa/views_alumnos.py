@@ -56,14 +56,14 @@ def guardar_alumnos(request):
         return render(request, 'alumnos/index.html', {"mensaje": "Porfavor ingrese bien el apellido", "alumnos": alumnos})
     email = request.POST["email"]
     if email_check(email):
-        return render(request, 'alumnos/index.html', {"mensaje": "Porfavor ecriba bien el mail o asegurese que sea intitucional (@escuelasproa.edu.ar)", "alumnos": alumnos})
+        return render(request, 'alumnos/index.html', {"mensaje": "Porfavor escriba bien el mail o asegurese que sea intitucional (@escuelasproa.edu.ar)", "alumnos": alumnos})
     fecha_nacimiento_str = request.POST["fecha_nacimiento"]
     fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, "%m/%d/%Y").strftime("%Y-%m-%d")
     repitio = request.POST.get("repitio") == "on"  # Conversión a True si está marcado
     curso = request.POST["curso"]
 
     if Alumno.objects.filter(dni=DNI).exists():
-        return render(request, 'alumnos/index.html', {"mensaje": "Este alumno ya existe", "alumnos": alumnos})
+        return render(request, 'alumnos/index.html', {"mensaje": "Ya existe un alumno con ese DNI en los registros", "alumnos": alumnos})
     else:
         insert = Alumno(
             nombre=nombre,
