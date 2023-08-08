@@ -17,10 +17,43 @@ from django.db.models import IntegerField, Q
 def index(request):
     cursos = Curso.objects.all()
     todas_materias = Materia.objects.all()
-    nombres_materias_unicas = set()
 
-    for materia in todas_materias:
-        nombres_materias_unicas.add(materia.nombre)
+    nombres_materias_unicas=["ARTES VISUALES",                           
+                             "BIOLOGÍA",
+                             "CIUDADANÍA Y PARTICIPACIÓN",
+                             "CIUDADANÍA Y POLÍTICA",
+                             "CLUB DE ARTE",
+                             "CLUB DE CIENCIAS",
+                             "CLUB DE DEPORTES",
+                             "DESARROLLO DE APLICACIONES MÓVILES",
+                             "DISEÑO DE INTERFACE",
+                             "EDUCACIÓN FISICA",
+                             "ESTRUCTURA Y ALMACENAMIENTO DE DATOS",
+                             "ÉTICA Y LEGISLACIÓN",
+                             "FÍSICA",
+                             "FILOSOFÍA",
+                             "FPVT",
+                             "GEOGRAFÍA",
+                             "HISTORIA",
+                             "INGLÉS",
+                             "LENGUA Y LITERATURA",
+                             "MATEMÁTICA",
+                             "MÚSICA",
+                             "PROGRAMACIÓN Y ENTORNOS DIGITALES",
+                             "PSICOLOGÍA",
+                             "QUÍMICA",
+                             "ROBÓTICA",
+                             "SISTEMAS OPERATIVOS",
+                             "TALLER DE INGLES APLICADO",
+                             "TEATRO",
+                             "TESTING"
+                            ]
+
+    
+
+
+
+
 
     datos_grafico = []
 
@@ -28,7 +61,7 @@ def index(request):
         todas_materias_curso = todas_materias.filter(curso=curso)
 
         for materia in todas_materias_curso:
-            notas = Calificaciones.objects.filter(materia=materia, curso=curso)
+            notas = Calificaciones.objects.filter(materia=materia,curso=curso)
             promedio = notas.aggregate(promedio=Avg('nota'))['promedio']
 
             if promedio is not None:
@@ -40,15 +73,31 @@ def index(request):
 
     datos_json = json.dumps(datos_grafico)
 
-    return render(request, 'graficos/index.html', {'datos_grafico': datos_json, "cursos": cursos, "materias": nombres_materias_unicas})
+    return render(request, 'graficos/index.html', {'datos_grafico': datos_json, "cursos": cursos, "materias":nombres_materias_unicas })
+
+
 
 def materias_por_curso(request, curso_anio):
     materias = Materia.objects.filter(curso__anio=curso_anio).values_list('nombre', flat=True)
     return JsonResponse(list(materias), safe=False)
 
+
 def grafico_materia(request, materia_nombre):
-    materia_nombre_decoded = unquote(materia_nombre)  # Decodificar el nombre de la materia
-    materias = Materia.objects.filter(nombre=materia_nombre_decoded)  # Filtrar por nombre de materia
+    materia_nombre_decoded = unquote(materia_nombre) # Decodificar el nombre de la materia
+
+    # Si la materia es INGLÉS, se filtra por el nombre exacto, asi no entra en conflicto con INGLÉS APLICADO
+    if materia_nombre_decoded == "INGLÉS":
+        materias = Materia.objects.filter(nombre=materia_nombre_decoded)
+
+    # Si la materia es PROGRAMACIÓN Y ENTORNOS DIGITALES cambiar su nombre por -> PROGRAMACIÓN, para filtrar todas las materias que la contengan en su nombre 
+    elif materia_nombre_decoded == "PROGRAMACIÓN Y ENTORNOS DIGITALES": 
+        materia_nombre_decoded="PROGRAMACIÓN"
+        materias = Materia.objects.filter(nombre__icontains=materia_nombre_decoded)
+
+    # Si no, se filtra por las materias que la contengan en su nombre
+    else:
+        materias = Materia.objects.filter(nombre__icontains=materia_nombre_decoded)  
+
 
     if materias.exists():  # Verificar si hay materias con ese nombre
         datos_grafico = []
