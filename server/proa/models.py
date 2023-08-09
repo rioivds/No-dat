@@ -14,7 +14,7 @@ class Curso(models.Model):
 class Usuario(models.Model):
     id = models.BigAutoField(primary_key = True)
     email = models.EmailField(verbose_name='Email')
-    contraseña = models.CharField(max_length=100, verbose_name='Contraseña')
+    contrasenia = models.CharField(max_length=100, verbose_name='Contraseña')
     rol = models.CharField(max_length=1, verbose_name='Rol')
 
 class Profesor(models.Model):
