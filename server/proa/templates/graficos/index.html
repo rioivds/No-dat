@@ -11,12 +11,14 @@
 
 <body>
     <h3>Selecciona una materia:</h3>
+    
     <select class="select" id="selectMateria">
         <option value="">-- Seleccionar Materia --</option>
         {% for materia in materias %}
             <option value="{{ materia }}">{{ materia }}</option>
         {% endfor %}
     </select>
+
     <canvas id="graficoBarra" width="800" height="500"></canvas>
 
     <script>
