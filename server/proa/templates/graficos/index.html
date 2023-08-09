@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Graficos</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'proa/css/chart.js' %}"></script>
 </head>
 
 <body>
@@ -71,7 +71,7 @@
                         if (datosPorMateria[nombreMateria][0] && datosPorMateria[nombreMateria][0].curso) {
                             labels = datosPorMateria[nombreMateria].map(dato => dato.curso);
                         }
-
+                        console.log();
                         datasets.push({
                             label: nombreMateria,
                             data: data,

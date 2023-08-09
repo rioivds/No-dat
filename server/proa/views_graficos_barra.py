@@ -112,6 +112,7 @@ def grafico_materia(request, materia_nombre):
                         'curso': curso.anio,  # Utilizar el año del curso
                         'promedio': promedio,
                     })
+                print (datos_grafico)
 
         return JsonResponse(datos_grafico, safe=False)
 
