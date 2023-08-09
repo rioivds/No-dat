@@ -69,21 +69,52 @@
   {% endif %}
 
 
-<div class="form_alumnos">
-  <!-- Botón añadir alumno -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
+<div class="row g-2">
 
+  <!-- Botón añadir alumno -->
+  <div class="col-auto">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
+  </div>
+  
   <!-- Botón exportar a Excel -->
-  <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos</a>
+  <div class="col-auto">
+    <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary">Exportar Alumnos</a>
+  </div>
 
   <!-- Botón bajar planilla vacia para importacion -->
-  <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Descargar Planilla</a>
-
-   <!-- Botón importar desde Excel -->
-  <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
+  <div class="col-auto">
+    <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary">Descargar Planilla</a>
+  </div>
+  
+  <!-- Botón importar desde Excel -->
+  <div class="col-auto">
+    <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <button type="submit" class="btn btn-success" style="margin-top: 8px;">Importar Alumnos</button>
+    <button type="submit" class="btn btn-primary">Importar Alumnos</button>
   </form>
+  </div>
+  
+
+  <!-- Formulario buscar alumno por nombre -->
+  <form style="margin-top: 10px; margin-bottom: 50px;" class="row g-2" action="{% url 'filtro_alumnos' %}" method="GET">
+    <div class="col-auto">
+      <select class="form-select form-select-sm" name="campo" id="campo">
+          <option value="nombre">Nombre</option>
+          <option value="apellido">Apellido</option>
+          <option value="email">Email</option>
+          <option value="dni">DNI</option>
+          <option value="curso">Curso</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <input class="form-control form-control-sm" type="text" name="query" id="query" placeholder="Ingrese " value="{{ query }}">
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-secondary btn-sm " type="submit">Buscar</button>
+    </div>
+  </form>
+  
+
 </div>
 
   <table class="table">
@@ -161,6 +192,7 @@
                   </td>
                 </div>
                 </form>
+
               {% else %}
                 <td>{{alumno.nombre}}</td>
                 <td>{{alumno.apellido}}</td>
@@ -175,7 +207,8 @@
                       </label>
                     </div>
                   </div>
-                </td>                
+                </td>     
+
                 <td>
                   <a style="margin: 2px;" class="btn btn-danger" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
                   <a style="margin: 2px;" class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
@@ -186,6 +219,7 @@
       </tbody>
   </table>
 </div>
+
 <script>
   function check(e) {
     tecla = (document.all) ? e.keyCode : e.which;
