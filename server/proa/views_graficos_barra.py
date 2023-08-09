@@ -87,9 +87,7 @@ def grafico_materia(request, materia_nombre):
     # Si la materia es PROGRAMACIÓN Y ENTORNOS DIGITALES cambiar su nombre por -> PROGRAMACIÓN, para filtrar todas las materias que la contengan en su nombre 
     elif materia_nombre_decoded == "PROGRAMACIÓN Y ENTORNOS DIGITALES": 
         materias=Materia.objects.filter(Q(nombre__icontains="PROGRAMACIÓN")|Q(nombre__icontains="ENTORNOS DIGITALES"))
-
         
-
     # Si no, se filtra por las materias que la contengan en su nombre
     else:
         materias = Materia.objects.filter(nombre__icontains=materia_nombre_decoded)  

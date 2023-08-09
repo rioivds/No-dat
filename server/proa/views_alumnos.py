@@ -132,3 +132,22 @@ def curso(request):
     else:
         alumnos = Alumno.objects.all()
         return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
+    
+    
+def filtro_alumnos(request):
+    query = request.GET.get('query', '')
+    campo_busqueda = request.GET.get('campo', 'nombre')  # Por defecto, buscar por nombre
+
+    if campo_busqueda == 'dni':
+        alumnos = Alumno.objects.filter(dni__icontains=query)
+    elif campo_busqueda == 'nombre':
+        alumnos = Alumno.objects.filter(nombre__icontains=query)
+    elif campo_busqueda == 'apellido':
+        alumnos = Alumno.objects.filter(apellido__icontains=query)
+    elif campo_busqueda == 'email':
+        alumnos = Alumno.objects.filter(email__icontains=query)
+    elif campo_busqueda == 'curso':
+        alumnos = Alumno.objects.filter(curso=query)
+    
+    return render(request, 'alumnos/index.html', {'alumnos': alumnos, 'campo_busqueda': campo_busqueda, 'query': query})
+   
