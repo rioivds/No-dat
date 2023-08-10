@@ -1,36 +1,33 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'proa/css/bootstrap.css' %}" />
-<script src="{% static 'proa/js/bootstrap.js' %}"></script>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static 'proa/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'proa/css/docs.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'proa/css/bootstrap-datepicker.min.css' %}">
-    <script src="{% static 'proa/css/bootstrap.bundle.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'proa/css/jquery-ui.css' %}">
-    <script src="{% static 'proa/css/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'proa/css/jquery-ui.js' %}"></script>
+<!DOCTYPE html>
 <html>
 <head>
-    <script src="{% static 'proa/css/jquery-3.3.1.slim.min.js' %}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'proa/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'proa/css/docs.css' %}">
+    <link rel="stylesheet" href="{% static 'proa/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'proa/css/jquery-ui.css' %}">
     <title>{% block title %}ProA - Inicio{% endblock %}</title>
-
+    <script src="{% static 'proa/js/jquery-3.6.0.min.js' %}"></script>
 </head>
 <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
-    <script src="{% static 'proa/css/bootstrap-datepicker.min.js' %}"></script>
+   
+    <!-- Carga de bootstrap.bundle.min.js y otros scripts -->
+    <script src="{% static 'proa/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'proa/js/bootstrap-datepicker.min.js' %}"></script>
     <script>
-      $(document).ready(function() {
-        $(".datepicker").datepicker({
-          dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
-        });
+        $(document).ready(function() {
+            $(".datepicker").datepicker({
+                dateFormat: "yyyy-mm-dd"
+            });
 
-        $('.datepicker').click(function() {
-          // Se centra la tabla de fechas.
-          var date = $('.datepicker')[1];
-          date.style.display = 'flex';
-          date.style.justifyContent = 'center';
+            $('.datepicker').click(function() {
+                var date = $('.datepicker')[1];
+                date.style.display = 'flex';
+                date.style.justifyContent = 'center';
+            });
         });
-      });
     </script>
     <nav class="navbar navbar-expand-lg bg-primary rounded">
         <div class="container-fluid">
