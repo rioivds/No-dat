@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 from django.db.models import Q
-from proa.models import Profesor
+from proa.models import Profesor, Usuario
 from django.db import connection
 from django.shortcuts import get_object_or_404
 import openpyxl
@@ -27,8 +27,23 @@ def guardar_profesores(request):
     if Profesor.objects.filter(dni=DNI).exists():
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "este profesor ya existe", "profesores": profesores})
+    elif Usuario.objects.filter(email = email).exists():
+        return render(request, 'alumnos/index.html', {"mensaje": "Ya existe un alumno con ese email", "alumnos": profesores})
     else:
-        insert = Profesor(nombre = nombre, apellido = apellido, email = email, dni = DNI, telefono=telefono)
+        insert = Usuario(
+            email = email,
+            contrasenia = DNI,
+            rol = 1
+        )
+        insert.save()
+        insert = Profesor(
+            nombre=nombre,
+            apellido=apellido,
+            email=email,
+            dni=DNI,
+            telefono = telefono,
+            usuario = Usuario.objects.get(email = email, contrasenia = DNI)
+        )
         insert.save()
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "Se inserto con exito", "profesores": profesores})

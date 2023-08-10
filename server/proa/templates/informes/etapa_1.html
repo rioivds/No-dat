@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html>
 <head>
     <title>Informe Escolar</title>
@@ -69,12 +68,14 @@
 </head>
 <body>
     <div class="header">
-        <img src="{% static 'proa/img/logo informe.jpg' %}" alt="Bootstrap" style="width: 100%; height: auto;">
+        <img src="ruta_imagen1.jpg" alt="Imagen 1">
+        <img src="ruta_imagen2.jpg" alt="Imagen 2">
+        <img src="ruta_imagen3.jpg" alt="Imagen 3">
     </div>
-    <h1> Informe de Evaluación Formativa  Ciclo Lectivo 2023 - Primera Etapa</h1>
+    <h1>Informe Escolar</h1>
     <div class="student-info">
         <div>
-            <p>Nombre del estudiante: {{alumno.nombre}} {{alumno.apellido}}</p>
+            <p>Nombre del estudiante: Juan Pérez</p>
         </div>
         <div>
             <p>Curso: {{curso}}</p>

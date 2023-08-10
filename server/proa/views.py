@@ -172,15 +172,15 @@ def importar_calificaciones(request):
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensaje': mensaje})
 
 def index(request):
-    cursos = Curso.objects.all()
-    today = datetime.datetime.now()
     return render(request, 'login/index.html')
 
 def guardar(request):
     return HttpResponse('Hola Sou guardar')
 
-        
 def index_inicio(request):
+    return render(request, 'index.html')
+        
+def index_login(request):
     email = request.POST["email"]
     contraseña = request.POST["contraseña"]
     usuario = Usuario.objects.filter(email = email, contrasenia = contraseña)
