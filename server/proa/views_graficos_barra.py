@@ -49,12 +49,6 @@ def index(request):
                              "TESTING"
                             ]
 
-    
-
-
-
-
-
     datos_grafico = []
 
     for curso in cursos:
@@ -85,15 +79,15 @@ def materias_por_curso(request, curso_anio):
 def grafico_materia(request, materia_nombre):
     materia_nombre_decoded = unquote(materia_nombre) # Decodificar el nombre de la materia
 
+
     # Si la materia es INGLÉS, se filtra por el nombre exacto, asi no entra en conflicto con INGLÉS APLICADO
     if materia_nombre_decoded == "INGLÉS":
         materias = Materia.objects.filter(nombre=materia_nombre_decoded)
 
     # Si la materia es PROGRAMACIÓN Y ENTORNOS DIGITALES cambiar su nombre por -> PROGRAMACIÓN, para filtrar todas las materias que la contengan en su nombre 
     elif materia_nombre_decoded == "PROGRAMACIÓN Y ENTORNOS DIGITALES": 
-        materia_nombre_decoded="PROGRAMACIÓN"
-        materias = Materia.objects.filter(nombre__icontains=materia_nombre_decoded)
-
+        materias=Materia.objects.filter(Q(nombre__icontains="PROGRAMACIÓN")|Q(nombre__icontains="ENTORNOS DIGITALES"))
+        
     # Si no, se filtra por las materias que la contengan en su nombre
     else:
         materias = Materia.objects.filter(nombre__icontains=materia_nombre_decoded)  
@@ -116,6 +110,7 @@ def grafico_materia(request, materia_nombre):
                         'curso': curso.anio,  # Utilizar el año del curso
                         'promedio': promedio,
                     })
+                print (datos_grafico)
 
         return JsonResponse(datos_grafico, safe=False)
 

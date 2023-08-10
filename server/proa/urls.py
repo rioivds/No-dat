@@ -53,7 +53,8 @@ urlpatterns = [
     path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
     path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
     path('alumnos/planilla/', views.planilla_alumnos, name='planilla_alumnos'),
-
+    path('alumnos/filtro_alumnos/', views_alumnos.filtro_alumnos, name='filtro_alumnos'),
+    
     path('profesores/exportar/', views_profesores.exportar_profesores, name='exportar_profesores'),
 
     path('materias/importar_materias/', views.importar_materias, name='importar_materias'),
