@@ -6,9 +6,11 @@
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
+
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir profesor</h1>
         </div>
+        
         <div class="modal-body">
           <form action="/profesores/nuevo2/" method="POST">
             {% csrf_token %} 
@@ -45,10 +47,11 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
-    Añadir profesor
-  </button>
-  
+  <div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir profesor</button>
+    <a href="{% url 'exportar_profesores' %}" class="btn btn-primary" >Exportar Profesores</a>
+  </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -58,7 +61,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Teléfono</th>
-                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -95,8 +97,8 @@
                       </div>
                     </td>
                     <td>
-                      <button style="border-color: rgb(41, 159, 61); background-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary mb-2">Guardar</button>
-                      <a class="btn btn-primary" href="/proa/profesores" role="button">Cancelar</a>
+                      <button type="submit" class="btn btn-success mb-2">Guardar</button>
+                      <a class="btn btn-secondary" href="/proa/profesores" role="button">Cancelar</a>
                     </td>
                   </div>
                   </form>
@@ -108,7 +110,7 @@
                   <td>{{profesor.dni}}</td>
                   <td>{{profesor.telefono}}</td>
                   <td>
-                    <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
+                    <a class="btn btn-danger" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
                     <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">Editar</a>
                   </td> 
                 {% endif %}

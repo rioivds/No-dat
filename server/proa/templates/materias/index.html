@@ -14,9 +14,10 @@
               {% csrf_token %} 
                 <ul class="list-group"> 
                     <div class="list-group-item">
-                      <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
+                      <input type="text" class="form-control" placeholder="Nombre de la Materia" name="materia" required="required">
                     </div>
                     <div class="list-group-item">
+                      <label for="profesor" class="col-form-label">Profesor Asignado</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
                         <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -24,7 +25,7 @@
                       </select> 
                     </div>
                     <div class="list-group-item">
-                      <label for="curso">Año:</label>
+                      <label for="curso" class="col-form-label">Año</label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         <option value="1">1ro</option>
                         <option value="2">2do</option>
@@ -35,11 +36,11 @@
                       </select>
                     </div>
                     <div class="list-group-item">
-                      <label for="horas_catedra" class="col-form-label">Horas Cátedra:</label>
+                      <label for="horas_catedra" class="col-form-label">Horas Cátedra</label>
                       <input type="number" class="form-control" placeholder="Ingrese las horas cátedra" name="horas_catedra" required="required">
                   </div>
                   <div class="list-group-item">
-                      <label for="horario" class="col-form-label">Horario:</label>
+                      <label for="horario" class="col-form-label">Horario</label>
                       <input type="text" class="form-control" placeholder="Ingrese el horario" name="horario" required="required">
                   </div>                  
                     <button type="submit" class="btn btn-success mt-3">Nuevo</button>
@@ -122,8 +123,8 @@
                       </div>
                     </td>
                     <td>
-                      <button style="margin-bottom: 4px; background-color: rgb(41, 159, 61); border-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary">Guardar</button>
-                      <a class="btn btn-primary" href="/proa/materias" role="button">Cancelar</a>
+                      <button style="margin-bottom: 4px;" type="submit" class="btn btn-success">Guardar</button>
+                      <a class="btn btn-secondary" href="/proa/materias" role="button">Cancelar</a>
                     </td>
                   </div>
                   </form>
@@ -135,7 +136,7 @@
                   <td>{{ materia.horas_catedra}}</td>
                   <td>{{ materia.horario}}</td>
                   <td>
-                    <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/materias/delete?id={{materia.id}}" role="button">Eliminar</a>
+                    <a class="btn btn-danger" href="/proa/materias/delete?id={{materia.id}}" role="button">Eliminar</a>
                     <a class="btn btn-primary" href="/proa/materias/editar?id={{materia.id}}" role="button">Editar</a>
                   </td> 
                 {% endif %}

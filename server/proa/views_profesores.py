@@ -5,9 +5,10 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 from django.db.models import Q
-from proa.models import Profesor
+from proa.models import Profesor, Usuario
 from django.db import connection
 from django.shortcuts import get_object_or_404
+import openpyxl
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
@@ -26,8 +27,23 @@ def guardar_profesores(request):
     if Profesor.objects.filter(dni=DNI).exists():
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "este profesor ya existe", "profesores": profesores})
+    elif Usuario.objects.filter(email = email).exists():
+        return render(request, 'alumnos/index.html', {"mensaje": "Ya existe un alumno con ese email", "alumnos": profesores})
     else:
-        insert = Profesor(nombre = nombre, apellido = apellido, email = email, dni = DNI, telefono=telefono)
+        insert = Usuario(
+            email = email,
+            contrasenia = DNI,
+            rol = 1
+        )
+        insert.save()
+        insert = Profesor(
+            nombre=nombre,
+            apellido=apellido,
+            email=email,
+            dni=DNI,
+            telefono = telefono,
+            usuario = Usuario.objects.get(email = email, contrasenia = DNI)
+        )
         insert.save()
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "Se inserto con exito", "profesores": profesores})
@@ -57,3 +73,36 @@ def guardar_edit(request):
     profesores = Profesor.objects.all()
     Profesor.objects.filter(dni = DNI).update(dni = DNI, nombre = nombre, apellido = apellido, email = email, telefono=telefono)
     return render(request, 'profesores/index.html',{ "mensaje": "se edito correctamente", "profesores": profesores})
+
+
+def exportar_profesores(request):
+    profesores = Profesor.objects.all()
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = 'registro_profesores-noDat'
+
+    # Encabezados de las columnas
+    sheet['A1'] = 'nombre'
+    sheet['B1'] = 'apellido'
+    sheet['C1'] = 'email'
+    sheet['D1'] = 'dni'
+    sheet['E1'] = 'telefono'
+
+    # Llenar el contenido con los datos de los alumnos
+    for index, profesor in enumerate(profesores, start=2):
+        sheet[f'A{index}'] = profesor.nombre
+        sheet[f'B{index}'] = profesor.apellido
+        sheet[f'C{index}'] = profesor.email
+        sheet[f'D{index}'] = profesor.dni
+        sheet[f'E{index}'] = profesor.telefono
+
+    # Agregar estilo a los encabezados
+    header_font = openpyxl.styles.Font(bold=True)
+    for cell in sheet['1']:
+        cell.font = header_font
+
+    # Generar la respuesta con el archivo Excel
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=registro_profesores-noDat'
+    workbook.save(response)
+    return response

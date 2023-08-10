@@ -1,41 +1,40 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'proa/css/bootstrap.css' %}" />
-<script src="{% static 'proa/js/bootstrap.js' %}"></script>
-<meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>{% block title %}ProA - Inicio{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <title>{% block title %}ProA - Inicio{% endblock %}</title>
-
-    <!-- <link rel="icon" href="/server/proa/static/proa/img/logoproa.png" type="image/png"> -->
+ 
 </head>
 <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
+   
+    <!-- Carga de bootstrap.bundle.min.js y otros scripts -->
+    <script src="{% static 'proa/js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-      $(document).ready(function() {
-        $(".datepicker").datepicker({
-          dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
-        });
+        $(document).ready(function() {
+            $(".datepicker").datepicker({
+                dateFormat: "yyyy-mm-dd"
+            });
 
-        $('.datepicker').click(function() {
-          // Se centra la tabla de fechas.
-          var date = $('.datepicker')[1];
-          date.style.display = 'flex';
-          date.style.justifyContent = 'center';
+            $('.datepicker').click(function() {
+                var date = $('.datepicker')[1];
+                date.style.display = 'flex';
+                date.style.justifyContent = 'center';
+            });
         });
-      });
     </script>
     <nav class="navbar navbar-expand-lg bg-primary rounded">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="/proa">
+            <a class="navbar-brand text-white" href="/proa/inicio">
                 <img class="img-thumbnail" src="{% static 'proa/img/logoproa.png' %}" alt="Bootstrap" width="72" height="32">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white fs-5" aria-current="page" href="/proa">Inicio</a>
+                        <a class="nav-link active text-white fs-5" aria-current="page" href="/proa/inicio">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registros</a>
@@ -63,10 +62,11 @@
             </div>
         </div>
     </nav>
-    <hr />
+    <hr/>
 
     {% block content %}{% endblock %}
-
+    
+    <hr>
     <footer class="text-center text-lg-start bg-primary text-light mt-auto rounded">
         <section class="">
             <div class="container text-center text-md-start mt-5">
@@ -79,7 +79,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
                         <p>Calle Arroyo Piedras Blancas, Río Cuarto, Córdoba</p>
                         <p>riocuarto.ds@escuelasproa.edu.ar</p>
-                        <a class="link-light" href="https://wa.link/uhcs7b" target="_blank">Whatsapp</a><br />
+                        <a class="link-light" href="https://wa.link/uhcs7b" target="_blank">Whatsapp</a>
                         <a class="link-light" href="https://instagram.com/proa_ds_rioiv" target="_blank">Instagram</a>
                     </div>
                 </div>
