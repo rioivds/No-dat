@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Informe Escolar</title>
@@ -68,10 +69,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="ruta_imagen1.jpg" alt="Imagen 1">
-        <img src="ruta_imagen2.jpg" alt="Imagen 2">
-        <img src="ruta_imagen3.jpg" alt="Imagen 3">
-    </div>
+        <img src="{% static 'proa/img/logo informe.jpg' %}" alt="Imagen 1" style="width: 100%; height: 20vh;">
+    </div>    
     <h1>Informe Escolar</h1>
     <div class="student-info">
         <div>
