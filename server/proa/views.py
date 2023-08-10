@@ -183,8 +183,9 @@ def index_inicio(request):
 def index_login(request):
     email = request.POST["email"]
     contraseña = request.POST["contraseña"]
-    usuario = Usuario.objects.filter(email = email, contrasenia = contraseña)
-    if usuario:
+    try:
+        usuario = Usuario.objects.get(email = email, contrasenia = contraseña)
+        print(usuario.rol)
         return render(request, 'index.html', {'rol_usuario': usuario})
-    else:
-        return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})
+    except:
+        return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})        

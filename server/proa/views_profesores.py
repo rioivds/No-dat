@@ -106,3 +106,21 @@ def exportar_profesores(request):
     response['Content-Disposition'] = 'attachment; filename=registro_profesores-noDat'
     workbook.save(response)
     return response
+
+def filtro_profesores(request):
+    query = request.GET.get('query', '')
+    campo_busqueda = request.GET.get('campo', 'nombre')  # Por defecto, buscar por nombre
+
+    if campo_busqueda == 'dni':
+        profesores = Profesor.objects.filter(dni__icontains=query)
+    elif campo_busqueda == 'nombre':
+        profesores = Profesor.objects.filter(nombre__icontains=query)
+    elif campo_busqueda == 'apellido':
+        profesores = Profesor.objects.filter(apellido__icontains=query)
+    elif campo_busqueda == 'email':
+        profesores = Profesor.objects.filter(email__icontains=query)
+    elif campo_busqueda == 'telefono':
+        profesores = Profesor.objects.filter(telefono=query)
+    
+    return render(request, 'alumnos/index.html', {'profesores': profesores, 'campo_busqueda': campo_busqueda, 'query': query})
+   

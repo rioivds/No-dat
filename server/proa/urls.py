@@ -24,13 +24,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('check_login', views.index_login),
-    path('inicio/', views.index_inicio),    
+    path('inicio', views.index_inicio),    
     path('alumnos', views_alumnos.index),
     path('alumnos/nuevo2/', views_alumnos.guardar_alumnos),
-    path('alumnos/delete/', views_alumnos.eliminar_alumno),
-    path('alumnos/editar/', views_alumnos.editar_alumno),
-    path('alumnos/guardar/', views_alumnos.guardar_edit),
-    path('alumnos/curso/', views_alumnos.curso),
+    path('alumnos/delete', views_alumnos.eliminar_alumno),
+    path('alumnos/editar', views_alumnos.editar_alumno),
+    path('alumnos/guardar', views_alumnos.guardar_edit),
+    path('alumnos/curso', views_alumnos.curso),
     path('profesores', views_profesores.index),
     path('profesores/nuevo2/', views_profesores.guardar_profesores),
     path('profesores/delete/', views_profesores.eliminar_profesores),
@@ -53,7 +53,9 @@ urlpatterns = [
     path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
     path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
     path('alumnos/planilla/', views.planilla_alumnos, name='planilla_alumnos'),
+
     path('alumnos/filtro_alumnos/', views_alumnos.filtro_alumnos, name='filtro_alumnos'),
+    path('alumnos/filtro_profesores/', views_profesores.filtro_profesores, name='filtro_profesores'),
     
     path('profesores/exportar/', views_profesores.exportar_profesores, name='exportar_profesores'),
 

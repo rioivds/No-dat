@@ -83,18 +83,20 @@
     <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary">Exportar Alumnos</a>
   </div>
 
+  <!-- Botón importar desde Excel -->
+  <div class="col-auto">
+    <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Importar Alumnos</button>
+      </form>
+  </div>
+  
   <!-- Botón bajar planilla vacia para importacion -->
   <div class="col-auto">
     <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary">Descargar Planilla</a>
   </div>
   
-  <!-- Botón importar desde Excel -->
-  <div class="col-auto">
-    <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Importar Alumnos</button>
-  </form>
-  </div>
+  
   
 
   <!-- Formulario buscar alumno por nombre -->
@@ -218,11 +220,13 @@
                     </div>
                   </div>
                 </td>     
-
-                <td>
-                  <a style="margin: 2px;" class="btn btn-danger" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
-                  <a style="margin: 2px;" class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
-                </td> 
+                <form method="POST">
+                  <input type="hidden">
+                  <td>
+                    <a style="margin: 2px;" class="btn btn-danger" href="/proa/alumnos/delete?DNI={{alumno.dni}}" role="button">Eliminar</a>
+                    <a style="margin: 2px;" class="btn btn-primary" href="/proa/alumnos/editar?DNI={{alumno.dni}}" role="button">Editar</a>
+                  </td>
+                </form> 
               {% endif %}
             </tr>
           {% endfor %}
