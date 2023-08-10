@@ -12,9 +12,10 @@ from .importar_alumnos import importar_alumnos  # Importa la función que creamo
 import openpyxl
 from django.http import HttpResponse
 from django.db.models import F
-from .models import Alumno, Curso, Materia, Profesor, Calificaciones
+from .models import Alumno, Curso, Materia, Profesor, Calificaciones, Usuario
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
+
 
 def importar_materias(request):
     mensaje = ''  # Inicializar la variable mensaje
@@ -171,14 +172,19 @@ def importar_calificaciones(request):
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensaje': mensaje})
 
 def index(request):
-    cursos = Curso.objects.all()
-    today = datetime.datetime.now()
     return render(request, 'login/index.html')
 
 def guardar(request):
     return HttpResponse('Hola Sou guardar')
 
 def index_inicio(request):
-    cursos = Curso.objects.all()
-    today = datetime.datetime.now()
     return render(request, 'index.html')
+        
+def index_login(request):
+    email = request.POST["email"]
+    contraseña = request.POST["contraseña"]
+    usuario = Usuario.objects.filter(email = email, contrasenia = contraseña)
+    if usuario:
+        return render(request, 'index.html', {'rol_usuario': usuario})
+    else:
+        return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})

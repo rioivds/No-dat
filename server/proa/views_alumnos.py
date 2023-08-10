@@ -5,10 +5,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 from django.db.models import Q
-from proa.models import Alumno, Curso
+from proa.models import Alumno, Curso, Usuario
 from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+# from verificador import role_required
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
@@ -18,6 +19,8 @@ def email_check(email):
         return False
     else:
         return True
+
+# @role_required(allowed_roles=[1,2,3])
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
@@ -57,14 +60,24 @@ def guardar_alumnos(request):
     email = request.POST["email"]
     if email_check(email):
         return render(request, 'alumnos/index.html', {"mensaje": "Porfavor escriba bien el mail o asegurese que sea intitucional (@escuelasproa.edu.ar)", "alumnos": alumnos})
+    
     fecha_nacimiento_str = request.POST["fecha_nacimiento"]
     fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, "%m/%d/%Y").strftime("%Y-%m-%d")
     repitio = request.POST.get("repitio") == "on"  # Conversión a True si está marcado
     curso = request.POST["curso"]
 
-    if Alumno.objects.filter(dni=DNI).exists():
+    if Alumno.objects.filter(dni=DNI).exists() :
         return render(request, 'alumnos/index.html', {"mensaje": "Ya existe un alumno con ese DNI en los registros", "alumnos": alumnos})
+    elif Usuario.objects.filter(email = email).exists():
+        return render(request, 'alumnos/index.html', {"mensaje": "Ya existe un alumno email", "alumnos": alumnos})
     else:
+
+        insert = Usuario(
+            email = email,
+            contrasenia = DNI,
+            rol = 0
+        )
+        insert.save()
         insert = Alumno(
             nombre=nombre,
             apellido=apellido,
@@ -72,7 +85,8 @@ def guardar_alumnos(request):
             dni=DNI,
             curso=Curso.objects.get(id=curso),
             fecha_nacimiento=fecha_nacimiento,
-            repitio=repitio
+            repitio=repitio,
+            usuario = Usuario.objects.get(email = email, contrasenia = DNI)
         )
         insert.save()
         return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
