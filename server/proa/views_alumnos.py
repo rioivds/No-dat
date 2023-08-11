@@ -9,7 +9,7 @@ from proa.models import Alumno, Curso, Usuario
 from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
-# from verificador import role_required
+from proa.verificador import role_required
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
@@ -20,7 +20,7 @@ def email_check(email):
     else:
         return True
 
-# @role_required(allowed_roles=[1,2,3])
+@role_required(allowed_roles=[0,1,2,3])
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "alumnos": alumnos})

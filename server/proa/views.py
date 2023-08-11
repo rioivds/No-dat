@@ -13,6 +13,7 @@ import openpyxl
 from django.http import HttpResponse
 from django.db.models import F
 from .models import Alumno, Curso, Materia, Profesor, Calificaciones, Usuario
+from proa.verificador import role_required
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
@@ -177,6 +178,7 @@ def index(request):
 def guardar(request):
     return HttpResponse('Hola Sou guardar')
 
+@role_required(allowed_roles=[0,1,2,3])
 def index_inicio(request):
     return render(request, 'index.html')
         
@@ -186,6 +188,11 @@ def index_login(request):
     try:
         usuario = Usuario.objects.get(email = email, contrasenia = contraseña)
         print(usuario.rol)
-        return render(request, 'index.html', {'rol_usuario': usuario})
+        request.session['usuario_rol'] = usuario.rol
+        print(request.session.get('rol_usuario')  )
+        return render(request, 'index.html', {'rol_usuario': usuario.rol})
     except:
-        return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})        
+        return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})   
+
+def no_permisos(request):
+     return render(request, 'error_no_permisos.html')

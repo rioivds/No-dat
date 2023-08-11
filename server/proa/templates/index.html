@@ -4,7 +4,6 @@
 
 
 <div class="container text-center">
-  {%if rol_usuario.rol != 0%}
     <div class="row">
       <!-- SECCION ALUMNOS -->
       <div class="col align-self-center">
@@ -13,7 +12,12 @@
           <div class="card-body">
             <h5 class="card-title">Registro de Alumnos</h5>
             <p class="card-text">En esta sección podrás realizar todas las tareas administrativas relacionadas con los alumnos.</p>
-            <a href="/proa/alumnos" class="btn btn-primary">Ir a la sección</a>
+            <form action="/proa/alumnos" method="POST" >
+              {% csrf_token %} 
+		      		<input type="hidden"  value={{rol_usuario}} name="id">
+              <button class="btn btn-primary">Ir a la sección</button>
+            </form>
+           
           </div>
         </div>
       </div>
@@ -61,6 +65,5 @@
         </div>
       </div>
     </div>
-  {%endif%}
 </div>
   {% endblock %}
