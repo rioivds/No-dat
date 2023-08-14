@@ -187,9 +187,7 @@ def index_login(request):
     contraseña = request.POST["contraseña"]
     try:
         usuario = Usuario.objects.get(email = email, contrasenia = contraseña)
-        print(usuario.rol)
-        request.session['usuario_rol'] = usuario.rol
-        print(request.session.get('rol_usuario')  )
+        request.session['usuario_rol'] = int(usuario.rol)
         return render(request, 'index.html', {'rol_usuario': usuario.rol})
     except:
         return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})   

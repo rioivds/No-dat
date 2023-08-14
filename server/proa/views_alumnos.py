@@ -20,7 +20,7 @@ def email_check(email):
     else:
         return True
 
-@role_required(allowed_roles=[0,1,2,3])
+@role_required(allowed_roles=[1,2,3])
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
