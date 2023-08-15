@@ -8,18 +8,19 @@ from django.db.models import F
 from django.db.models import Q
 from proa.models import Alumno, Curso, Materia, Profesor, Calificaciones
 from django.db import connection
+from proa.verificador import role_required
 
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
-
+@role_required(allowed_roles=[2,3])
 def index(request):
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
     return render(request, 'materias/index.html',{ "materias": materias, "cursos": cursos, "profesores": profesores})
 
-
+@role_required(allowed_roles=[2,3])
 def guardar_materia(request):
     nombre = request.POST["materia"]  
     profesor = request.POST["profesor"]
@@ -44,6 +45,7 @@ def guardar_materia(request):
     cursos = Curso.objects.all()
     return render(request, 'materias/index.html', {"materias": materias, "cursos": cursos, "profesores": profesores})
 
+@role_required(allowed_roles=[2,3])
 def eliminar_materia(request):
     id = request.GET["id"]
     delete = Materia(id = id)
@@ -53,6 +55,7 @@ def eliminar_materia(request):
     cursos = Curso.objects.all()
     return render(request, 'materias/index.html',{ "materias": materias, "cursos": cursos, "profesores": profesores})
 
+@role_required(allowed_roles=[2,3])
 def editar_materia(request):
     id = request.GET["id"]
     profesores = Profesor.objects.all()
@@ -62,7 +65,7 @@ def editar_materia(request):
     print("editar",materias_editar.nombre)
     return render(request, 'materias/index.html', {"mensaje": "", "materias": materias, "materias_edit": materias_editar , "cursos": cursos, "profesores": profesores})
 
-
+@role_required(allowed_roles=[2,3])
 def guardar_edit(request):
     id = request.GET["id"]
     materia = request.POST["nombre"]

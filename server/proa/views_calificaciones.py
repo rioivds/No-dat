@@ -9,11 +9,12 @@ from proa.models import Alumno, Curso, Calificaciones,Profesor,Materia
 from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+from proa.verificador import role_required
 
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
-
+@role_required(allowed_roles=[2,3])
 def index(request):
     calificaciones = Calificaciones.objects.all()
     profesores = Profesor.objects.all()
@@ -21,6 +22,7 @@ def index(request):
     materias=Materia.objects.all()
     alumnos=Alumno.objects.all()
     return render(request, 'calificaciones/index.html',{ "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos":alumnos})
+
 
 def parse_fecha(fecha_str):
     meses = {
@@ -45,6 +47,7 @@ def parse_fecha(fecha_str):
     
     return f"{anio}-{mes}-{dia}"
 
+@role_required(allowed_roles=[2,3])
 def guardar_calificaciones(request):
     alumno=request.POST["alumno"]
     curso = request.POST["curso"]
@@ -72,7 +75,7 @@ def guardar_calificaciones(request):
     alumnos = Alumno.objects.all()
     return render(request, 'calificaciones/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
-
+@role_required(allowed_roles=[2,3])
 def eliminar_calificaciones(request):
     id = request.GET["id"]
     delete = get_object_or_404(Calificaciones, id=id)
@@ -84,6 +87,7 @@ def eliminar_calificaciones(request):
     alumnos = Alumno.objects.all()
     return render(request, 'calificaciones/index.html', {"mensaje": "Se elimino calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
+@role_required(allowed_roles=[2,3])
 def editar_calificaciones(request):
     id = request.GET["id"]
     calificaciones = Calificaciones.objects.all()
@@ -95,6 +99,7 @@ def editar_calificaciones(request):
     alumnos = Alumno.objects.all()
     return render(request, 'calificaciones/index.html', {"mensaje": "","calificaciones_edit":calificaciones_editar, "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
+@role_required(allowed_roles=[2,3])
 def guardar_edit(request):
     id = request.GET["id"]
     alumno=request.POST["alumno"]
@@ -114,5 +119,3 @@ def guardar_edit(request):
     alumnos = Alumno.objects.all()
     Calificaciones.objects.filter(id = id).update(alumno=Alumno.objects.get(dni=alumno), curso=Curso.objects.get(id=curso), materia=Materia.objects.get(id=materia), profesor=Profesor.objects.get(dni=profesor),  fecha=fecha_nota_str, nota=nota, final=final)
     return render(request, 'calificaciones/index.html', {"mensaje": "se editó correctamente", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
-
-

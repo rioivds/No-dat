@@ -3,6 +3,7 @@ from proa.models import Curso, Materia, Calificaciones
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from proa.verificador import role_required
 
 def grafico_torta(request):
     cursos = Curso.objects.all()
