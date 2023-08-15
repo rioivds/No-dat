@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.urls import path, re_path
-from . import views_alumnos,views_profesores,views_materia,views_calificaciones,views_informes,views_graficos_barra,views_graficos_torta
+from . import views_alumnos,views_profesores,views_materia,views_calificaciones,views_informes,views_graficos_barra,views_graficos_torta,views_filtros
 
 urlpatterns = [
     
@@ -55,15 +55,16 @@ urlpatterns = [
     path('alumnos/importar/', views.importar_alumnos_view, name='importar_alumnos'),
     path('alumnos/exportar/', views.exportar_alumnos, name='exportar_alumnos'),
     path('alumnos/planilla/', views.planilla_alumnos, name='planilla_alumnos'),
-
     path('alumnos/filtro_alumnos/', views_alumnos.filtro_alumnos, name='filtro_alumnos'),
-    path('alumnos/filtro_profesores/', views_profesores.filtro_profesores, name='filtro_profesores'),
-    
+
     path('profesores/exportar/', views_profesores.exportar_profesores, name='exportar_profesores'),
+     path('profesores/filtro_profesores/', views_profesores.filtro_profesores, name='filtro_profesores'),
 
     path('materias/importar_materias/', views.importar_materias, name='importar_materias'),
-
+    path('materias/filtro_materias/', views_filtros.filtro_materias, name='filtro_materias'),
+    
     path('calificaciones/importar_calificaciones/', views.importar_calificaciones, name='importar_calificaciones'),
+    path('materias/filtro_calificaciones/', views_filtros.filtro_calificaciones, name='filtro_calificaciones'),
 
     re_path(r'^graficos/materia/(?P<materia_nombre>.+)/$', views_graficos_barra.grafico_materia, name='grafico_materia'),
     path('graficos/materias_por_curso/<int:curso_anio>/', views_graficos_barra.materias_por_curso, name='materias_por_curso'),

@@ -76,12 +76,43 @@
     </div>
   {% endif %}
 
-  <div>
+  <div class="row g-2">
     <!-- Botón añadir calificacion -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
+    <div class="col-auto">
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
+    </div>
       
     <!-- Botón importar calificacion -->
-    <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button">Importar Calificaciones desde Excel</a>
+    <div class="col-auto">
+      <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button">Importar Calificaciones desde Excel</a>
+    </div>
+
+    <!-- Formulario buscar materia -->
+    <form style="margin-top: 10px; margin-bottom: 20px;" class="row g-2" action="{% url 'filtro_calificaciones' %}" method="GET">
+      <div class="col-auto">
+        <select class="form-select form-select-sm" name="campo" id="campo">
+            <option value="nota">Nota</option>
+            <option value="alumno">Alumno</option>
+            <option value="curso">Curso</option>
+            <option value="materia">Materia</option>
+            <option value="profesor">Profesor</option>
+            <option value="fecha">Fecha</option>
+            <option value="id">ID</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <input class="form-control form-control-sm" type="text" name="query" id="query" placeholder="Buscar Calificaciones" value="{{ query }}">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm " type="submit">Buscar</button>
+      </div> 
+    </form>
+    
+
+    <div class="col-auto" style="margin-bottom: 30px; color: gray;">
+      <p>Mostrando {{calificaciones|length}}/627 registros</p>
+    </div>
+
   </div>
   
   <table class="table">

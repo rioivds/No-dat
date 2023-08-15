@@ -71,60 +71,60 @@
   {% endif %}
 
 
-<div class="row g-2">
+  <div class="row g-2">
 
-  <!-- Botón añadir alumno -->
-  <div class="col-auto">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
-  </div>
-  
-  <!-- Botón exportar a Excel -->
-  <div class="col-auto">
-    <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary">Exportar Alumnos</a>
-  </div>
-
-  <!-- Botón importar desde Excel -->
-  <div class="col-auto">
-    <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-primary">Importar Alumnos</button>
-      </form>
-  </div>
-  
-  <!-- Botón bajar planilla vacia para importacion -->
-  <div class="col-auto">
-    <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary">Descargar Planilla</a>
-  </div>
-  
-  
-  
-
-  <!-- Formulario buscar alumno por nombre -->
-  <form style="margin-top: 10px; margin-bottom: 20px;" class="row g-2" action="{% url 'filtro_alumnos' %}" method="GET">
+    <!-- Botón añadir alumno -->
     <div class="col-auto">
-      <select class="form-select form-select-sm" name="campo" id="campo">
-          <option value="nombre">Nombre</option>
-          <option value="apellido">Apellido</option>
-          <option value="email">Email</option>
-          <option value="dni">DNI</option>
-          <option value="curso">Curso</option>
-      </select>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
     </div>
+    
+    <!-- Botón exportar a Excel -->
     <div class="col-auto">
-      <input class="form-control form-control-sm" type="text" name="query" id="query" placeholder="Ingrese " value="{{ query }}">
+      <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary">Exportar Alumnos</a>
     </div>
-    <div class="col-auto">
-      <button class="btn btn-secondary btn-sm " type="submit">Buscar</button>
-    </div>
-  </form>
 
-  <div class="col-auto" style="margin-bottom: 30px; color: gray;">
-    <p>Mostrando {{alumnos|length}}/141 registros</p>
+    <!-- Botón importar desde Excel -->
+    <div class="col-auto">
+      <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Importar Alumnos</button>
+        </form>
+    </div>
+    
+    <!-- Botón bajar planilla vacia para importacion -->
+    <div class="col-auto">
+      <a href="{% url 'planilla_alumnos' %}" class="btn btn-primary">Descargar Planilla</a>
+    </div>
+    
+    
+    
+
+    <!-- Formulario buscar alumno -->
+    <form style="margin-top: 10px; margin-bottom: 20px;" class="row g-2" action="{% url 'filtro_alumnos' %}" method="GET">
+      <div class="col-auto">
+        <select class="form-select form-select-sm" name="campo" id="campo">
+            <option value="nombre">Nombre</option>
+            <option value="apellido">Apellido</option>
+            <option value="email">Email</option>
+            <option value="dni">DNI</option>
+            <option value="curso">Curso</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <input class="form-control form-control-sm" type="text" name="query" id="query" placeholder="Buscar Alumno " value="{{ query }}">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm " type="submit">Buscar</button>
+      </div>
+    </form>
+
+    <div class="col-auto" style="margin-bottom: 30px; color: gray;">
+      <p>Mostrando {{alumnos|length}}/141 registros</p>
+    </div>
+    
+    
+
   </div>
-  
-  
-
-</div>
 
   <table class="table">
       <thead>

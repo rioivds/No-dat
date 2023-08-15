@@ -128,5 +128,5 @@ def filtro_profesores(request):
     elif campo_busqueda == 'telefono':
         profesores = Profesor.objects.filter(telefono=query)
     
-    return render(request, 'alumnos/index.html', {'profesores': profesores, 'campo_busqueda': campo_busqueda, 'query': query})
+    return render(request, 'profesores/index.html', {'profesores': profesores, 'campo_busqueda': campo_busqueda, 'query': query})
    

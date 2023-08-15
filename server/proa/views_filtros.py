@@ -22,29 +22,27 @@ def filtro_materias(request):
     elif campo_busqueda == 'curso':
         materia = Materia.objects.filter(curso=query)
     elif campo_busqueda == 'profesor':
-        materia = Materia.objects.filter(profesor__icontains=query)
-    elif campo_busqueda == 'año':
-        materia = Materia.objects.filter(curso__icontains=query)
+        materia = Materia.objects.filter(profesor__nombre__icontains=query)
     elif campo_busqueda == 'horas_catedra':
-        materia = Materia.objects.filter(horas_catedras=query)
+        materia = Materia.objects.filter(horas_catedra=query)
     
     return render(request, 'materias/index.html', {'materias': materia, 'campo_busqueda': campo_busqueda, 'query': query})
 
 
 def filtro_calificaciones(request):
     query = request.GET.get('query', '')
-    campo_busqueda = request.GET.get('campo', 'nota')  # Por defecto, buscar por nota
+    campo_busqueda = request.GET.get('campo', 'alumno')  # Por defecto, buscar por nota
 
     if campo_busqueda == 'id':
         calificacion = Calificaciones.objects.filter(id__icontains=query)
     elif campo_busqueda == 'alumno':
-        calificacion = Calificaciones.objects.filter(alumno__icontains=query)
+        calificacion = Calificaciones.objects.filter(alumno__nombre__icontains=query)
     elif campo_busqueda == 'curso':
         calificacion = Calificaciones.objects.filter(curso=query)
     elif campo_busqueda == 'materia':
-        calificacion = Calificaciones.objects.filter(materia__icontains=query)
+        calificacion = Calificaciones.objects.filter(materia__nombre__icontains=query)
     elif campo_busqueda == 'profesor':
-        calificacion = Calificaciones.objects.filter(profesor_icontains=query)
+        calificacion = Calificaciones.objects.filter(profesor__nombre__icontains=query)
     elif campo_busqueda == 'fecha':
         calificacion = Calificaciones.objects.filter(fecha=query)    
     elif campo_busqueda == 'nota':

@@ -172,7 +172,6 @@ def importar_calificaciones(request):
 
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensaje': mensaje})
 
-@role_required(allowed_roles=[0,1,2,3])
 def index(request):
     return render(request, 'login/index.html')
 
