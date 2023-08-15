@@ -13,6 +13,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Case, When, FloatField
 from django.http import JsonResponse
 from django.db.models import IntegerField, Q
+from proa.verificador import role_required
+from proa.verificador import role_required
 
 def index(request):
     cursos = Curso.objects.all()

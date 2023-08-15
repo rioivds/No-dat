@@ -20,7 +20,7 @@ def email_check(email):
     else:
         return True
 
-@role_required(allowed_roles=[1,2,3])
+@role_required(allowed_roles=[2,3])
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
@@ -48,6 +48,7 @@ def parse_fecha(fecha_str):
     
     return f"{anio}-{mes}-{dia}"
 
+@role_required(allowed_roles=[2,3])
 def guardar_alumnos(request):
     alumnos = Alumno.objects.all()
     DNI = request.POST["DNI"]  
@@ -91,7 +92,7 @@ def guardar_alumnos(request):
         insert.save()
         return render(request, 'alumnos/index.html', {"mensaje": "Se insertó con éxito", "alumnos": alumnos})
 
-
+@role_required(allowed_roles=[2,3])
 def eliminar_alumno(request):
     DNI = request.GET["DNI"]
     delete = get_object_or_404(Alumno, dni=DNI)
@@ -99,6 +100,7 @@ def eliminar_alumno(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ "mensaje": "Se elimino el alumno con exito", "alumnos": alumnos})
 
+@role_required(allowed_roles=[2,3])
 def editar_alumno(request):
     DNI = request.GET["DNI"]
     alumnos = Alumno.objects.all()
@@ -106,6 +108,7 @@ def editar_alumno(request):
     print("editar",alumnos_editar.nombre)
     return render(request, 'alumnos/index.html', {"mensaje": "", "alumnos": alumnos, "alumnos_edit": alumnos_editar})
 
+@role_required(allowed_roles=[2,3])
 def guardar_edit(request):
     
     DNI = request.POST["DNI"]
@@ -147,7 +150,8 @@ def curso(request):
         alumnos = Alumno.objects.all()
         return render(request, 'alumnos/index.html',{ "alumnos": alumnos})
     
-    
+
+@role_required(allowed_roles=[2,3])
 def filtro_alumnos(request):
     query = request.GET.get('query', '')
     campo_busqueda = request.GET.get('campo', 'nombre')  # Por defecto, buscar por nombre

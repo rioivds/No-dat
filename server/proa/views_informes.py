@@ -10,12 +10,14 @@ from django.db import connection
 from django.shortcuts import get_object_or_404
 from datetime import datetime
 from django.db.models import Case, When, Count, IntegerField, Q
+from proa.verificador import role_required
 
-
+@role_required(allowed_roles=[2,3])
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'informes/index.html',{ "alumnos": alumnos})
 
+@role_required(allowed_roles=[2,3])
 def generar_informe(request):
     lista_notas = []
     notass = []

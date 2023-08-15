@@ -9,14 +9,16 @@ from proa.models import Profesor, Usuario
 from django.db import connection
 from django.shortcuts import get_object_or_404
 import openpyxl
+from proa.verificador import role_required
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
-
+@role_required(allowed_roles=[2,3])
 def index(request):
     profesores = Profesor.objects.all()
     return render(request, 'profesores/index.html',{ "profesores": profesores})
 
+@role_required(allowed_roles=[2,3])
 def guardar_profesores(request):
     DNI = request.POST ["DNI"]
     nombre = request.POST ["nombre"]
@@ -48,6 +50,7 @@ def guardar_profesores(request):
         profesores = Profesor.objects.all()
         return render(request, 'profesores/index.html',{ "mensaje": "Se inserto con exito", "profesores": profesores})
 
+@role_required(allowed_roles=[2,3])
 def eliminar_profesores(request):
     DNI = request.GET["DNI"]
     profesor = get_object_or_404(Profesor, dni=DNI)
@@ -55,6 +58,7 @@ def eliminar_profesores(request):
     profesores = Profesor.objects.all()
     return render(request, 'profesores/index.html', {"mensaje": "Se eliminó el Profesor con éxito", "profesores": profesores})
 
+@role_required(allowed_roles=[2,3])
 def editar_profesores(request):
     DNI = request.GET["DNI"]
     profesores = Profesor.objects.all()
@@ -62,6 +66,7 @@ def editar_profesores(request):
     print("editar",profesores_editar.nombre)
     return render(request, 'profesores/index.html',{ "mensaje": "", "profesores": profesores, "profesores_edit": profesores_editar})
 
+@role_required(allowed_roles=[2,3])
 def guardar_edit(request):
     id = request.GET["id"]
     DNI = request.POST ["DNI"]
@@ -74,7 +79,7 @@ def guardar_edit(request):
     Profesor.objects.filter(dni = DNI).update(dni = DNI, nombre = nombre, apellido = apellido, email = email, telefono=telefono)
     return render(request, 'profesores/index.html',{ "mensaje": "se edito correctamente", "profesores": profesores})
 
-
+@role_required(allowed_roles=[2,3])
 def exportar_profesores(request):
     profesores = Profesor.objects.all()
     workbook = openpyxl.Workbook()
@@ -107,6 +112,7 @@ def exportar_profesores(request):
     workbook.save(response)
     return response
 
+@role_required(allowed_roles=[2,3])
 def filtro_profesores(request):
     query = request.GET.get('query', '')
     campo_busqueda = request.GET.get('campo', 'nombre')  # Por defecto, buscar por nombre

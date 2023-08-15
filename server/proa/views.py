@@ -172,11 +172,9 @@ def importar_calificaciones(request):
 
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensaje': mensaje})
 
+@role_required(allowed_roles=[0,1,2,3])
 def index(request):
     return render(request, 'login/index.html')
-
-def guardar(request):
-    return HttpResponse('Hola Sou guardar')
 
 @role_required(allowed_roles=[0,1,2,3])
 def index_inicio(request):
@@ -188,6 +186,7 @@ def index_login(request):
     try:
         usuario = Usuario.objects.get(email = email, contrasenia = contraseña)
         request.session['usuario_rol'] = int(usuario.rol)
+        print("el rol es: ",int(usuario.rol))
         return render(request, 'index.html', {'rol_usuario': usuario.rol})
     except:
         return render(request, 'login/index.html', {'mensaje': "Este usuario no existe"})   
