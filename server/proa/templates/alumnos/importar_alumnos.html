@@ -1,12 +1,15 @@
 {% extends "base_template.html" %}
+{% load static %}
+
 {% block title %}Proa - Importar Alumnos{% endblock %}
+
 {% block content %}
-<div class="container">
-  <h1 class="mb-4">Importar Alumnos desde Excel</h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary mt-3">Importar Alumnos desde Excel</button>
-  </form>
-</div>
+  <div class="container">
+    <h1 class="mb-4">Importar Alumnos desde Excel</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-primary mt-3">Importar Alumnos</button>
+    </form>
+  </div>
 {% endblock %}

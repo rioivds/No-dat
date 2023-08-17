@@ -47,13 +47,20 @@
     </div>
   {% endif %}
 
+  
   <div class="row g-2">
       
+    <!-- Boton añadir profesor -->
     <div class="col-auto">
       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add__form">Añadir profesor</button>
+    </div>
+
+    <!-- boton exportar a Excel -->
+    <div class="col-auto">
       <a href="{% url 'exportar_profesores' %}" class="btn btn-primary" >Exportar Profesores</a>
     </div>
 
+    <!-- formulario buscar profesor -->
     <form style="margin-top: 10px; margin-bottom: 20px;" class="row g-2" action="{% url 'filtro_profesores' %}" method="GET">
       <div class="col-auto">
         <select class="form-select form-select-sm" name="campo" id="campo">
@@ -72,6 +79,7 @@
       </div>
     </form>
 
+    <!-- n° de registros mostrados -->
     <div class="col-auto" style="margin-bottom: 30px; color: gray;">
       <p>Mostrando {{profesores|length}}/31 registros</p>
     </div>
