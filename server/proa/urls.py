@@ -21,7 +21,7 @@ from django.urls import path, re_path
 from . import views_alumnos,views_profesores,views_materia,views_calificaciones,views_informes,views_graficos_barra,views_graficos_torta,views_filtros
 
 urlpatterns = [
-    
+    path('cerrar_sesion/', views.cerrar_sesion),
     path('error_no_permisos/', views.no_permisos),
     path('admin/', admin.site.urls),
     path('', views.index),

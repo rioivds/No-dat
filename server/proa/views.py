@@ -17,6 +17,10 @@ from proa.verificador import role_required
 
 TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
 
+def cerrar_sesion(request):
+    request.session['usuario_rol'] = None
+    return render(request, 'login/index.html')
+
 
 def importar_materias(request):
     mensaje = ''  # Inicializar la variable mensaje
