@@ -1,93 +1,133 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'proa/css/bootstrap.css' %}" />
-<script src="{% static 'proa/js/bootstrap.js' %}"></script>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <html>
-<head>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <title>{% block title %}ProA - Inicio{% endblock %}</title>
-    <link rel="icon" href="/server/proa/static/proa/img/logoproa.png" type="image/png">
-</head>
-<body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $(".datepicker").datepicker({
-          dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS VANILLA -->
+        <link rel="stylesheet" href="{% static 'styles/css/nav.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
+
+        <!-- BOOTSTRAPS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- JQUERY -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+        <title>{% block title %}ProA - Inicio{% endblock %}</title>
+        <link rel="shortcut icon" href="{% static 'img/ico.ico' %}">
+    </head>
+
+    <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        
+        <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker({
+            dateFormat: "yyyy-mm-dd"  // Establece el formato de fecha deseado
+            });
+
+            $('.datepicker').click(function() {
+            // Se centra la tabla de fechas.
+                var date = $('.datepicker')[1];
+                date.style.display = 'flex';
+                date.style.justifyContent = 'center';
+            });
         });
-
-        $('.datepicker').click(function() {
-          // Se centra la tabla de fechas.
-          var date = $('.datepicker')[1];
-          date.style.display = 'flex';
-          date.style.justifyContent = 'center';
-        });
-      });
-    </script>
-    <nav class="navbar navbar-expand-lg bg-primary rounded">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="/proa">
-                <img class="img-thumbnail" src="{% static 'proa/img/logoproa.png' %}" alt="Bootstrap" width="72" height="32">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white fs-5" aria-current="page" href="/proa">Inicio</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registros</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/proa/alumnos">Alumnos</a></li>
-                            <li><a class="dropdown-item" href="/proa/profesores">Profesores</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/proa/materias">Materias</a></li>
-                            <li><a class="dropdown-item" href="/proa/calificaciones">Calificaciones</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <a href="/proa/informes" class="btn btn-dark" style="margin-left: 10px;">Informes</a>
-                <a href="/proa/graficos" class="btn btn-dark" style="margin-left: 10px;">Gráficos por Materia</a>
-                <a href="/proa/graficos/grafico_torta/" class="btn btn-dark" style="margin-left: 10px;">Gráfico por Año y Materia</a>
-            </div>
-        </div>
-    </nav>
-    <hr />
-
-    {% block content %}{% endblock %}
-
-    <footer class="text-center text-lg-start bg-primary text-light mt-auto rounded">
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 pb-3">
-                        <h6 class="text-uppercase fw-bold mb-4">Proyecto Integrador</h6>
-<<<<<<< Updated upstream
-                        <p>Proyecto integrador de sexto año. Realizado en el marco de "Feria de Ciencias 2023" de Córdoba.</p>
-=======
-                        <p>Proyecto integrador sexto año. Realizado en marco de la Feria de Ciencias 2023.</p>
->>>>>>> Stashed changes
-                    </div>
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 pb-3">
-                        <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
-                        <p>Calle Arroyo Piedras Blancas, Río Cuarto, Córdoba</p>
-                        <p>riocuarto.ds@escuelasproa.edu.ar</p>
-                        <a class="link-light" href="https://wa.link/uhcs7b" target="_blank">Whatsapp</a><br />
-                        <a class="link-light" href="https://instagram.com/proa_ds_rioiv" target="_blank">Instagram</a>
+        </script>
+        
+        <header class="header">
+            <div class="menu__wrapper">
+                <div class="menu__bar">
+                    <a href="#" title="Inicio" aria-label="home" class="logo">
+                        <img src="{% static 'img/ico.ico' %}" alt="logo" class="logo">  
+                    </a> 
+                    <div class="menu__wrapper">
+                        <div class="logoNav">
+                            <img src="./assets/LOGO-2.png" alt="Logo">
+                        </div>
+                        <button class="burger-menu" aria-label="Toggle navigation">
+                            <svg viewBox="0 0 100 80" width="40" height="40">
+                                <rect width="100" height="20"></rect>
+                                <rect y="30" width="100" height="20"></rect>
+                                <rect y="60" width="100" height="20"></rect>
+                            </svg>
+                        </button>
+                        <nav>
+                            <ul class="navigation hide">
+                                <li class="page-item">
+                                    <button type="button"> Registros </button>
+                                    <div class="dropdown__wrapper">
+                                        <div class="dropdown">
+                                            <ul class="list-items-with-description">
+                                                <li>
+                                                    <div class="item-title">
+                                                        <h1> Alumnos </h1>
+                                                        <p> Sección de Alumnos! </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="item-title">
+                                                        <h1> Profesores </h1>
+                                                        <p> Sección de Profesores! </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="item-title">
+                                                        <h1> Materias </h1>
+                                                        <p> Sección de Materias! </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="item-title">
+                                                        <h1> Calificaciones </h1>
+                                                        <p> Sección de Calificaciones! </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" title="Armin" class="btn btn-dark"> Administrar </a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" title="Informes" class="btn btn-dark"> Informes </a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" title="Graficos" class="btn btn-dark"> Graficos por materia </a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" title="Graficos" class="btn btn-dark"> Graficos por año y materia </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </section>
-    </footer>
-</body>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+            <div class="footer-div col-sm-3">
+                <h6> Calle Arroyo Piedras Blancas, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h6>
+                <a href="https://api.whatsapp.com/send?phone=5493584908299" target="_blank">
+                    <img src="{% static 'img/wspLOGO.png' %}" class="footer-img" alt="Instagram">
+                </a>
+
+                <a href="https://www.instagram.com/roman.mddo/" target="_blank">
+                    <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
+                </a>
+            </div>
+        </footer>
+    </body>
 </html>
