@@ -20,7 +20,7 @@ def index(request):
     cursos = Curso.objects.all()
     materias=Materia.objects.all()
     alumnos=Alumno.objects.all()
-    return render(request, 'calificaciones/index.html',{ "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos":alumnos})
+    return render(request, 'calificaciones/sexto.html',{ "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos":alumnos})
 
 def parse_fecha(fecha_str):
     meses = {
@@ -70,7 +70,7 @@ def guardar_calificaciones(request):
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
     alumnos = Alumno.objects.all()
-    return render(request, 'calificaciones/index.html', {"mensaje": "Se insertó calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
+    return render(request, 'calificaciones/sexto.html', {"mensaje": "Se insertó calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 
 def eliminar_calificaciones(request):
@@ -82,7 +82,7 @@ def eliminar_calificaciones(request):
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
     alumnos = Alumno.objects.all()
-    return render(request, 'calificaciones/index.html', {"mensaje": "Se elimino calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
+    return render(request, 'calificaciones/sexto.html', {"mensaje": "Se elimino calificación con éxito", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 def editar_calificaciones(request):
     id = request.GET["id"]
@@ -93,7 +93,7 @@ def editar_calificaciones(request):
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
     alumnos = Alumno.objects.all()
-    return render(request, 'calificaciones/index.html', {"mensaje": "","calificaciones_edit":calificaciones_editar, "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
+    return render(request, 'calificaciones/sexto.html', {"mensaje": "","calificaciones_edit":calificaciones_editar, "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 def guardar_edit(request):
     id = request.GET["id"]
@@ -113,6 +113,6 @@ def guardar_edit(request):
     cursos = Curso.objects.all()
     alumnos = Alumno.objects.all()
     Calificaciones.objects.filter(id = id).update(alumno=Alumno.objects.get(dni=alumno), curso=Curso.objects.get(id=curso), materia=Materia.objects.get(id=materia), profesor=Profesor.objects.get(dni=profesor),  fecha=fecha_nota_str, nota=nota, final=final)
-    return render(request, 'calificaciones/index.html', {"mensaje": "se editó correctamente", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
+    return render(request, 'calificaciones/sexto.html', {"mensaje": "se editó correctamente", "calificaciones": calificaciones,"materias": materias, "cursos": cursos, "profesores": profesores, "alumnos": alumnos})
 
 

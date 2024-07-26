@@ -148,3 +148,27 @@ def index(request):
 
 def guardar(request):
     return HttpResponse('Hola Sou guardar')
+
+# EDITADO POR MDO 
+# Calificaciones de mierda
+
+def calificacionesBase (req): # Ir a calificaciones
+    return render(req, 'calificaciones/index.html')
+
+def caliPrimero (req): # Calificaciones de 1ro
+    return render(req, 'calificaciones/calificaciones-1ro.html')
+
+def caliSegundo (req): # Calificaciones de 2do
+    return render(req, 'calificaciones/calificaciones-2do.html')
+
+def caliTercero (req): # Calificaciones de 3ro
+    return render(req, 'calificaciones/calificaciones-3ro.html')
+
+def caliCuarto (req):  # Calificaciones de 4to
+    return render(req, 'calificaciones/calificaciones-4to.html')
+
+def caliQuinto (req):  # Calificaciones de 5to
+    return render(req, 'calificaciones/calificaciones-5to.html')
+
+def caliSexto (req): # Calificaciones de 6to
+    return render(req, 'calificaciones/calificaciones-sexto.html')

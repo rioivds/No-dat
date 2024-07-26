@@ -1,5 +1,5 @@
 :root {
-  --background: #163250;
+  --background: #9EA9BD;
   --primary-dark: #17223b;
   --primary-dark2: #141a70;
   --text: #ffffff; }
@@ -16,6 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 2%;
+  border: 1px solid black;
   padding: 5%;
   background-color: var(--background); }
 
