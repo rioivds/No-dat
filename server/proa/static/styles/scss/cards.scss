@@ -13,21 +13,13 @@ html {
     box-sizing: border-box;
 }
 
-body {
-    font-size: 16px;
-    font-family: Poppins, sans-serif;
-    height: 100vh;
-    padding: 6rem 2rem;
-    background-color: var(--background2);
-}
-
 .articles {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Para que los artículos se ajusten en varias líneas si es necesario */
+    justify-content: center; /* Centra los artículos */
     margin: 0 auto;
-    justify-content: center;
-    max-width: 100%;
     gap: 1.5rem;
+    max-width: 100%;
 }
 
 .articles article {
@@ -66,7 +58,6 @@ body {
 
 .article-preview {
     padding: 1.5rem;
-    background2: white;
 }
 
 .articles figure {

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --background22: #F8F8FF;
   --text22: #2C2C2C; }
@@ -10,20 +11,15 @@ html {
   padding: 0;
   box-sizing: border-box; }
 
-body {
-  font-size: 16px;
-  font-family: Poppins, sans-serif;
-  height: 100vh;
-  padding: 6rem 2rem;
-  background-color: var(--background2); }
-
 .articles {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  /* Para que los artículos se ajusten en varias líneas si es necesario */
   justify-content: center;
-  max-width: 100%;
-  gap: 1.5rem; }
+  /* Centra los artículos */
+  margin: 0 auto;
+  gap: 1.5rem;
+  max-width: 100%; }
 
 .articles article {
   max-width: 20rem;
@@ -55,8 +51,7 @@ body {
   transform: scale(1.5); }
 
 .article-preview {
-  padding: 1.5rem;
-  background2: white; }
+  padding: 1.5rem; }
 
 .articles figure {
   width: 100%;
