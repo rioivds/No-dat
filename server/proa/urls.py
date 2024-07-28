@@ -80,4 +80,6 @@ urlpatterns = [
     path('caliquinto/', views.caliQuinto, name='calificaciones-quinto'),
     path('calisexto/', views.caliSexto, name='calisexto'),
 
+    # Login:
+    path('login/', views.login, name="login"),
 ]

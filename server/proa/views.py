@@ -172,3 +172,7 @@ def caliQuinto (req):  # Calificaciones de 5to
 
 def caliSexto (req): # Calificaciones de 6to
     return render(req, 'calificaciones/calificaciones-sexto.html')
+
+# Login
+def login (req): # Ir a login
+    return render(req, 'login.html')
