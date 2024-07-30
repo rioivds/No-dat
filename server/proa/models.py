@@ -1,10 +1,7 @@
 from email.policy import default
-from enum import auto
-from pickle import TRUE
-from tkinter import CASCADE
-from tokenize import blank_re
 from django.db import models
 
+from django.contrib.auth.models import User
 
 class Curso(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Curso')
