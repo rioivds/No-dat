@@ -1,34 +1,25 @@
-import datetime
-from math import prod
-from xml.dom.minidom import Document
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.db.models import F
-from django.db.models import Q
-from proa.models import Alumno, Curso, Materia, Profesor, Calificaciones
-from django.db import connection
-
-
-TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
-
+from proa.models import Curso, Materia, Profesor
+import openpyxl
 
 def index(request):
     materias = Materia.objects.all()
+    for materia in materias:
+        print(materia.profesor)
+
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-    return render(request, 'materias/index.html',{ "materias": materias, "cursos": cursos, "profesores": profesores})
 
+    return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
 
 def guardar_materia(request):
-    nombre = request.POST["materia"]  
-    profesor = request.POST["profesor"]
-    curso = request.POST["curso"]
-    horas_catedra = request.POST["horas_catedra"]
-    horario = request.POST["horario"]
+    nombre = request.POST['materia']  
+    profesor = request.POST['profesor']
+    curso = request.POST['curso']
+    horas_catedra = request.POST['horas_catedra']
+    horario = request.POST['horario']
 
-    existe_materia = Materia.objects.filter(curso_id=curso, profesor_id=profesor, nombre=nombre).exists()  
-
+    existe_materia = Materia.objects.filter(curso_id=curso, profesor_id=profesor, nombre=nombre).exists()
     if not existe_materia:
         insert = Materia(
             profesor=Profesor.objects.get(dni=profesor),
@@ -42,35 +33,74 @@ def guardar_materia(request):
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-    return render(request, 'materias/index.html', {"materias": materias, "cursos": cursos, "profesores": profesores})
+
+    return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
 
 def eliminar_materia(request):
-    id = request.GET["id"]
-    delete = Materia(id = id)
-    delete.delete()
+    id = request.GET['id']
+    materia = Materia(id=id)
+    materia.delete()
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-    return render(request, 'materias/index.html',{ "materias": materias, "cursos": cursos, "profesores": profesores})
+
+    return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
 
 def editar_materia(request):
-    id = request.GET["id"]
+    id = request.GET['id']
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-    materias = Materia.objects.all()  # Agregar esta línea
+    materias = Materia.objects.all()
     materias_editar = Materia.objects.get(id=id)
-    print("editar",materias_editar.nombre)
-    return render(request, 'materias/index.html', {"mensaje": "", "materias": materias, "materias_edit": materias_editar , "cursos": cursos, "profesores": profesores})
 
+    return render(request, 'materias/index.html', {
+        'mensaje': '',
+        'materias': materias,
+        'materias_edit': materias_editar,
+        'cursos': cursos,
+        'profesores': profesores
+    })
 
 def guardar_edit(request):
-    id = request.GET["id"]
-    materia = request.POST["nombre"]
-    profesor = request.POST["profesor"]
-    curso = request.POST["curso"]
+    id = request.GET['id']
+    materia = request.POST['nombre']
+    profesor = request.POST['profesor']
+    curso = request.POST['curso']
     Materia.objects.filter(id=id).update(profesor_id=profesor, nombre=materia, curso_id=curso)
+
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-    return render(request, 'materias/index.html', {"materias": materias, "cursos": cursos, "profesores": profesores})
 
+    return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
+
+def importar_materias(request):
+    mensaje = ''  # Inicializar la variable mensaje
+    if request.method == 'POST' and request.FILES.get('archivo_excel'):
+        archivo_excel = request.FILES['archivo_excel']
+        try:
+            workbook = openpyxl.load_workbook(archivo_excel)
+            sheet = workbook.active
+
+            for row in sheet.iter_rows(min_row=2, values_only=True):
+                nombre = row[0]
+                horas_catedra = row[1]
+                horario = row[2]
+                profesor_nombre = row[3]  # Suponiendo que en la columna 4 del Excel tienes el nombre del profesor
+                curso_anio = row[4]  # Suponiendo que en la columna 5 del Excel tienes el año del curso
+
+                # Obtener o crear el profesor
+                profesor, _ = Profesor.objects.get_or_create(nombre=profesor_nombre)
+
+                # Obtener el curso
+                curso, _ = Curso.objects.get_or_create(anio=curso_anio)
+
+                # Crear la materia
+                materia = Materia(nombre=nombre, horas_catedra=horas_catedra, horario=horario, profesor=profesor, curso=curso)
+                materia.save()
+
+            mensaje = 'Materias importadas correctamente.'
+        except Exception as e:
+            mensaje = f'Error al importar las materias: {e}'
+
+    return render(request, 'materias/importar_materias.html', {'mensaje': mensaje})

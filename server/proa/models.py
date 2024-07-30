@@ -1,10 +1,4 @@
-from email.policy import default
-from enum import auto
-from pickle import TRUE
-from tkinter import CASCADE
-from tokenize import blank_re
 from django.db import models
-
 
 class Curso(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Curso')
@@ -18,7 +12,6 @@ class Profesor(models.Model):
     email = models.EmailField(verbose_name='Email')
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
     password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
-    role = models.CharField(max_length=30, verbose_name='Role', default = 'profesor')
 
 class Materia(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
@@ -37,7 +30,6 @@ class Alumno(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
     password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
-    role = models.CharField(max_length=30, verbose_name='Role', default = 'profesor')
 
 class Calificaciones(models.Model):
     id = models.BigAutoField(primary_key=True)
