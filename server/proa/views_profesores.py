@@ -2,8 +2,6 @@ from django.shortcuts import render
 from proa.models import Profesor
 from django.shortcuts import get_object_or_404
 
-# TEMPLATE_DIR = ('os.path.join(BASE_DIR,"templates")')
-
 def index(request):
     profesores = Profesor.objects.all()
     return render(request, 'profesores/index.html', {'profesores': profesores})
