@@ -1,0 +1,31 @@
+.footer {
+  max-width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5.75rem;
+  background: linear-gradient(to right, var(--ciant), var(--primary-dark));
+  margin-top: 3%;
+  max-width: 100%;
+  padding: 5%;
+  border: #2E2E2E 1px solid; }
+
+.footer .footer-div h6 {
+  color: white;
+  opacity: 60%; }
+
+.footer .footer-img {
+  display: inline-flex;
+  max-width: 10%;
+  margin-top: 4%;
+  margin-left: 4%;
+  opacity: 40%;
+  filter: invert(50%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(120%) contrast(100%);
+  transition: all 0.3s ease; }
+
+.footer .footer-img:hover {
+  transform: scale(1.2); }
+
+/*# sourceMappingURL=footer.css.map */

@@ -1,7 +1,6 @@
-# Agrega esto al inicio de tu views.py
 import openpyxl
 from django.http import HttpResponse
-from django.db.models import F
+from .models import Alumno
 
 # Agrega esta nueva vista después de las demás vistas existentes
 def exportar_alumnos(request):
@@ -38,4 +37,5 @@ def exportar_alumnos(request):
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=alumnos.xlsx'
     workbook.save(response)
+
     return response

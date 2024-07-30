@@ -1,13 +1,14 @@
-cursos=(
+cursos = (
     ('1', '1er año'),
     ('2', '2do año'),
     ('3', '3er año'),
     ('4', '4to año'),
     ('5', '5to año'),
-    ('6', '6to año')
+    ('6', '6to año'),
+    ('7', '7to año')
 )
 
-nota_numerica=(
+nota_numerica = (
     ('1'),
     ('2'),
     ('3'),

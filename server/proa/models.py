@@ -1,6 +1,4 @@
-from email.policy import default
 from django.db import models
-
 from django.contrib.auth.models import User
 
 class Curso(models.Model):
@@ -15,7 +13,6 @@ class Profesor(models.Model):
     email = models.EmailField(verbose_name='Email')
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
     password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
-    role = models.CharField(max_length=30, verbose_name='Role', default = 'profesor')
 
 class Materia(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
@@ -34,7 +31,6 @@ class Alumno(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
     password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
-    role = models.CharField(max_length=30, verbose_name='Role', default = 'profesor')
 
 class Calificaciones(models.Model):
     id = models.BigAutoField(primary_key=True)
