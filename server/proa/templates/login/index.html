@@ -1,30 +1,30 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Iniciar Sesión</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'styles/css/style-login.css' %}">
-        <link rel="shortcut icon" href="{% static 'img/ico.ico' %}">
-        <title> ProA - Login </title>
     </head>
 
     <body>
-        <form class="my-form">
+        <form class="my-form" method="post" action="">
+            {% csrf_token %}
             <div class="login-welcome-row">
                 <a href="#" title="Logo">
                     <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">
                 </a>
                 <h1>Bienvenido &#x1F44F;</h1>
-                <p>Porfavor ingresa tus datos!</p>
+                <p>Por favor, ingresá tus datos</p>
             </div>
             <div class="input__wrapper">
-                <input type="email" id="email" name="email" class="input__field" placeholder="Your Email" required>
-                <label for="email" class="input__label">Email:</label>
+                <input type="text" id="dni" name="dni" class="input__field" placeholder="DNI" required>
+                <label for="dni" class="input__label">DNI:</label>
                 <svg class="input__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -33,9 +33,7 @@
                 </svg>
             </div>
             <div class="input__wrapper">
-                <input id="password" type="password" class="input__field" placeholder="Your Password"
-                    title="Minimum 6 characters at least 1 Alphabet and 1 Number"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
+                <input id="password" name="password" type="password" class="input__field" placeholder="Contraseña" required>
                 <label for="password" class="input__label">
                     Contraseña
                 </label>
@@ -47,23 +45,9 @@
                     <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
                 </svg>
             </div>
-            <button type="submit" class="my-form__button" href="index.html">
-                Iniciar Sesion
+            <button type="submit" class="my-form__button">
+                Iniciar Sesión
             </button>
-            <div class="socials-row">
-                <a href="#" title="Use Google"> 
-                    Iniciar sesion con Google
-                </a>
-            </div>
-            <div class="my-form__actions">
-                <div class="my-form__row">
-                    <span>No tienes Cuenta?</span>
-                    <a href="#" title="Create Account">
-                        Crea una
-                    </a>
-                </div>
-            </div>
         </form>
-        <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

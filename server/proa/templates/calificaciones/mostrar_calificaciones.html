@@ -11,8 +11,8 @@
         </div>
         <div class="modal-body">
           <form action="/calificaciones/nuevo2/" method="POST">
-            {% csrf_token %} 
-              <ul class="list-group"> 
+            {% csrf_token %}
+              <ul class="list-group">
                 <div class="list-group-item">
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
                     {% for i in alumnos %}
@@ -37,13 +37,13 @@
                     {% endfor %}
                   </select> 
                 </div>
-                <div class="list-group-item">
+                <!-- <div class="list-group-item">
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                     {% for i in profesores %}
                       <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
                     {% endfor %}
                   </select> 
-                </div>
+                </div> -->
                 <div class="list-group-item">
                   <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha" id="fecha" required="required">
                 </div>
@@ -105,7 +105,7 @@
                       </select> 
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         {% for i in cursos %}
@@ -113,7 +113,7 @@
                         {% endfor %}
                       </select> 
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materia">
@@ -123,7 +123,7 @@
                       </select> 
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="list-group-item">
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
@@ -131,7 +131,7 @@
                         {% endfor %}
                       </select> 
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="col">
                       <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificacion(AAAA-MM-DD)" name="fecha" id="fecha" required="required" value="{{calificacion.fecha}}">
@@ -165,7 +165,7 @@
                 <td>{{calificacion.profesor.nombre}} {{calificacion.profesor.apellido}}</td>
                 <td>{{calificacion.fecha}}</td>
                 <td>{{calificacion.nota}}</td>
-                <td>                  
+                <td>
                   <div class="col">
                     <div class="form-check">
                       <input type="checkbox" class="custom-control-input" name="final" {% if calificacion.final %}checked disabled{% else %}disabled{% endif %} value="True">

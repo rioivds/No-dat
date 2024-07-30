@@ -27,6 +27,12 @@
     </head>
 
     <body class="p-3 m-0 border-0 bd-example d-flex flex-column min-vh-100">
+        {% if not request.user.is_authenticated %}
+        <div>
+            <h1>¡Tenés que ingresar con tu cuenta!</h1>
+            <a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
+        </div>
+        {% else %}
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         
@@ -72,25 +78,25 @@
                                                 <li>
                                                     <div class="item-title">
                                                         <h1> Alumnos </h1>
-                                                        <a href="/proa/alumnos"> Sección de Alumnos! </a>
+                                                        <p> Sección de Alumnos! </p>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
                                                         <h1> Profesores </h1>
-                                                        <a href="/proa/profesores"> Sección de Profesores! </a>
+                                                        <p> Sección de Profesores! </p>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
                                                         <h1> Materias </h1>
-                                                        <a href="/proa/materias"> Sección de Materias! </a>
+                                                        <p> Sección de Materias! </p>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
                                                         <h1> Calificaciones </h1>
-                                                        <a href="/calificacioness/"> Sección de Calificaciones! </a>
+                                                        <p> Sección de Calificaciones! </p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -101,13 +107,13 @@
                                     <a href="#" title="Armin" class="btn btn-dark"> Administrar </a>
                                 </li>
                                 <li class="page-item">
-                                    <a href="/proa/informes" title="Informes" class="btn btn-dark"> Informes </a>
+                                    <a href="#" title="Informes" class="btn btn-dark"> Informes </a>
                                 </li>
                                 <li class="page-item">
-                                    <a href="/proa/graficos/" title="Graficos" class="btn btn-dark"> Graficos por materia </a>
+                                    <a href="#" title="Graficos" class="btn btn-dark"> Graficos por materia </a>
                                 </li>
                                 <li class="page-item">
-                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="btn btn-dark"> Graficos por año y materia </a>
+                                    <a href="#" title="Graficos" class="btn btn-dark"> Graficos por año y materia </a>
                                 </li>
                             </ul>
                         </nav>
@@ -130,5 +136,6 @@
                 </a>
             </div>
         </footer>
+        {% endif %}
     </body>
 </html>

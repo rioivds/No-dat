@@ -1,24 +1,22 @@
 from django.shortcuts import render
 from proa.models import Curso, Materia, Calificaciones
 from django.shortcuts import render
-from django.shortcuts import redirect
 from django.http import JsonResponse
 
 def grafico_torta(request):
-    cursos = Curso.objects.all()
-    selected_curso = request.GET.get('curso', None)
     materias = []
-    if selected_curso:
-        materias = Materia.objects.filter(curso_id=selected_curso)
-    return render(request, 'graficos/grafico_torta.html', {'cursos': cursos, 'materias': materias})
 
+    selected_curso = request.GET.get('curso', None)
+    if selected_curso is not None:
+        materias = Materia.objects.filter(curso_id=selected_curso)
+
+    cursos = Curso.objects.all()
+    return render(request, 'graficos/grafico_torta.html', {'cursos': cursos, 'materias': materias})
 
 def grafico_torta_materia(request, materia_id):
     calificaciones = Calificaciones.objects.filter(materia_id=materia_id)
     total_calificaciones = calificaciones.count()
-    print("calificaciones",calificaciones)
-    print("materia",materia_id)
-    print("conteo",total_calificaciones)
+
     porcentajes = {'1_3': 0, '4_6': 0, '7_8': 0, '9_10': 0,}
     if total_calificaciones > 0:
         porcentajes['1_3'] = calificaciones.filter(nota__range=(1, 3)).count()
@@ -34,5 +32,4 @@ def grafico_torta_materia(request, materia_id):
         '9_10': porcentajes['9_10'],
         'total_calificaciones': total_calificaciones,
     }
-    print (porcentajes_dict)
     return JsonResponse(porcentajes_dict, safe=False)
