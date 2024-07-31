@@ -13,8 +13,16 @@ body {
     overflow-x: hidden; 
 }
 
+.nav-a{
+    color: white;
+    text-decoration: none;
+    font-size: .7vmax;
+}
+
 .header {
     max-width: 100%;
+    min-height: 10%;
+
     border-bottom: 1px solid var(--gray-border);
     height: var(--navbar-height);
     display: flex;
@@ -25,13 +33,13 @@ body {
     border: 1px solid black;
     //border-radius: 100px;
     
-    padding: 5%;
+    padding: 3%;
     background: linear-gradient(to right, var(--ciant),
             var(--primary-dark));
 }
 
 .logo{
-    max-width: 50%;
+    max-width: 70%;
 }
 
 .menu__wrapper {
