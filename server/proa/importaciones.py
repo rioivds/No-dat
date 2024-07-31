@@ -76,7 +76,9 @@ def importar_alumnos(archivo):
         dni = int(row['dni'])
         nombre = row['nombre']
         apellido = row['apellido']
-        fecha_nacimiento = row.get('fecha_nacimiento', default=None)
+        fecha_nacimiento = row.get('fecha_nacimiento', default=0)
+        if type(fecha_nacimiento) != str:
+            fecha_nacimiento = None
         email = row['email']
         curso = Curso.objects.get(anio=int(row['curso']))
 
