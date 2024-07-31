@@ -6,7 +6,7 @@ from datetime import datetime
 from .forms import ImportarAlumnosForm
 from django.http import HttpResponse, HttpResponseRedirect
 import openpyxl
-from .importar_alumnos import importar_alumnos
+from .importaciones import importar_alumnos
 
 def email_check(email):
     email = email.split('@')
