@@ -15,11 +15,11 @@
               {% csrf_token %} 
                 <ul class="list-group"> 
                     <div class="list-group-item">
-                      <label for="horario" class="col-form-label"> Materia: </label>
+                      <label for="materia" class="col-form-label"> Materia: </label>
                       <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
                     </div>
                     <div class="list-group-item">
-                      <label for="horario" class="col-form-label"> Profesor/a: </label>
+                      <label for="profesor" class="col-form-label"> Profesor/a: </label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
                         <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -39,8 +39,8 @@
                     </div>
                     
                   <div class="list-group-item">
-                      <label for="horario" class="col-form-label"> Horas catedra: </label>
-                      <input type="text" class="form-control" placeholder="Ingrese la cantidad de horas catedra" name="horario" required="required">
+                      <label for="horas-catedra" class="col-form-label"> Horas catedra: </label>
+                      <input type="text" class="form-control" placeholder="Ingrese la cantidad de horas catedra" name="horas-catedra" required="required">
                   </div>                  
                     <button type="submit" class="btn btn-success mt-3"> Nuevo </button>
                   </ul>
@@ -65,11 +65,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Materia</th>
-                <th scope="col">Profesor</th>
-                <th scope="col">Año</th>
-                <th scope="col">Horario</th>
+                <th scope="col"> #ID </th>
+                <th scope="col"> Materia </th>
+                <th scope="col"> Profesor </th>
+                <th scope="col"> Año </th>
+                <th scope="col"> Horas catedra </th>
             </tr>
         </thead>
         <tbody>

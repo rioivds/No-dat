@@ -14,6 +14,7 @@
             {% csrf_token %} 
               <ul class="list-group"> 
                 <div class="list-group-item">
+                  c
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
                     {% for i in alumnos %}
                     <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -45,7 +46,7 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
-                  <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha" id="fecha" required="required">
+                  <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha" id="fechja" required="required">
                 </div>
                 <div class="list-group-item">
                   <input type="text" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">

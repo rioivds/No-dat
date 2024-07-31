@@ -17,8 +17,7 @@ def guardar_materia(request):
     nombre = request.POST['materia']  
     profesor = request.POST['profesor']
     curso = request.POST['curso']
-
-    horario = request.POST['horario']
+    horas_catedra = request.POST['horas-catedra']
 
     existe_materia = Materia.objects.filter(curso_id=curso, profesor_id=profesor, nombre=nombre).exists()
     if not existe_materia:
@@ -26,8 +25,7 @@ def guardar_materia(request):
             profesor=Profesor.objects.get(dni=profesor),
             nombre=nombre,  
             curso=Curso.objects.get(id=curso),
-            horas_catedra=horas_catedra,
-            horario=horario
+            horas_catedra=horas_catedra
         )
         insert.save()
 
