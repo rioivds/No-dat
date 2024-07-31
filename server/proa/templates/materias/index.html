@@ -8,16 +8,18 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Materia</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel"> Añadir Materia </h1>
           </div>
           <div class="modal-body">
             <form action="/materias/nuevo2/" method="POST">
               {% csrf_token %} 
                 <ul class="list-group"> 
                     <div class="list-group-item">
+                      <label for="horario" class="col-form-label"> Materia: </label>
                       <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
                     </div>
                     <div class="list-group-item">
+                      <label for="horario" class="col-form-label"> Profesor/a: </label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                         {% for i in profesores %}
                         <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -25,7 +27,7 @@
                       </select> 
                     </div>
                     <div class="list-group-item">
-                      <label for="curso">Año:</label>
+                      <label for="curso"> Año: </label>
                       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                         <option value="1">1ro</option>
                         <option value="2">2do</option>
@@ -35,15 +37,12 @@
                         <option value="6">6to</option>
                       </select>
                     </div>
-                    <div class="list-group-item">
-                      <label for="horas_catedra" class="col-form-label">Horas Cátedra:</label>
-                      <input type="number" class="form-control" placeholder="Ingrese las horas cátedra" name="horas_catedra" required="required">
-                  </div>
+                    
                   <div class="list-group-item">
-                      <label for="horario" class="col-form-label">Horario:</label>
-                      <input type="text" class="form-control" placeholder="Ingrese el horario" name="horario" required="required">
+                      <label for="horario" class="col-form-label"> Horas catedra: </label>
+                      <input type="text" class="form-control" placeholder="Ingrese la cantidad de horas catedra" name="horario" required="required">
                   </div>                  
-                    <button type="submit" class="btn btn-success mt-3">Nuevo</button>
+                    <button type="submit" class="btn btn-success mt-3"> Nuevo </button>
                   </ul>
             </form>
           </div>
@@ -70,7 +69,6 @@
                 <th scope="col">Materia</th>
                 <th scope="col">Profesor</th>
                 <th scope="col">Año</th>
-                <th scope="col">Horas Catedras</th>
                 <th scope="col">Horario</th>
             </tr>
         </thead>
@@ -114,11 +112,6 @@
                     </td>
                     <td>
                       <div class="col">
-                        <input type="number" class="form-control" placeholder="Horas catedras" name="horas_catedra" value="{{materia.horas_catedra}}">
-                      </div>
-                    </td>
-                    <td>
-                      <div class="col">
                         <input type="text" class="form-control" placeholder="Horario cuando se dicta" name="horario" value="{{materia.horario}}">
                       </div>
                     </td>
@@ -133,7 +126,6 @@
                   <td>{{ materia.nombre}}</td>
                   <td>{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
                   <td>{{ materia.curso.anio}}</td>
-                  <td>{{ materia.horas_catedra}}</td>
                   <td>{{ materia.horario}}</td>
                   <td>
                     <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/materias/delete?id={{materia.id}}" role="button">Eliminar</a>
