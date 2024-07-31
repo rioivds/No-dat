@@ -1,3 +1,1 @@
-pip install django
-pip install pandas openpyxl
-pip install jsonify
+pip install django pandas openpyxl jsonify mysqlclient
