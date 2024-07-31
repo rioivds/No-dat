@@ -1,5 +1,3 @@
-# Cambios
-
 cursos = (
     ('1', '1er año'),
     ('2', '2do año'),

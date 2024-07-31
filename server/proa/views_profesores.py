@@ -1,5 +1,3 @@
-# Cambios
-
 from django.shortcuts import render
 from proa.models import Profesor
 from django.shortcuts import get_object_or_404
@@ -49,3 +47,5 @@ def guardar_edit(request):
     Profesor.objects.filter(dni=DNI).update(dni=DNI, nombre=nombre, apellido=apellido, email=email, telefono=telefono)
 
     return render(request, 'profesores/index.html', {'mensaje': 'Se editó correctamente', 'profesores': profesores})
+
+

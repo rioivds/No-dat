@@ -1,7 +1,6 @@
-# Cambios.
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from proa.models import Curso, Materia, Profesor
+from .importaciones import importar_materias
 import openpyxl
 
 def index(request):
@@ -76,33 +75,39 @@ def guardar_edit(request):
 
     return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
 
-def importar_materias(request):
-    mensaje = ''  # Inicializar la variable mensaje
-    if request.method == 'POST' and request.FILES.get('archivo_excel'):
-        archivo_excel = request.FILES['archivo_excel']
-        try:
-            workbook = openpyxl.load_workbook(archivo_excel)
-            sheet = workbook.active
+def importar_materias_view(request):
+    # mensaje = ''  # Inicializar la variable mensaje
+    # if request.method == 'POST' and request.FILES.get('archivo_excel'):
+    #     archivo_excel = request.FILES['archivo_excel']
+    #     try:
+    #         workbook = openpyxl.load_workbook(archivo_excel)
+    #         sheet = workbook.active
 
-            for row in sheet.iter_rows(min_row=2, values_only=True):
-                nombre = row[0]
-                horas_catedra = row[1]
-                horario = row[2]
-                profesor_nombre = row[3]  # Suponiendo que en la columna 4 del Excel tienes el nombre del profesor
-                curso_anio = row[4]  # Suponiendo que en la columna 5 del Excel tienes el año del curso
+    #         for row in sheet.iter_rows(min_row=2, values_only=True):
+    #             nombre = row[0]
+    #             horas_catedra = row[1]
+    #             horario = row[2]
+    #             profesor_nombre = row[3]  # Suponiendo que en la columna 4 del Excel tienes el nombre del profesor
+    #             curso_anio = row[4]  # Suponiendo que en la columna 5 del Excel tienes el año del curso
 
-                # Obtener o crear el profesor
-                profesor, _ = Profesor.objects.get_or_create(nombre=profesor_nombre)
+    #             # Obtener o crear el profesor
+    #             profesor, _ = Profesor.objects.get_or_create(nombre=profesor_nombre)
 
-                # Obtener el curso
-                curso, _ = Curso.objects.get_or_create(anio=curso_anio)
+    #             # Obtener el curso
+    #             curso, _ = Curso.objects.get_or_create(anio=curso_anio)
 
-                # Crear la materia
-                materia = Materia(nombre=nombre, horas_catedra=horas_catedra, horario=horario, profesor=profesor, curso=curso)
-                materia.save()
+    #             # Crear la materia
+    #             materia = Materia(nombre=nombre, horas_catedra=horas_catedra, horario=horario, profesor=profesor, curso=curso)
+    #             materia.save()
 
-            mensaje = 'Materias importadas correctamente.'
-        except Exception as e:
-            mensaje = f'Error al importar las materias: {e}'
+    #         mensaje = 'Materias importadas correctamente.'
+    #     except Exception as e:
+    #         mensaje = f'Error al importar las materias: {e}'
 
-    return render(request, 'materias/importar_materias.html', {'mensaje': mensaje})
+    if request.method == 'GET':
+        return render(request, 'materias/importar_materias.html', {'mensaje': ''})
+
+    archivo = request.FILES['archivo_excel']
+    importar_materias(archivo)
+
+    return redirect('/materias')
