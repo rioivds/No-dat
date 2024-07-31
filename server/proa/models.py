@@ -12,7 +12,6 @@ class Profesor(models.Model):
     telefono = models.CharField(max_length=20, verbose_name='Telefono')
     email = models.EmailField(verbose_name='Email')
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
-    password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
 
 class Materia(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
@@ -30,7 +29,6 @@ class Alumno(models.Model):
     repitio = models.BooleanField(verbose_name='Repitio?',default=None, null=True)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True, null=True)
     faceid = models.CharField(max_length=512, verbose_name='FaceID', default = '0')
-    password = models.CharField(max_length=20, verbose_name='Password', default = 'proa')
 
 class Calificaciones(models.Model):
     id = models.BigAutoField(primary_key=True)
