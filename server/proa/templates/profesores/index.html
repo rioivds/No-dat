@@ -14,23 +14,18 @@
             {% csrf_token %} 
               <ul class="list-group"> 
                   <div class="list-group-item">
-                    <label for="nombre"> Nombre: </label>
                     <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
                   </div>
                   <div class="list-group-item">
-                    <label for="apellido"> Apellido: </label>
                     <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
                   </div>
                   <div class="list-group-item">
-                    <label for="email"> Email: </label>
                     <input type="email" class="form-control" placeholder="Ingrese el mail" name="email">
                   </div>
                   <div class="list-group-item">
-                    <label for="DNI"> DNI: </label>
                     <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
                   </div>
                   <div class="list-group-item">
-                    <label for="telefono"> Telefono: </label>
                     <input type="text" class="form-control" placeholder="Ingrese el Telefono" name="telefono" required="required">
                   </div>
                   <button type="submit" class="btn btn-success mt-3">Nuevo</button>
@@ -50,9 +45,8 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">
-    Añadir profesor
-  </button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Profesor</button>
+  <a class="btn btn-primary" href="{% url 'importar_profesores' %}">Importar Profesores</a>
   
     <table class="table">
         <thead>
