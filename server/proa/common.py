@@ -25,3 +25,8 @@ class Common:
         anio = partes[4]
 
         return f'{anio}-{mes}-{dia}'
+
+    @staticmethod
+    def email_check(email):
+        email = email.split('@')
+        return email[0] == 'escuelasproa.edu.ar'

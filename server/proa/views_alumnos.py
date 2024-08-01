@@ -9,10 +9,6 @@ import openpyxl
 from .importaciones import importar_alumnos
 from .common import Common
 
-def email_check(email):
-    email = email.split('@')
-    return email[1] == 'escuelasproa.edu.ar'
-
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ 'alumnos': alumnos})
@@ -30,11 +26,10 @@ def guardar_alumnos(request):
         return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, ingrese bien el apellido', 'alumnos': alumnos})
 
     email = request.POST['email']
-    if email_check(email):
+    if Common.email_check(email):
         return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, ecriba bien el email o asegurese que sea intitucional (@escuelasproa.edu.ar)', 'alumnos': alumnos})
 
-    fecha_nacimiento_str = request.POST['fecha_nacimiento']
-    fecha_nacimiento = datetime.strptime(fecha_nacimiento_str, '%m/%d/%Y').strftime('%Y-%m-%d')
+    fecha_nacimiento = datetime.strptime(request.POST['fecha_nacimiento'], '%Y-%m-%d').strftime('%Y-%m-%d')
     repitio = request.POST.get('repitio') == 'on'  # Conversión a True si está marcado
     curso = request.POST['curso']
 

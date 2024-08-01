@@ -15,7 +15,7 @@ class Profesor(models.Model):
 
 class Materia(models.Model):
     id = models.BigAutoField(primary_key=True,verbose_name='ID Materia')
-    nombre = models.CharField(max_length=32, verbose_name='Nombre Materia')
+    nombre = models.CharField(max_length=64, verbose_name='Nombre Materia')
     horas_catedra = models.IntegerField(verbose_name='Horas Catedra')
     profesor = models.ForeignKey(Profesor, null=True, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
