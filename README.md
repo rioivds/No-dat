@@ -5,12 +5,13 @@ SIGSE es una aplicación web desarrollada por alumnos de la escuela Proa con én
 Descripción general del proyecto
 La aplicación SIGSE permite el manejo eficiente de todos los datos internos de una institución educativa. A través de una base de datos MySQL, se gestionan los registros de alumnos, docentes, materias y calificaciones, las cuales se pueden importar mediante planillas. La aplicación también incluye un proyecto de redes que configura toda la infraestructura para permitir la operación del servidor y un dispositivo de detección de caras que se conecta a la aplicación para validar el acceso al edificio y registrar la asistencia, ofreciendo un control integral de seguridad y datos para su análisis. Además, se presentan gráficos que muestran el desempeño académico de los alumnos según cursos y otros criterios.
 
-Tecnologías utilizadas
+Tecnologías utilizadas:
 Backend: Python, Django
 Frontend: HTML, CSS, JavaScript
 Base de datos: MySQL
 Hardware: ESP32 para detección de caras
 Servidor: Aplicación desplegada en http://proadsrioiv.rf.gd/
+
 Requisitos previos
 Para utilizar la aplicación como usuario, no se requiere la instalación de ningún software adicional, ya que es una aplicación web accesible desde cualquier navegador.
 
@@ -19,45 +20,32 @@ Para instalar y configurar la aplicación como servidor, es necesario tener inst
 Python
 Librerías de Python: Django, openpyxl, pandas
 Instrucciones de instalación
+
 Sigue estos pasos para clonar el repositorio e instalar todas las dependencias necesarias:
-
 Clona el repositorio:
-
-
-Copiar código
 git clone https://github.com/rioivds/No-dat.git
 cd No-dat
+
 Crea y activa un entorno virtual:
-
-
-Copiar código
 python -m venv venv
 source venv/bin/activate  # En Windows usa `venv\Scripts\activate`
+
 Instala las dependencias:
-
-
-Copiar código
 pip install -r requirements.txt
+
 Realiza las migraciones de la base de datos:
-
-
-Copiar código
 python manage.py makemigrations
 python manage.py migrate
+
 Configuración del entorno
 Después de instalar las dependencias y realizar las migraciones de la base de datos, es necesario crear usuarios de acceso. Para ello, sigue estos pasos:
-
 Abre la shell de Django:
-
-
-Copiar código
 python manage.py shell
-Crea un usuario:
 
-python
-Copiar código
+Crea un usuario:
 from django.contrib.auth.models import User
 User.objects.create_user(username="nombre_usuario", password="contraseña")
+
 Uso de la aplicación
 Una vez instalada y configurada, puedes acceder a la aplicación en tu navegador. Asegúrate de crear usuarios de acceso como se indicó en la sección anterior. Utiliza las credenciales creadas para iniciar sesión y comenzar a gestionar los datos de la institución.
 
