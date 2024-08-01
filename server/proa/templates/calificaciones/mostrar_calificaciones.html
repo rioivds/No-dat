@@ -14,6 +14,7 @@
             {% csrf_token %}
               <ul class="list-group">
                 <div class="list-group-item">
+                  <label for="nombre"> Nombre: </label>
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
                     {% for i in alumnos %}
                     <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -21,11 +22,13 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
+                  <label for="curso"> Curso: </label>
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
                     <option value="{{ curso }}" selected>{{ curso }}</option>
                   </select> 
                 </div>
                 <div class="list-group-item">
+                  <label for="materia"> Materia: </label>
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materia">
                     {% for i in materias %}
                       <option value ="{{ i.id }}">{{ i.nombre }} </option>
@@ -33,6 +36,7 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
+                  <label for="profesor"> Profesor: </label>
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                     {% for i in profesores %}
                       <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
@@ -40,9 +44,11 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
+                  <label for="fecha"> Fecha de nacimiento: </label>
                   <input type="date" class="form-control datepicker" placeholder="Ingrese fecha de nota" name="fecha" id="fecha" required="required">
                 </div>
                 <div class="list-group-item">
+                  <label for="nota"> Nota: </label>
                   <input type="text" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
                 </div>
                   <div class="list-group-item">
