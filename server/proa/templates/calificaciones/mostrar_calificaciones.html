@@ -86,73 +86,6 @@
       <tbody>
           {% for calificacion in calificaciones %}
             <tr>
-              {% if calificacion.id == calificaciones_edit.id %}
-                <form action="/proa/calificaciones/guardar/?id={{calificacion.id}}" method="POST">
-                {% csrf_token %} 
-                <div class="row">
-                  <th scope="row">{{calificacion.id}}</th>
-                  <td>  
-                    <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="alumno">
-                        {% for i in alumnos %}
-                        <option value="{{ i.dni }}" {% if calificacion.alumno.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
-                        {% endfor %}
-                      </select> 
-                    </div>
-                  </td>
-                  <!-- <td>
-                    <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                        {% for i in cursos %}
-                        <option value ="{{ i.id }}"{% if calificacion.curso.id == i.id %}selected{% endif %}>{{ i.anio }}</option>
-                        {% endfor %}
-                      </select> 
-                    </div>
-                  </td> -->
-                  <td>
-                    <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materia">
-                        {% for i in materias %}
-                        <option value ="{{ i.id }}"{% if calificacion.materia.id == i.id %}selected{% endif %}>{{ i.nombre }}</option>
-                        {% endfor %}
-                      </select> 
-                    </div>
-                  </td>
-                  <!-- <td>
-                    <div class="list-group-item">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
-                        {% for i in profesores %}
-                        <option value ="{{ i.dni }}"{% if calificacion.profesor.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
-                        {% endfor %}
-                      </select> 
-                    </div>
-                  </td> -->
-                  <td>
-                    <div class="col">
-                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificación" name="fecha" id="fecha" required="required" value="{{calificacion.fecha}}">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Calificacion" name="nota" id="nota" value="{{ calificacion.nota }}" required="required" >
-                    </div>
-                  </td>
-                  <td>
-                    <div class="col">
-                      <div class="form-check">
-                        <input type="checkbox" class="custom-control-input" name="final" value="True" {% if calificacion.final %}checked{% endif %}>
-                        <label class="form-check-label" for="final_{{ calificacion.id }}">
-                        </label>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <button style=" background-color: rgb(41, 159, 61); border-color: rgb(41, 159, 61);; margin-bottom: 6px;" type="submit" class="btn btn-primary">Guardar</button>
-                    <a class="btn btn-primary" href="/proa/calificaciones" role="button">Cancelar</a>
-                  </td>
-                </div>
-                </form>
-              {% else %}
                 <th scope="row">{{calificacion.id}}</th>
                 <td>{{calificacion.alumno.nombre}} {{calificacion.alumno.apellido}}</td>
                 <td>{{calificacion.curso.anio}}</td>
@@ -169,12 +102,10 @@
                       </label>
                     </div>
                   </div>
-                </td>                          
+                </td>
                 <td>
                   <a style="margin: 3px; background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/calificaciones/delete?id={{calificacion.id}}" role="button">Eliminar</a>
-                  <a style="margin: 3px;" class="btn btn-primary" href="/proa/calificaciones/editar?id={{calificacion.id}}" role="button">Editar</a>
                 </td> 
-              {% endif %}
             </tr>
           {% endfor %}
       </tbody>
