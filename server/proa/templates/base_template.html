@@ -54,7 +54,7 @@
         <header class="header">
             <div class="menu__wrapper">
                 <div class="menu__bar">
-                    <a href="/proa" title="Inicio" aria-label="home" class="logo">
+                    <a href="{% url 'inicio' %}" title="Inicio" aria-label="home" class="logo">
                         <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">  
                     </a> 
                     <div class="menu__wrapper">
@@ -131,10 +131,13 @@
             <div class="footer-div col-sm-3">
                 <h6> Calle Arroyo Piedras Blancas, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h6>
                 <a href="https://api.whatsapp.com/send?phone=5493584908299" target="_blank">
-                    <img src="{% static 'img/wspLOGO.png' %}" class="footer-img" alt="Instagram">
+                    <img src="{% static 'img/wspLOGO.png' %}" class="footer-img" alt="Whatsapp">
                 </a>
 
-                <a href="https://www.instagram.com/roman.mddo/" target="_blank">
+                <!-- Román boludo promocionando su ig: -->
+                <!-- <a href="https://www.instagram.com/roman.mddo/" target="_blank"> -->
+
+                <a href="https://www.instagram.com/proa_ds_rioiv/" target="_blank">
                     <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
                 </a>
             </div>
