@@ -7,6 +7,7 @@ from .forms import ImportarAlumnosForm
 from django.http import HttpResponse, HttpResponseRedirect
 import openpyxl
 from .importaciones import importar_alumnos
+from .common import Common
 
 def email_check(email):
     email = email.split('@')
@@ -15,29 +16,6 @@ def email_check(email):
 def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ 'alumnos': alumnos})
-
-def parse_fecha(fecha_str):
-    meses = {
-        'enero': '01',
-        'febrero': '02',
-        'marzo': '03',
-        'abril': '04',
-        'mayo': '05',
-        'junio': '06',
-        'julio': '07',
-        'agosto': '08',
-        'septiembre': '09',
-        'octubre': '10',
-        'noviembre': '11',
-        'diciembre': '12'
-    }
-
-    partes = fecha_str.split(' ')
-    dia = partes[0]
-    mes = meses[partes[2]]
-    anio = partes[4]
-
-    return f'{anio}-{mes}-{dia}'
 
 def guardar_alumnos(request):
     alumnos = Alumno.objects.all()
@@ -94,13 +72,12 @@ def guardar_edit(request):
     nombre = request.POST['nombre']
     apellido = request.POST['apellido']
     email = request.POST['email']
-    fecha_nacimiento_str = request.POST['fecha_nacimiento']
-    fecha_nacimiento = parse_fecha(fecha_nacimiento_str)
+    fecha_nacimiento = Common.parse_fecha(None if request.POST['fecha_nacimiento'] == 'None' else request.POST['fecha_nacimiento'])
     repitio = request.POST.get('repitio')
     curso = Curso.objects.get(id=request.POST['curso'])
 
     alumnos = Alumno.objects.all()
-    Alumno.objects.filter(dni = DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
+    Alumno.objects.filter(dni=DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
 
     return render(request, 'alumnos/index.html', {'mensaje': 'Se editó correctamente', 'alumnos': alumnos})
 

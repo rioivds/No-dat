@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from proa.models import Profesor
 from django.shortcuts import get_object_or_404
+from .importaciones import importar_profesores
 
 def index(request):
     profesores = Profesor.objects.all()
@@ -47,3 +48,12 @@ def guardar_edit(request):
     Profesor.objects.filter(dni=DNI).update(dni=DNI, nombre=nombre, apellido=apellido, email=email, telefono=telefono)
 
     return render(request, 'profesores/index.html', {'mensaje': 'Se editó correctamente', 'profesores': profesores})
+
+def importar_profesores_view(request):
+    if request.method == 'GET':
+        return render(request, 'profesores/importar_profesores.html')
+
+    archivo = request.FILES['archivo_excel']
+    importar_profesores(archivo)
+
+    return redirect('/profesores')

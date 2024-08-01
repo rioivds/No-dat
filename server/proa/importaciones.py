@@ -51,7 +51,7 @@ def importar_profesores(archivo):
         dni = int(row['dni'])
         nombre = row['nombre']
         apellido = row['apellido']
-        telefono = row['telefono']
+        telefono = row.get('telefono', default='')
         email = row['email']
 
         # Crear o actualizar el profesor.

@@ -1,9 +1,8 @@
 from django.urls import path, re_path
-from . import views,views_admin, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
+from . import views, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
 
 urlpatterns = [
     path('', views.index, name='inicio'),
-    path('adminred/', views_admin.index),
     path('alumnos/', views_alumnos.index),
     path('alumnos/nuevo2/', views_alumnos.guardar_alumnos),
     path('alumnos/delete/', views_alumnos.eliminar_alumno),
@@ -14,6 +13,7 @@ urlpatterns = [
     path('profesores/delete/', views_profesores.eliminar_profesores),
     path('profesores/editar/', views_profesores.editar_profesores),
     path('profesores/guardar/', views_profesores.guardar_edit),
+    path('profesores/importar_profesores/', views_profesores.importar_profesores_view, name='importar_profesores'),
     path('materias/', views_materia.index),
     path('materias/nuevo2/', views_materia.guardar_materia),
     path('materias/delete/', views_materia.eliminar_materia),

@@ -4,7 +4,7 @@ from proa.models import Alumno, Curso, Calificaciones, Profesor, Materia
 from django.shortcuts import get_object_or_404
 from datetime import datetime
 from .importaciones import importar_calificaciones
-import openpyxl
+from .common import Common
 
 def index(request):
     return render(request, 'calificaciones/index.html')
@@ -13,29 +13,6 @@ def mostrar_calificaciones(request, curso):
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
     alumnos = Alumno.objects.filter(curso_id=curso)
     return render(request, 'calificaciones/mostrar_calificaciones.html', {'calificaciones': calificaciones, 'alumnos': alumnos})
-
-def parse_fecha(fecha_str):
-    meses = {
-        'enero': '01',
-        'febrero': '02',
-        'marzo': '03',
-        'abril': '04',
-        'mayo': '05',
-        'junio': '06',
-        'julio': '07',
-        'agosto': '08',
-        'septiembre': '09',
-        'octubre': '10',
-        'noviembre': '11',
-        'diciembre': '12'
-    }
-
-    partes = fecha_str.split(' ')
-    dia = partes[0]
-    mes = meses[partes[2]]
-    anio = partes[4]
-
-    return f'{anio}-{mes}-{dia}'
 
 def guardar_calificaciones(request):
     alumno=request.POST['alumno']
@@ -119,7 +96,7 @@ def guardar_edit(request):
     materia = request.POST['materia']
     profesor = request.POST['profesor']
     fecha = request.POST['fecha']
-    fecha_nota_str = parse_fecha(fecha)
+    fecha_nota_str = Common.parse_fecha(fecha)
     nota = float(request.POST['nota'].replace(',', '.'))
     final = request.POST.get('final', False) == 'True'
     calificaciones = Calificaciones.objects.all()
