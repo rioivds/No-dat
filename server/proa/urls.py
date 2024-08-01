@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from . import views, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
+from . import views, views_admin, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
 
 urlpatterns = [
     path('', views.index, name='inicio'),
