@@ -7,7 +7,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir alumno</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Alumno</h1>
         </div>
         <div class="modal-body">
           <form action="/alumnos/nuevo2/" method="POST">
@@ -70,7 +70,7 @@
 
 
 <div class="form_alumnos">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir alumno</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Alumno</button>
 
   <!-- Botón de exportar a Excel -->
   <a href="{% url 'exportar_alumnos' %}" class="btn btn-primary" style="margin-left: 4px;">Exportar Alumnos a Excel</a>
@@ -122,7 +122,7 @@
                   </td>
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento(AAAA-MM-DD)" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
+                      <input type="text" class="form-control" placeholder="Ingrese Fecha de Nacimiento" name="fecha_nacimiento" id="fecha_nacimiento" required="required" value="{{alumno.fecha_nacimiento}}">
                     </div>
                   </td>
                   <td>

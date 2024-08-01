@@ -12,15 +12,23 @@ def index(request):
 def mostrar_calificaciones(request, curso):
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
     alumnos = Alumno.objects.filter(curso_id=curso)
-    return render(request, 'calificaciones/mostrar_calificaciones.html', {'calificaciones': calificaciones, 'alumnos': alumnos})
+    materias = Materia.objects.filter(curso_id=curso)
+    profesores = Profesor.objects.all()
+
+    return render(request, 'calificaciones/mostrar_calificaciones.html', {
+        'calificaciones': calificaciones,
+        'alumnos': alumnos,
+        'materias': materias,
+        'profesores': profesores,
+        'curso': curso
+    })
 
 def guardar_calificaciones(request):
-    alumno=request.POST['alumno']
+    alumno = request.POST['alumno']
     curso = request.POST['curso']
     materia=request.POST['materia']
     profesor=request.POST['profesor']
-    fecha = request.POST['fecha']
-    fecha_nota_str = datetime.strptime(fecha, '%m/%d/%Y').strftime('%Y-%m-%d')
+    fecha_nota_str = datetime.strptime(request.POST['fecha'], '%Y-%m-%d').strftime('%Y-%m-%d')
     nota = request.POST['nota']
     final = request.POST.get('final') == 'on'  # Conversión a True si está marcado
 
@@ -35,40 +43,12 @@ def guardar_calificaciones(request):
     )
     insert.save()
 
-    calificaciones = Calificaciones.objects.all()
-    materias = Materia.objects.all()
-    profesores = Profesor.objects.all()
-    cursos = Curso.objects.all()
-    alumnos = Alumno.objects.all()
-
-    return render(request, 'calificaciones/index.html', {
-        'mensaje': 'Se insertó calificación con éxito',
-        'calificaciones': calificaciones,
-        'materias': materias,
-        'cursos': cursos,
-        'profesores': profesores,
-        'alumnos': alumnos
-    })
+    return redirect(f'/calificaciones/mostrar/{curso}/')
 
 def eliminar_calificaciones(request):
-    id = request.GET['id']
-    calificacion = get_object_or_404(Calificaciones, id=id)
+    calificacion = Calificaciones.objects.get(id=request.GET['id'])
     calificacion.delete()
-
-    calificaciones = Calificaciones.objects.all()
-    materias = Materia.objects.all()
-    profesores = Profesor.objects.all()
-    cursos = Curso.objects.all()
-    alumnos = Alumno.objects.all()
-
-    return render(request, 'calificaciones/index.html', {
-        'mensaje': 'Se elimino calificación con éxito',
-        'calificaciones': calificaciones,
-        'materias': materias,
-        'cursos': cursos,
-        'profesores': profesores,
-        'alumnos': alumnos
-    })
+    return redirect(f'/calificaciones/mostrar/{calificacion.curso.anio}/')
 
 def editar_calificaciones(request):
     id = request.GET['id']

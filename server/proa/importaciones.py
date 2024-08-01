@@ -29,7 +29,7 @@ def importar_calificaciones(archivo):
 def importar_materias(archivo):
     df = pandas.read_excel(archivo, engine='openpyxl')
     for _, row in df.iterrows():
-        nombre = row['nombre']
+        nombre = row['materia']
         horas = row['horas_catedra']
         curso = Curso.objects.get(anio=int(row['curso']))
         profesor = Profesor.objects.get(dni=int(row['profesor_dni']))

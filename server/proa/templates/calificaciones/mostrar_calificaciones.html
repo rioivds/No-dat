@@ -7,7 +7,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Calificacion</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Calificación</h1>
         </div>
         <div class="modal-body">
           <form action="/calificaciones/nuevo2/" method="POST">
@@ -21,15 +21,10 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
-                    <select class="form-select form-select-lg mb-3"  aria-label=".form-select-lg example" name="curso">
-                      <option value="1">1ro</option>
-                      <option value="2">2do</option>
-                      <option value="3">3ro</option>
-                      <option value="4">4to</option>
-                      <option value="5">5to</option>
-                      <option value="6">6to</option>
-                    </select>
-                  </div>
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                    <option value="{{ curso }}" selected>{{ curso }}</option>
+                  </select> 
+                </div>
                 <div class="list-group-item">
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="materia">
                     {% for i in materias %}
@@ -37,15 +32,15 @@
                     {% endfor %}
                   </select> 
                 </div>
-                <!-- <div class="list-group-item">
+                <div class="list-group-item">
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
                     {% for i in profesores %}
                       <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
                     {% endfor %}
                   </select> 
-                </div> -->
+                </div>
                 <div class="list-group-item">
-                  <input type="text" class="form-control datepicker" placeholder="Ingrese fecha de nota (AAAA-MM-DD)" name="fecha" id="fecha" required="required">
+                  <input type="date" class="form-control datepicker" placeholder="Ingrese fecha de nota" name="fecha" id="fecha" required="required">
                 </div>
                 <div class="list-group-item">
                   <input type="text" class="form-control" placeholder="Ingrese la nota" name="nota" required="required">
@@ -53,7 +48,7 @@
                   <div class="list-group-item">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="final" name="final">
-                      <label class="form-check-label" for="final">calificacion final?</label>
+                      <label class="form-check-label" for="final">¿Calificación Final?</label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Nuevo</button>
@@ -73,7 +68,7 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificacion</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificación</button>
   <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button">Importar Calificaciones desde Excel</a>
   <table class="table">
       <thead>
@@ -84,8 +79,8 @@
               <th scope="col">Materia</th>
               <th scope="col">Profesor</th>
               <th scope="col">Fecha de Calificación</th>
-              <th scope="col">Calificacion</th>
-              <th scope="col">Calificacion Final?</th>
+              <th scope="col">Calificación</th>
+              <th scope="col">¿Calificación Final?</th>
           </tr>
       </thead>
       <tbody>
@@ -134,7 +129,7 @@
                   </td> -->
                   <td>
                     <div class="col">
-                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificacion(AAAA-MM-DD)" name="fecha" id="fecha" required="required" value="{{calificacion.fecha}}">
+                      <input type="text" class="form-control datepicker" placeholder="Ingrese Fecha de Calificación" name="fecha" id="fecha" required="required" value="{{calificacion.fecha}}">
                     </div>
                   </td>
                   <td>

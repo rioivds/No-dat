@@ -17,19 +17,13 @@ def guardar_alumnos(request):
     alumnos = Alumno.objects.all()
     DNI = request.POST['DNI']  
     nombre = request.POST['nombre']
-
-    if not nombre.isalpha():
-        return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, ingrese bien el nombre', 'alumnos': alumnos})
-
     apellido = request.POST['apellido']
-    if not apellido.isalpha():
-        return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, ingrese bien el apellido', 'alumnos': alumnos})
 
     email = request.POST['email']
     if Common.email_check(email):
-        return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, ecriba bien el email o asegurese que sea intitucional (@escuelasproa.edu.ar)', 'alumnos': alumnos})
+        return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, asegurese que el email sea institucional (@escuelasproa.edu.ar)', 'alumnos': alumnos})
 
-    fecha_nacimiento = datetime.strptime(request.POST['fecha_nacimiento'], '%Y-%m-%d').strftime('%Y-%m-%d')
+    fecha_nacimiento = request.POST['fecha_nacimiento']
     repitio = request.POST.get('repitio') == 'on'  # Conversión a True si está marcado
     curso = request.POST['curso']
 
@@ -50,11 +44,12 @@ def guardar_alumnos(request):
     return render(request, 'alumnos/index.html', {'mensaje': 'Se insertó con éxito', 'alumnos': alumnos})
 
 def eliminar_alumno(request):
-    DNI = request.GET['DNI']
-    delete = get_object_or_404(Alumno, dni=DNI)
-    delete.delete()
+    dni = request.GET['DNI']
+    alumno = Alumno.objects.get(dni=dni)
+    alumno.delete()
+
     alumnos = Alumno.objects.all()
-    return render(request, 'alumnos/index.html',{ 'mensaje': 'Se eliminó el alumno con éxito', 'alumnos': alumnos})
+    return render(request, 'alumnos/index.html', {'mensaje': 'Se eliminó el alumno con éxito', 'alumnos': alumnos})
 
 def editar_alumno(request):
     DNI = request.GET['DNI']
