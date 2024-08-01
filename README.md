@@ -1,4 +1,5 @@
 SIGSE
+
 SIGSE es una aplicación web desarrollada por alumnos de la escuela Proa con énfasis en TICs, especialidad en Desarrollo de Software, de Río Cuarto, Córdoba, Argentina. La aplicación está diseñada para gestionar los datos internos de una institución educativa, incluyendo bases de datos de alumnos, docentes, materias y calificaciones. Además, integra un sistema de detección de caras usando ESP32 para validar accesos y registrar asistencias, proporcionando un control integral de seguridad y datos para análisis.
 
 Descripción general del proyecto
@@ -22,24 +23,24 @@ Sigue estos pasos para clonar el repositorio e instalar todas las dependencias n
 
 Clona el repositorio:
 
-bash
+
 Copiar código
 git clone https://github.com/rioivds/No-dat.git
 cd No-dat
 Crea y activa un entorno virtual:
 
-bash
+
 Copiar código
 python -m venv venv
 source venv/bin/activate  # En Windows usa `venv\Scripts\activate`
 Instala las dependencias:
 
-bash
+
 Copiar código
 pip install -r requirements.txt
 Realiza las migraciones de la base de datos:
 
-bash
+
 Copiar código
 python manage.py makemigrations
 python manage.py migrate
@@ -48,7 +49,7 @@ Después de instalar las dependencias y realizar las migraciones de la base de d
 
 Abre la shell de Django:
 
-bash
+
 Copiar código
 python manage.py shell
 Crea un usuario:
