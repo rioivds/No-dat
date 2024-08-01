@@ -65,7 +65,8 @@ def guardar_edit(request):
     materia = request.POST['nombre']
     profesor = request.POST['profesor']
     curso = request.POST['curso']
-    Materia.objects.filter(id=id).update(profesor_id=profesor, nombre=materia, curso_id=curso)
+    horas = request.POST['horas-catedra']
+    Materia.objects.filter(id=id).update(profesor_id=profesor, nombre=materia, curso_id=curso, horas_catedra=horas)
 
     materias = Materia.objects.all()
     profesores = Profesor.objects.all()
