@@ -46,12 +46,14 @@ FLUSH PRIVILEGES;
 
 Realiza las migraciones de la base de datos:
 python manage.py makemigrations
+python manage.py migrate --run-syncdb
 python manage.py migrate
 
-ejecuta "run-public-server.bat"
+ejecuta "run-public-server.bat" (python manage.py runserver 0.0.0.0:8000)
 
 Uso de la aplicación
-Una vez instalada y configurada, puedes acceder a la aplicación en tu navegador. Asegúrate de crear usuarios de acceso como se indicó en la sección anterior. Utiliza las credenciales creadas para iniciar sesión y comenzar a gestionar los datos de la institución.
+Una vez instalada y configurada, puedes acceder a la aplicación en tu navegador. URL=http://IPSERVER:8000/
+Asegúrate de crear usuarios de acceso como se indicó en la sección anterior. Utiliza las credenciales creadas para iniciar sesión y comenzar a gestionar los datos de la institución.
 
 Contribución
 Si deseas contribuir a este proyecto, por favor, ponte en contacto con la escuela Proa o a través de la cuenta de GitHub. Estamos abiertos a recibir contribuciones y mejorar esta aplicación.
