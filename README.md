@@ -37,20 +37,17 @@ Realiza las migraciones de la base de datos:
 python manage.py makemigrations
 python manage.py migrate --run-syncdb
 python manage.py migrate
+
 Configuración del entorno
+
 Después de instalar las dependencias y realizar las migraciones de la base de datos, es necesario crear usuarios de acceso. Para ello, sigue estos pasos:
-
 Abre la shell de Django:
-
-
-Copiar código
 python manage.py shell
-Crea un usuario:
 
-python
-Copiar código
+Crea un usuario:
 from django.contrib.auth.models import User
 User.objects.create_user(username="nombre_usuario", password="contraseña")
+
 Uso de la aplicación
 Una vez instalada y configurada, puedes acceder a la aplicación en tu navegador. URL=http://IPSERVER:8000/
 Asegúrate de crear usuarios de acceso como se indicó en la sección anterior. Utiliza las credenciales creadas para iniciar sesión y comenzar a gestionar los datos de la institución.
