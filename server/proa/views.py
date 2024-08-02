@@ -3,6 +3,9 @@ from django.shortcuts import render
 from .models import Curso
 
 def index(request):
+    if (not request.user.is_authenticated):
+        return redirect('iniciar_sesion')
+        
     cursos = Curso.objects.all()
     today = datetime.datetime.now()
     return render(request, 'index.html', {
