@@ -3,3 +3,5 @@ mysqlclient==2.1.0
 openpyxl==3.0.10
 pandas==1.4.3
 django-bootstrap4==21.3
+requests==2.32.3
+pypdf2==3.0.1
