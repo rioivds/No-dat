@@ -22,6 +22,9 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
+        <!-- JS -->
+         <script src="{% static 'JS/script.js' %}"></script>
+
         <title>{% block title %}ProA - Inicio{% endblock %}</title>
         <link rel="shortcut icon" href="{% static 'img/ico.ico' %}">
     </head>
@@ -46,6 +49,10 @@
                         <div class="logoNav">
                             <img src="./assets/LOGO-2.png" alt="Logo">
                         </div>
+
+                        <!-- BOTON NAV RESPONSIVO NO TOCAR -->
+                        <!-- ### -->
+
                         <button class="burger-menu" aria-label="Toggle navigation">
                             <svg viewBox="0 0 100 80" width="40" height="40">
                                 <rect width="100" height="20"></rect>
@@ -53,6 +60,10 @@
                                 <rect y="60" width="100" height="20"></rect>
                             </svg>
                         </button>
+
+                        <!-- ### -->
+                        <!-- BOTON NAV RESPONSIVO NO TOCAR -->
+
                         <nav>
                             <ul class="navigation hide">
                                 <li class="page-item">
@@ -120,17 +131,19 @@
 
         <footer class="footer">
             <div class="footer-div col-sm-3">
-                <h6>Roberto Payró 998, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h6>
+                <h5> Roberto Payró 998, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h5>
                 <a href="https://api.whatsapp.com/send?phone=5493584200397" target="_blank">
                     <img src="{% static 'img/wspLOGO.png' %}" class="footer-img" alt="Whatsapp">
-                </a>
-
+                </a>        
+                
                 <!-- Román boludo promocionando su ig: -->
                 <!-- <a href="https://www.instagram.com/roman.mddo/" target="_blank"> -->
 
                 <a href="https://www.instagram.com/proa_ds_rioiv/" target="_blank">
                     <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
                 </a>
+                <h4> Todos los derechos reservados!  <img src="{% static 'img/copyright.png' %}" class="footer-cp"> </h4>
+               
             </div>
         </footer>
         {% endif %}
