@@ -11,7 +11,7 @@ def index(request):
     router_ip = '192.168.200.1'
     port = '80'
     username = 'admin'
-    password = 'proads.2024'
+    password = ''
 
     scheme = 'https' if port == '443' else 'http'
     url = f'{scheme}://{router_ip}:{port}'
