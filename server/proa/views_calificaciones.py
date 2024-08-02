@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from proa.models import Alumno, Curso, Calificaciones, Profesor, Materia
 from django.shortcuts import get_object_or_404
 from datetime import datetime
-from .importaciones import importar_calificaciones
+from .importaciones import importar_calificaciones, importar_calificaciones_pdf
 from .common import Common
 
 def index(request):
@@ -133,9 +133,15 @@ def importar_calificaciones_view(request):
     #         mensaje = f'Error al importar las calificaciones: {e}'
 
     if request.method == 'GET':
-        return render(request, 'calificaciones/importar_calificaciones.html', {'mensaje': ''})
+        return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': None})
 
     archivo = request.FILES['archivo_excel']
-    importar_calificaciones(archivo)
+    extension = str(archivo).split('.')[-1]
 
-    return redirect('/materias')
+    logs = []
+    if extension == 'pdf':
+        logs = importar_calificaciones_pdf(archivo)
+    elif extension == 'xlsx':
+        importar_calificaciones(archivo)
+
+    return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs if logs else None})
