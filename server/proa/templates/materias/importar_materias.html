@@ -16,7 +16,7 @@
     {% csrf_token %}
     <div class="mb-3">
       <label for="archivo_excel" class="form-label">Seleccione el archivo Excel:</label>
-      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx">
+      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx" required>
     </div>
     <button type="submit" class="btn btn-primary">Importar Materias</button>
   </form>
