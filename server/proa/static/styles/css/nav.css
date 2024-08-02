@@ -18,7 +18,7 @@ body {
 .nav-a {
   color: white;
   text-decoration: none;
-  font-size: .7vmax; }
+  font-size: 100%; }
 
 .header {
   max-width: 100%;
@@ -240,6 +240,7 @@ body {
         display: flex;
         max-width: 60%;
         flex-wrap: wrap;
+       
     }
     
     .tema{
@@ -269,14 +270,7 @@ body {
 
     .burger-menu {
         display: flex;
-        align-items: center;
-        justify-content: center;
         border-radius: 0.5rem;
-        padding: 0.5rem;
-        height: 2.5rem;
-        width: 2.5rem;
-        min-width: 2.5rem;
-        min-height: 2.5rem;
         pointer-events: all;
     }
 
@@ -286,6 +280,7 @@ body {
 
     .burger-menu:focus {
         outline: 1px solid var(--primary);
+        
     }
 
     .burger-menu svg {
@@ -297,13 +292,20 @@ body {
     .navigation.show {
         display: flex;
         flex-direction: column;
-        position: absolute;
+
         top: var(--navbar-height);
         left: 0;
         max-width: 100%;
-        background-color: var(--background);
+        background: var(--primary);
         padding: 5%;
-        border: var(--primary) 1px solid;
+        border-radius: 10px;
+
+    }
+    
+    .nav-a {
+      color: white;
+      text-decoration: none;
+      font-size: 100%; 
     }
 
     .log{
