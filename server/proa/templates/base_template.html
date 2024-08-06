@@ -5,8 +5,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSS VANILLA -->
-        <link rel="stylesheet" href="{% static 'styles/css/nav.css' %}" type="text/css">
+        <!-- CSS MAP -->
+        <link rel="stylesheet" href="{% static 'styles/css/header.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'styles/css/cards.css' %}" type="text/css">
 
@@ -23,7 +23,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
         <!-- JS -->
-         <script src="{% static 'JS/script.js' %}"></script>
+        <script src="{% static 'JS/script.js' %}"></script>
 
         <title>{% block title %}ProA - Inicio{% endblock %}</title>
         <link rel="shortcut icon" href="{% static 'img/ico.ico' %}">
@@ -73,49 +73,53 @@
                                             <ul class="list-items-with-description">
                                                 <li>
                                                     <div class="item-title">
-                                                        <a class="nav-a" href="/proa/alumnos"> Alumnos! </a>
+                                                        <a href="/proa/alumnos"> Alumnos </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a class="nav-a" href="/proa/profesores"> Profesores! </a>
+                                                        <a href="/proa/profesores"> Profesores </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a class="nav-a" href="/proa/materias"> Materias! </a>
+                                                        <a href="/proa/materias"> Materias </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a class="nav-a" href="/proa/calificaciones"> Calificaciones! </a>
+                                                        <a href="/proa/calificaciones"> Calificaciones </a>
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="page-item">
-                                    <a href="/admin" title="Armin" class="botones-nav btn btn-dark"> Administrar django </a>
+
+                                <li>
+                                    <a href="/admin" title="Armin" class="btn btn-warning btn-sm"> Administrar django </a>
                                 </li>
-                                <li class="page-item">
-                                    <a href="/proa/adminred" title="Armin" class="botones-nav btn btn-dark"> Administrar Red </a>
+                                <li>
+                                    <a href="/proa/adminred" title="Armin" class="btn btn-warning btn-sm"> Administrar Red </a>
                                 </li>
-                                <li class="page-item">
-                                    <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark"> Informes </a>
+                                <li>
+                                    <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes </a>
                                 </li>
-                                <li class="page-item">
-                                    <a href="/proa/graficos" title="Graficos" class="botones-nav btn btn-dark"> Gráficos por materia </a>
+                                <li>
+                                    <a href="/proa/graficos" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias </a>
                                 </li>
-                                <li class="page-item">
-                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark"> Gráficos por año y materia </a>
+                                <li>
+                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia </a>
                                 </li>
+
+                                <!-- Boton de cerrar sesion creado por la eminencia -->
                                 {% if user.is_authenticated %}
-                                    <form id="logout-form" method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Cerrar Sesión</button>
                                 </form>
                                 {% endif %}
+
                             </ul>
                         </nav>
                     </div>

@@ -1,14 +1,4 @@
-:root {
-    --primary: #446cf1;
-    --primary-dark: #7b64fd;
-    --primary-light: #8411f0;
-    --secondary: #1D1D1D;
-    --social-background: #E9E9E9;
-    --social-background-hover: #dddddd;
-    --text: #121213;
-    --white: #FFFFFF;
-    --ciant: #2393fc;
-}
+@import "./root.scss";
 
 * {
     margin: 0;
@@ -25,43 +15,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: var(--ciant);
-    background: -webkit-linear-gradient(to right, var(--ciant),
-            var(--primary-dark));
-    background: linear-gradient(to right, var(--ciant),
-            var(--primary-dark));
-}
-
-.socials-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.socials-row img {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-.socials-row>a {
-    padding: 0.5rem;
-    border-radius: 10rem;
-    width: 100%;
-    min-height: 3rem;
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: var(--text);
-    padding: 0.5rem;
-    background-color: var(--social-background);
-    font-weight: 700;
-}
-
-.socials-row>a:hover {
-    background-color: var(--social-background-hover);
+    background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
 }
 
 .login-welcome-row {
@@ -69,12 +23,8 @@ body {
     text-align: center;
 }
 
-.welcome-message {
-    max-width: 24rem;
-}
-
 .logo {
-    height: 4rem;
+    height: 10rem;
     margin: 0 auto;
 }
 
@@ -84,7 +34,7 @@ body {
     justify-content: start;
     position: relative;
     gap: 1rem;
-    background-color: var(--white);
+    background-color: $--texto;
     width: 100%;
     max-width: 32rem;
     padding: 3rem 2rem;
@@ -93,7 +43,7 @@ body {
 }
 
 .my-form__button {
-    background-color: var(--primary);
+    background-color:$--primario-luminoso;
     color: white;
     white-space: nowrap;
     border: none;
@@ -116,7 +66,7 @@ body {
 }
 
 .my-form__button:hover {
-    background-color: var(--primary-dark);
+    background-color :$--primario-luminoso;
 }
 
 /*? input wrapper */
@@ -128,7 +78,7 @@ body {
 
 .input__field {
     font-size: 1.5rem;
-    color: var(--text);
+    color: $--texto;
     padding: 0.375rem 0;
     padding-right: 2rem;
     padding-bottom: 0.5rem;
@@ -139,7 +89,7 @@ body {
     width: 100%;
     vertical-align: middle;
     padding-bottom: 0.7rem;
-    border-bottom: 3px solid var(--secondary);
+    border-bottom: 3px solid $--secundario-login;
     background: transparent;
     transition: border-color 0.2s;
 }
@@ -148,14 +98,14 @@ body {
     color: transparent;
 }
 
-
 .input__label {
+    color: $--primario-luminoso;
     user-select: none;
 }
 
 .input__field:placeholder-shown~.input__label {
     cursor: text;
-    color: var(--text);
+    color: $--texto;
     top: 0.8rem;
     font-size: 1.2rem;
 }
@@ -166,20 +116,20 @@ body {
     top: -0.8rem;
     display: block;
     font-size: 1.2rem;
-    color: var(--text);
+    color: $--texto;
     transition: 0.3s;
 }
 
 .input__field:focus~.input__label {
-    color: var(--primary);
+    color:$--primario-luminoso;
 }
 
 .input__field:focus {
-    border-bottom: 3px solid var(--primary);
+    border-bottom: 3px solid $--primario-luminoso;
 }
 
 .input__field:focus~svg {
-    stroke: var(--primary);
+    stroke:$--primario-luminoso;
 }
 
 .input__icon {
@@ -196,31 +146,4 @@ body {
 
 .input__icon:hover {
     border-radius: 50%;
-}
-
-/* my form actions */
-
-.my-form__actions {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    color: var(--secondary);
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.my-form__actions a {
-    color: var(--secondary);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.my-form__actions a:hover {
-    text-decoration: underline;
-}
-
-.my-form__row {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: space-between;
 }

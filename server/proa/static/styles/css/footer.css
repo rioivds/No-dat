@@ -1,19 +1,23 @@
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
 .footer {
   max-width: 100%;
-  color: white;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 5.75rem;
-  background: linear-gradient(to right, var(--ciant), var(--primary-dark));
+  background: linear-gradient(to right, #2393fc, #17223b);
   margin-top: 3%;
   max-width: 100%;
   padding: 5%;
-  border: #2E2E2E 1px solid; }
+  border: #000000 1px solid; }
 
 .footer .footer-div h5, .footer .footer-div h4 {
-  color: white;
+  color: #ffffff;
   opacity: 60%; }
 
 .footer .footer-img {
@@ -29,14 +33,12 @@
 .footer .footer-img:hover {
   transform: scale(1.2); }
 
-/*# sourceMappingURL=footer.css.map */
-
-.footer-cp{
+.footer-cp {
   max-width: 8%;
   filter: invert(50%) brightness(500%);
-  transition: all 0.3s ease; 
-}
+  transition: all 0.3s ease; }
 
 .footer-cp:hover {
-  transform: scale(1.2); 
-}
+  transform: scale(1.2); }
+
+/*# sourceMappingURL=footer.css.map */
