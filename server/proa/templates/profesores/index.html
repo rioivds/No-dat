@@ -12,29 +12,29 @@
         <div class="modal-body">
           <form action="/profesores/new/" method="POST">
             {% csrf_token %} 
-              <ul class="list-group"> 
-                  <div class="list-group-item">
-                    <label for="nombre"> Nombre: </label>
-                    <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
-                  </div>
-                  <div class="list-group-item">
-                    <label for="apellido"> Apellido: </label>
-                    <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
-                  </div>
-                  <div class="list-group-item">
-                    <label for="email"> Email: </label>
-                    <input type="email" class="form-control" placeholder="Ingrese el mail" name="email">
-                  </div>
-                  <div class="list-group-item">
-                    <label for="dni"> DNI: </label>
-                    <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
-                  </div>
-                  <div class="list-group-item">
-                    <label for="telefono"> Telefono: </label>
-                    <input type="text" class="form-control" placeholder="Ingrese el Telefono" name="telefono" required="required">
-                  </div>
-                  <button type="submit" class="btn btn-success mt-3">Nuevo</button>
-                </ul>
+            <ul class="list-group"> 
+              <div class="list-group-item">
+                <label for="nombre"> Nombre: </label>
+                <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" required="required">
+              </div>
+              <div class="list-group-item">
+                <label for="apellido"> Apellido: </label>
+                <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" required="required"> 
+              </div>
+              <div class="list-group-item">
+                <label for="email"> Email: </label>
+                <input type="email" class="form-control" placeholder="Ingrese el mail" name="email">
+              </div>
+              <div class="list-group-item">
+                <label for="dni"> DNI: </label>
+                <input type="number" class="form-control" placeholder="Ingrese el DNI" name="DNI" required="required">
+              </div>
+              <div class="list-group-item">
+                <label for="telefono"> Telefono: </label>
+                <input type="text" class="form-control" placeholder="Ingrese el Telefono" name="telefono" required="required">
+              </div>
+              <button type="submit" class="btn btn-success mt-3">Nuevo</button>
+            </ul>
           </form>
         </div>
         <div class="modal-footer">
@@ -49,10 +49,16 @@
       {{mensaje}}
     </div>
   {% endif %}
-
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Profesor</button>
-  <a class="btn btn-primary" href="{% url 'importar_profesores' %}">Importar Profesores</a>
   
+  <!-- MDO MDO MDO -->
+  <div class="btn-responsive"> 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Profesor 👨‍🏫 </button>
+    <a class="btn btn-primary" href="{% url 'importar_profesores' %}"> Importar Profesores </a>
+  </div>
+
+  <!-- MDO MDO MDO -->
+  
+  <div class="table-responsive"> 
     <table class="table">
         <thead>
             <tr>
@@ -75,32 +81,32 @@
                     <th scope="row">{{profesor.id}}</th>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" value = "{{profesor.nombre}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre" value="{{profesor.nombre}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" value = "{{profesor.apellido}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el apellido" name="apellido" value="{{profesor.apellido}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value = "{{profesor.email}}">
+                        <input type="email" class="form-control" placeholder="Ingrese el email" name="email" value="{{profesor.email}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Ingrese el DNI" name="DNI" value = "{{profesor.dni}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el DNI" name="DNI" value="{{profesor.dni}}">
                       </div>
                     </td>
                     <td>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Ingrese el teléfono" name="telefono" value = "{{profesor.telefono}}">
+                        <input type="text" class="form-control" placeholder="Ingrese el teléfono" name="telefono" value="{{profesor.telefono}}">
                       </div>
                     </td>
                     <td>
-                      <button style="border-color: rgb(41, 159, 61); background-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary mb-2">Guardar</button>
-                      <a class="btn btn-primary" href="/proa/profesores" role="button">Cancelar</a>
+                      <button type="submit" class="btn btn-success"> Guardar </button>
+                      <a class="btn btn-danger" href="/proa/profesores" role="button"> Cancelar </a>
                     </td>
                   </div>
                   </form>
@@ -112,13 +118,14 @@
                   <td>{{profesor.dni}}</td>
                   <td>{{profesor.telefono}}</td>
                   <td>
-                    <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button">Eliminar</a>
-                    <a class="btn btn-primary" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button">Editar</a>
+                    <a class="btn btn-danger" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button"> Eliminar 🔴 </a>
+                    <a class="btn btn-success" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟢 </a>
                   </td> 
                 {% endif %}
               </tr>
             {% endfor %}
         </tbody>
     </table>
+  </div>
 </div>
 {% endblock %}

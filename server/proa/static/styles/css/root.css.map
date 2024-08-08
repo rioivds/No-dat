@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,qBAAqB;AAMrB,sBAAsB;AAItB,oBAAoB;AAMpB,sBAAsB",
+"mappings": "AAAA,qBAAqB;AAMrB,sBAAsB;AAItB,oBAAoB;AAMpB,sBAAsB;AAGtB,oBAAoB",
 "sources": ["../scss/root.scss"],
 "names": [],
 "file": "root.css"

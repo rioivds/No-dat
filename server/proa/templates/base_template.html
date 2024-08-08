@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{% static 'styles/css/header.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'styles/css/cards.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/css/base.css' %}" type="text/css">
 
         <!-- BOOTSTRAPS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -98,15 +99,6 @@
                                     </div>
                                 </li>
 
-                                {% if user.is_superuser %}
-                                <li>
-                                    <a href="/admin" title="Armin" class="btn btn-warning btn-sm"> Administrar django </a>
-                                </li>
-                                <li>
-                                    <a href="/proa/adminred" title="Armin" class="btn btn-warning btn-sm"> Administrar Red </a>
-                                </li>
-                                {% endif %}
-
                                 <li>
                                     <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes </a>
                                 </li>
@@ -117,6 +109,15 @@
                                     <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia </a>
                                 </li>
 
+                                {% if user.is_superuser %}
+                                <li>
+                                    <a href="/admin" title="Armin" class="btn btn-danger btn-sm"> Administrar django </a>
+                                </li>
+                                <li>
+                                    <a href="/proa/adminred" title="Armin" class="btn btn-danger btn-sm"> Administrar Red </a>
+                                </li>
+                                {% endif %}
+                                
                                 <!-- Boton de cerrar sesion creado por la eminencia -->
                                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}

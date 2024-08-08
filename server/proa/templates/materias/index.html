@@ -4,137 +4,126 @@
 {% block content %}
 
 <div class="container">
-    <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel"> Añadir Materia </h1>
-          </div>
-          <div class="modal-body">
-            <form action="/materias/new/" method="POST">
-              {% csrf_token %} 
-                <ul class="list-group"> 
-                    <div class="list-group-item">
-                      <label for="materia" class="col-form-label"> Materia: </label>
-                      <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
-                    </div>
-                    <div class="list-group-item">
-                      <label for="profesor" class="col-form-label"> Profesor/a: </label>
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
-                        {% for i in profesores %}
-                        <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
-                        {% endfor %}
-                      </select> 
-                    </div>
-                    <div class="list-group-item">
-                      <label for="curso"> Año: </label>
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                        <option value="1">1ro</option>
-                        <option value="2">2do</option>
-                        <option value="3">3ro</option>
-                        <option value="4">4to</option>
-                        <option value="5">5to</option>
-                        <option value="6">6to</option>
-                      </select>
-                    </div>
-                    
+  <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Añadir Materia </h1>
+        </div>
+        <div class="modal-body">
+          <form action="/materias/new/" method="POST">
+            {% csrf_token %} 
+              <ul class="list-group"> 
                   <div class="list-group-item">
-                      <label for="horas-catedra" class="col-form-label"> Horas Cátedra: </label>
-                      <input type="text" class="form-control" placeholder="Ingrese la cantidad de horas catedra" name="horas-catedra" required="required">
-                  </div>                  
-                    <button type="submit" class="btn btn-success mt-3"> Nuevo </button>
-                  </ul>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
+                    <label for="materia" class="col-form-label"> Materia: </label>
+                    <input type="text" class="form-control" placeholder="Ingrese la materia" name="materia" required="required">
+                  </div>
+                  <div class="list-group-item">
+                    <label for="profesor" class="col-form-label"> Profesor/a: </label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                      {% for i in profesores %}
+                      <option value ="{{ i.dni }}">{{ i.nombre }} {{ i.apellido }}</option>
+                      {% endfor %}
+                    </select> 
+                  </div>
+                  <div class="list-group-item">
+                    <label for="curso"> Año: </label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                      <option value="1">1ro</option>
+                      <option value="2">2do</option>
+                      <option value="3">3ro</option>
+                      <option value="4">4to</option>
+                      <option value="5">5to</option>
+                      <option value="6">6to</option>
+                    </select>
+                  </div>
+                  
+                <div class="list-group-item">
+                    <label for="horas-catedra" class="col-form-label"> Horas Cátedra: </label>
+                    <input type="text" class="form-control" placeholder="Ingrese la cantidad de horas catedra" name="horas-catedra" required="required">
+                </div>                  
+                  <button type="submit" class="btn btn-success mt-3"> Nuevo </button>
+                </ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
-    
-    {% if mensaje %}
-    <div class="alert alert-primary" role="alert">
-      {{ mensaje }}
-    </div>
-    {% endif %}
+  </div>
+  
+  {% if mensaje %}
+  <div class="alert alert-primary" role="alert">
+    {{ mensaje }}
+  </div>
+  {% endif %}
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Materia</button>
-    <a class="btn btn-primary" href="{% url 'importar_materias' %}">Importar Materias</a>
+  <!-- MDO MDO MDO -->
+  <div class="btn-responsive"> 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Materia 💼 </button>
+    <a class="btn btn-primary" href="{% url 'importar_materias' %}"> Importar Materias </a>
+  </div>
 
-    <table class="table">
-        <thead>
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col"> #ID </th>
+              <th scope="col"> Materia </th>
+              <th scope="col"> Profesor </th>
+              <th scope="col"> Año </th>
+              <th scope="col"> Horas Cátedra </th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for materia in materias %}
             <tr>
-                <th scope="col"> #ID </th>
-                <th scope="col"> Materia </th>
-                <th scope="col"> Profesor </th>
-                <th scope="col"> Año </th>
-                <th scope="col"> Horas Cátedra </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for materia in materias %}
-              <tr>
-                {% if materia.id == materias_edit.id %}
-                  <form action="/proa/materias/guardar/?id={{materia.id}}" method="POST">
-                  {% csrf_token %} 
-                  <div class="row">
-                    <th scope="row">{{materia.id}}</th>
-                    <td>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="ingrese la materia" name="nombre" value="{{materia.nombre}}">
-                      </div>
-                    </td>
-                    <td>
-                      <div class="list-group-item">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
-                          {% for i in profesores %}
-                          <option value ="{{ i.dni }}"{% if materia.profesor.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
-                          {% endfor %}
-                        </select> 
-                      </div>
-                    </td>
-                    <td>
-                      <div class="list-group-item">
-                        {% if materia.id == materias_edit.id %}
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                          <option value="1" {% if materia.curso.id == 1 %}selected{% endif %}>1ro</option>
-                          <option value="2" {% if materia.curso.id == 2 %}selected{% endif %}>2do</option>
-                          <option value="3" {% if materia.curso.id == 3 %}selected{% endif %}>3ro</option>
-                          <option value="4" {% if materia.curso.id == 4 %}selected{% endif %}>4to</option>
-                          <option value="5" {% if materia.curso.id == 5 %}selected{% endif %}>5to</option>
-                          <option value="6" {% if materia.curso.id == 6 %}selected{% endif %}>6to</option>
-                        </select>
-                      {% else %}
-                        {{materia.curso.nombre}}
-                      {% endif %}
-                      </div>
-                    </td>
-                    <td>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Horas cátedra" name="horas-catedra" value="{{materia.horas_catedra}}">
-                      </div>
-                    </td>
-                    <td>
-                      <button style="margin-bottom: 4px; background-color: rgb(41, 159, 61); border-color: rgb(41, 159, 61);" type="submit" class="btn btn-primary">Guardar</button>
-                      <a class="btn btn-primary" href="/proa/materias" role="button">Cancelar</a>
-                    </td>
-                  </div>
-                  </form>
-                {% else %}
-                  <th scope="row">{{ materia.id}}</th>
-                  <td>{{ materia.nombre}}</td>
-                  <td>{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
-                  <td>{{ materia.curso.anio}}</td>
-                  <td>{{ materia.horas_catedra}}</td>
+              {% if materia.id == materias_edit.id %}
+                <form action="/proa/materias/guardar/?id={{materia.id}}" method="POST">
+                {% csrf_token %} 
+                  <th scope="row">{{materia.id}}</th>
                   <td>
-                    <a style="background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/materias/delete?id={{materia.id}}" role="button">Eliminar</a>
-                    <a class="btn btn-primary" href="/proa/materias/editar?id={{materia.id}}" role="button">Editar</a>
-                  </td> 
-                {% endif %}
-              </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    <input type="text" class="form-control" placeholder="Ingrese la materia" name="nombre" value="{{materia.nombre}}">
+                  </td>
+                  <td>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="profesor">
+                      {% for i in profesores %}
+                      <option value ="{{ i.dni }}"{% if materia.profesor.dni == i.dni %}selected{% endif %}>{{ i.nombre }} {{ i.apellido }}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
+                      <option value="1" {% if materia.curso.id == 1 %}selected{% endif %}>1ro</option>
+                      <option value="2" {% if materia.curso.id == 2 %}selected{% endif %}>2do</option>
+                      <option value="3" {% if materia.curso.id == 3 %}selected{% endif %}>3ro</option>
+                      <option value="4" {% if materia.curso.id == 4 %}selected{% endif %}>4to</option>
+                      <option value="5" {% if materia.curso.id == 5 %}selected{% endif %}>5to</option>
+                      <option value="6" {% if materia.curso.id == 6 %}selected{% endif %}>6to</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Horas cátedra" name="horas-catedra" value="{{materia.horas_catedra}}">
+                  </td>
+                  <td>
+                    <button class="btn btn-success"> Guardar 🟢 </button>
+                    <a class="btn btn-danger" href="/proa/materias" role="button"> Cancelar 🔴 </a>
+                  </td>
+                </form>
+              {% else %}
+                <th scope="row">{{ materia.id}}</th>
+                <td>{{ materia.nombre}}</td>
+                <td>{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
+                <td>{{ materia.curso.anio}}</td>
+                <td>{{ materia.horas_catedra}}</td>
+                <td>
+                  <a class="btn btn-danger" href="/proa/materias/delete?id={{materia.id}}" role="button"> Eliminar 🔴 </a>
+                  <a class="btn btn-warning" href="/proa/materias/editar?id={{materia.id}}" role="button"> Editar 🟡 </a>
+                </td> 
+              {% endif %}
+            </tr>
+          {% endfor %}
+      </tbody>
+  </table>
 </div>
 {% endblock %}

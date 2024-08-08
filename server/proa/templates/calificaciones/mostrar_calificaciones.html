@@ -44,7 +44,7 @@
                   </select> 
                 </div>
                 <div class="list-group-item">
-                  <label for="fecha"> Fecha de la calificacion: </label>
+                  <label for="fecha"> Fecha de la calificación: </label>
                   <input type="date" class="form-control datepicker" placeholder="Ingrese fecha de la nota" name="fecha" id="fecha" required="required">
                 </div>
                 <div class="list-group-item">
@@ -74,8 +74,13 @@
     </div>
   {% endif %}
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form">Añadir Calificación</button>
-  <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button">Importar Calificaciones (Excel o PDF)</a>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Calificación </button>
+  <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button"> Importar Calificaciones (Excel o PDF) </a>
+
+  <!-- MDO MDO MDO -->
+  <button type="button" class="btn btn-primary"> Filtro pedagogía </button>
+  <!-- MDO MDO MDO -->
+
   <table class="table">
       <thead>
           <tr>
@@ -100,17 +105,15 @@
                 <td>{{calificacion.fecha}}</td>
                 <td>{{calificacion.nota}}</td>
                 <td>
-                  <div class="col">
-                    <div class="form-check">
-                      <input type="checkbox" class="custom-control-input" name="final" {% if calificacion.final %}checked disabled{% else %}disabled{% endif %} value="True">
-                      <label class="form-check-label" for="final_{{ calificacion.id }}">
-                        {% if calificacion.final %}Si{% else %}No{% endif %}
-                      </label>
-                    </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="final" {% if calificacion.final %}checked disabled{% else %}disabled{% endif %} value="True">
+                    <label class="form-check-label" for="final_{{ calificacion.id }}">
+                      {% if calificacion.final %}Si{% else %}No{% endif %}
+                    </label>
                   </div>
                 </td>
                 <td>
-                  <a style="margin: 3px; background-color: rgb(239, 53, 53); border-color: rgb(239, 53, 53);" class="btn btn-primary" href="/proa/calificaciones/delete?id={{calificacion.id}}" role="button">Eliminar</a>
+                  <a class="btn btn-danger" href="/proa/calificaciones/delete?id={{calificacion.id}}" role="button">Eliminar</a>
                 </td> 
             </tr>
           {% endfor %}

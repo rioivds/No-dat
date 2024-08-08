@@ -21,6 +21,10 @@ body {
     background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
 }
 
+.logo{
+    max-width: 90%;
+}
+
 .menu__wrapper {
     display: flex;
     justify-content: space-between;
