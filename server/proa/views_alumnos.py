@@ -1,12 +1,10 @@
 import datetime
 from django.shortcuts import render
 from proa.models import Alumno, Curso
-from django.shortcuts import get_object_or_404
-from datetime import datetime
 from .forms import ImportarAlumnosForm
 from django.http import HttpResponse, HttpResponseRedirect
 import openpyxl
-from .importaciones import importar_alumnos
+from .importaciones import importar_alumnos, importar_alumnos_pdf
 from .common import Common
 
 def index(request):
@@ -75,8 +73,14 @@ def importar_alumnos_view(request):
     if request.method == 'POST':
         form = ImportarAlumnosForm(request.POST, request.FILES)
         if form.is_valid():
-            archivo_excel = request.FILES['archivo_excel']
-            importar_alumnos(archivo_excel)
+            archivo = request.FILES['archivo_excel']
+            extension = str(archivo).split('.')[-1]
+
+            logs = []
+            if extension == 'pdf':
+                importar_alumnos_pdf(archivo)
+            elif extension == 'xlsx':
+                importar_alumnos(archivo)
             return HttpResponseRedirect('/alumnos')  # Redirigir a la página principal después de la importación
     else:
         form = ImportarAlumnosForm()

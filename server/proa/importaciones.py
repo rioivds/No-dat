@@ -102,6 +102,54 @@ def importar_alumnos(archivo):
         else:
             print(f'Se actualizó el alumno {nombre} {apellido}.')
 
+# Código para importar los alumnos por los PDF asquerosos del CIDI (PROPENSO A FALLOS, NO CONFÍEN).
+def importar_alumnos_pdf(pdf):
+    logs = []
+
+    parser = {
+        'PRIMER': 1,
+        'SEGUNDO': 2,
+        'TERCER': 3,
+        'CUARTO': 4,
+        'QUINTO': 5,
+        'SEXTO': 6
+    }
+
+    reader = PyPDF2.PdfReader(pdf) # Lector de PDF.
+    for page in reader.pages:
+        content = page.extract_text()
+        pos = content.index('Nombres Estado')+15
+
+        parts = content[pos::].split('\n')
+        for part in parts:
+            try:
+                data = part.split(' ')
+                grade = parser[data[0]]
+                dni = int(data[4])
+                fullname = ' '.join(data[6:-1]).split(',')
+                lastname = fullname[0]
+                name = fullname[1][1::]
+
+                curso = Curso.objects.get(anio=grade)
+                alumno, creado = Alumno.objects.update_or_create(
+                    dni=dni,
+                    defaults={
+                        'nombre': name,
+                        'apellido': lastname,
+                        'fecha_nacimiento': None,
+                        'email': '',
+                        'repitio': False,
+                        'curso': curso
+                    }
+                )
+
+                if not creado:
+                    logs.append('SE ACTUALIZÓ A "{name} {lastname}" CON DNI "{dni}"')
+            except:
+                pass
+
+    return logs
+
 # Código que hice a las apuradas para leer las calificaciones desde un PDF.
 def importar_calificaciones_pdf(pdf):
     reader = PyPDF2.PdfReader(pdf) # Lector de PDF.
