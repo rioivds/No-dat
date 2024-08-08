@@ -20,10 +20,6 @@ body {
   padding: 3%;
   background: linear-gradient(to right, #2393fc, #17223b); }
 
-.logo {
-  width: 150%;
-  margin-right: 5%; }
-
 .menu__wrapper {
   display: flex;
   justify-content: space-between;

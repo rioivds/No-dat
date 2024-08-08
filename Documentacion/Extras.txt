@@ -1,0 +1,13 @@
+Pasos para dar de alta el server:
+
+-Instalar Python 
+-Abrir Carpeta de trabajo en VSCode y abrir la consola
+-Verificar instalacion de Python (escribiendo "pyhton" en la consola)
+-instalar django: "pip install django"
+-instalar openpyxl: pip install pandas openpyxl (para manejo de archivos excel)
+-Crear migracion en la base de datos: "python manage.py makemigrations" en la consola  (solo se hace si se cambia base de datos)
+-Hacer la migracion de la base de datos: "python manage.py migrate" en la consola
+-crear superusuario admin: "python3 manage.py createsuperuser"
+-Activamos el server: "python manage.py runserver" en la consola
+-entrar al admin : http://http://127.0.0.1:8000/admin y crear los cursos (1,2,3,4,5,6)
+-Accedemos de forma local con el navegador: http://http://127.0.0.1:8000/proa/

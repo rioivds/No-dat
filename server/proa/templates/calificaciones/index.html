@@ -6,7 +6,7 @@
   {% for curso in cursos %}
     <article>
         <figure>
-            <img class="calificacion-imagen" alt="registro-alumnos">
+            <img class="calificaciones-imagen" alt="registro-alumnos">
         </figure>
         <div class="article-preview">
             <h2> Registro de {{curso.anio}}° Año </h2>
@@ -18,7 +18,7 @@
   </div>
 
   <script>
-    const images = document.querySelectorAll('.calificacion-imagen');
+    const images = document.querySelectorAll('.calificaciones-imagen');
     for (let i = 0; i < images.length; ++i) {
       images[i].src = `../static/img/Calificaciones/calificaciones-${i+1}.jpg`;
     }

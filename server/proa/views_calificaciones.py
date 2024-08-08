@@ -7,7 +7,9 @@ from .importaciones import importar_calificaciones, importar_calificaciones_pdf
 from .common import Common
 
 def index(request):
-    return render(request, 'calificaciones/index.html')
+    cursos = Curso.objects.all()
+
+    return render(request, 'calificaciones/index.html', {'cursos': cursos})
 
 def mostrar_calificaciones(request, curso):
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
