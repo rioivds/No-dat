@@ -2,95 +2,26 @@
 {% block title %}Proa - Calificaciones{% endblock %}
 {% load static %}
 {% block content %}
-  <!-- MDO MDO MDO -->
-  
-  <!-- 1er Año --> 
   <div class="articles">
+  {% for curso in cursos %}
     <article>
         <figure>
-            <img src="{% static 'img/Calificaciones/calificaciones-1ro.jpg' %}" alt="registro-alumnos">
+            <img class="calificacion-imagen" alt="registro-alumnos">
         </figure>
         <div class="article-preview">
-            <h2> Registro de 1er Año </h2>
-            <p>
-              En esta sección podrás ver las calificaciones de los alumnos de 1er año.
-            </p>
-            <a href="/calificaciones/mostrar/1/" class="btn btn-primary">Ir a la sección</a>
+            <h2> Registro de {{curso.anio}}° Año </h2>
+            <p>En esta sección podrás ver las calificaciones de los alumnos de {{curso.anio}}° año.</p>
+            <a href="/calificaciones/mostrar/{{curso.anio}}/" class="btn btn-primary">Ir a la sección</a>
         </div>
     </article>
-
-  <!-- 2do Año -->
-    <article>
-        <figure>
-            <img src="{% static 'img/Calificaciones/calificaciones-2do.jpg' %}" alt="registro-alumnos">
-        </figure>
-        <div class="article-preview">
-            <h2> Registro de 2do Año </h2>
-            <p>
-              En esta sección podrás ver las calificaciones de los alumnos de 2do año.
-            </p>
-            <a href="/calificaciones/mostrar/2/" class="btn btn-primary">Ir a la sección</a>
-        </div>
-    </article>
-
-
-    <!-- 3er Año -->
-      <article>
-          <figure>
-              <img src="{% static 'img/Calificaciones/calificaciones-3er.jpg' %}" alt="registro-alumnos">
-          </figure>
-          <div class="article-preview">
-              <h2> Registro de 3er Año </h2>
-              <p>
-                En esta sección podrás ver las calificaciones de los alumnos de 3er año.
-              </p>
-              <a href="/calificaciones/mostrar/3/" class="btn btn-primary">Ir a la sección</a>
-          </div>
-      </article>
-
-  <!-- 4to Año -->
-    <article>
-        <figure>
-            <img src="{% static 'img/Calificaciones/calificaciones-4to.jpg' %}" alt="registro-alumnos">
-        </figure>
-        <div class="article-preview">
-            <h2> Registro de 4to Año </h2>
-            <p>
-              En esta sección podrás ver las calificaciones de los alumnos de 4to año.
-            </p>
-            <a href="/calificaciones/mostrar/4/" class="btn btn-primary">Ir a la sección</a>
-        </div>
-    </article>
-
-  <!-- 5to Año -->
-    <article>
-        <figure>
-            <img src="{% static 'img/Calificaciones/calificaciones-5to.jpg' %}" alt="registro-alumnos">
-        </figure>
-        <div class="article-preview">
-          <h2> Registro de 5to Año </h2>
-          <p>
-            En esta sección podrás ver las calificaciones de los alumnos de 5to año.
-          </p>
-          <a href="/calificaciones/mostrar/5/" class="btn btn-primary">Ir a la sección</a>
-        </div>
-    </article>
-
-  <!-- 6to Año -->
-    <article>
-      <figure>
-        <img src="{% static 'img/Calificaciones/calificaciones-6to.jpg' %}" alt="registro-alumnos">
-      </figure>
-      <div class="article-preview">
-        <h2> Registro de 6to Año </h2>
-        <p>
-          En esta sección podrás ver las calificaciones de los alumnos de 6to año.
-        </p>
-        <a href="/calificaciones/mostrar/6/" class="btn btn-primary">Ir a la sección</a>
-      </div>
-    </article>
+  {% endfor %}
   </div>
 
-  <!-- MDO MDO MDO -->
+  <script>
+    const images = document.querySelectorAll('.calificacion-imagen');
+    for (let i = 0; i < images.length; ++i) {
+      images[i].src = `../static/img/Calificaciones/calificaciones-${i+1}.jpg`;
+    }
+  </script>
 {% endblock %}
 
