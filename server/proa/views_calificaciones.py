@@ -1,14 +1,12 @@
 import datetime
 from django.shortcuts import render, redirect
 from proa.models import Alumno, Curso, Calificaciones, Profesor, Materia
-from django.shortcuts import get_object_or_404
 from datetime import datetime
 from .importaciones import importar_calificaciones, importar_calificaciones_pdf
 from .common import Common
 
 def index(request):
     cursos = Curso.objects.all()
-
     return render(request, 'calificaciones/index.html', {'cursos': cursos})
 
 def mostrar_calificaciones(request, curso):
@@ -98,42 +96,6 @@ def guardar_edit(request):
     })
 
 def importar_calificaciones_view(request):
-    # mensaje = ''  # Asignar un valor predeterminado o una cadena vacía
-    # if request.method == 'POST' and request.FILES.get('archivo_excel'):
-    #     archivo_excel = request.FILES['archivo_excel']
-    #     try:
-    #         workbook = openpyxl.load_workbook(archivo_excel)
-    #         sheet = workbook.active
-
-    #         for row in sheet.iter_rows(min_row=2, values_only=True):
-    #             alumno_dni = row[0]  # Suponiendo que en la columna 1 del Excel tienes el DNI del alumno
-    #             curso_id = row[1]  # Suponiendo que en la columna 2 del Excel tienes el ID del curso
-    #             materia_id = row[2]  # Suponiendo que en la columna 3 del Excel tienes el ID de la materia
-    #             profesor_id = row[3]  # Suponiendo que en la columna 4 del Excel tienes el ID del profesor
-    #             fecha = row[4]  # Suponiendo que en la columna 5 del Excel tienes la fecha de la calificación
-    #             nota = row[5]  # Suponiendo que en la columna 6 del Excel tienes la nota de la calificación
-    #             final = row[6]  # Suponiendo que en la columna 7 del Excel tienes un valor booleano para indicar si es final
-
-    #             # Obtener o crear el alumno
-    #             alumno, _ = Alumno.objects.get_or_create(dni=alumno_dni)
-
-    #             # Obtener o crear la materia
-    #             materia, _ = Materia.objects.get_or_create(id=materia_id)
-
-    #             # Obtener o crear el profesor
-    #             profesor, _ = Profesor.objects.get_or_create(dni=profesor_id)
-
-    #             # Obtener o crear el curso
-    #             curso, _ = Curso.objects.get_or_create(id=curso_id)
-
-    #             # Crear la calificación
-    #             calificacion = Calificaciones(alumno=alumno, curso=curso, materia=materia, profesor=profesor, fecha=fecha, nota=nota, final=final)
-    #             calificacion.save()
-
-    #         mensaje = 'Calificaciones importadas correctamente.'
-    #     except Exception as e:
-    #         mensaje = f'Error al importar las calificaciones: {e}'
-
     if request.method == 'GET':
         return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': None})
 

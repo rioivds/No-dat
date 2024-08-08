@@ -106,7 +106,6 @@ def importar_alumnos(archivo):
 def importar_calificaciones_pdf(pdf):
     reader = PyPDF2.PdfReader(pdf) # Lector de PDF.
     content = reader.pages[0].extract_text() # Se extrae todo el contenido del PDF.
-
     pos = content.index('Curso:')
 
     # Obtener el nombre de la materia.
@@ -150,19 +149,19 @@ def importar_calificaciones_pdf(pdf):
     # Obtener los alumnos y sus notas.
     parts = content.split('\n')
     i = parts.index('Final')+1
-    for j in range(i, len(parts)):
+    for current in parts[i::]:
         # Obtener el apellido del alumno.
         lastname = ''
         k = 0
-        while parts[j][k] != ',':
-            lastname += parts[j][k]
+        while current[k] != ',':
+            lastname += current[k]
             k += 1
 
         # Obtener el nombre del alumno.
         name = ''
         k += 2
-        while not parts[j][k].isdigit():
-            name += parts[j][k]
+        while not current[k].isdigit():
+            name += current[k]
             k += 1
 
         alumno = None
@@ -173,15 +172,24 @@ def importar_calificaciones_pdf(pdf):
             continue
 
         # Obtener notas.
-        grades = parts[j][k:len(parts[j])].split(' ')
+        grades = current[k::].split(' ')
         for n in grades:
+            nota = None
+            if len(n) > 1:
+                if n[-1] == '0':
+                    nota = 10.0
+                else:
+                    nota = float(n[-1])
+            else:
+                nota = float(n)
+
             Calificaciones.objects.create(
                 alumno=alumno,
                 curso=curso,
                 materia=materia,
                 profesor=materia.profesor,
                 fecha=datetime.today(),
-                nota=float(n),
+                nota=nota,
                 final=False
             )
 
