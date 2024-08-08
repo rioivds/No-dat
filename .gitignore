@@ -130,6 +130,3 @@ dmypy.json
 # Ignore database files
 */db.sqlite3
 */migrations
-
-# Ignore django configs
-server/server
