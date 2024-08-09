@@ -64,8 +64,9 @@
 
 <div class="articles">
   <article href="/proa/alumnos">
+    <a href="/proa/alumnos" class="links">
       <figure href="/proa/alumnos">
-          <img src="{% static 'img/registro-alumnos.jpg' %}"a alt="registro-alumnos">
+          <img src="{% static 'img/registro-alumnos.png' %}"a alt="registro-alumnos">
       </figure>
       <div class="article-preview">
           <h2> Registro de Alumnos </h2>
@@ -74,8 +75,11 @@
           </p>
           <a href="/proa/alumnos" class="btn btn-primary">Ir a la sección</a>
       </div>
+    </a>
   </article>
+
   <article>
+    <a href="/proa/profesores" class="links">
       <figure>
           <img src="{% static 'img/registro-profes.jpg' %}" alt="registro-profesores">
       </figure>
@@ -86,8 +90,11 @@
           </p>
           <a href="/proa/profesores" class="btn btn-primary">Ir a la sección</a>
       </div>
+    </a>
   </article>
+
   <article>
+    <a href="/proa/materias" class="links">
       <figure>
           <img src="{% static 'img/registro-materias.jpg' %}" alt="registro-materias">
       </figure>
@@ -98,8 +105,11 @@
           </p>
           <a href="/proa/materias" class="btn btn-primary">Ir a la sección</a>
       </div>
+    </a>
   </article>
+
   <article>
+    <a href="proa/calificaciones" class="links">
       <figure>
           <img src="{% static 'img/registro-calificaciones.jpg' %}" alt="registro-calificaciones">
       </figure>
@@ -110,6 +120,7 @@
           </p>
           <a href="/calificaciones" class="btn btn-primary">Ir a la sección</a>
       </div>
+    </a>
   </article>
 </div>
-  {% endblock %}
+{% endblock %}

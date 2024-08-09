@@ -1,0 +1,129 @@
+@import "./root.scss";
+
+.accordion-container {
+    min-width: 330px;
+    padding: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #eeeeee;
+    border: $--celeste 2px solid;
+}
+
+.main-item {
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+    transition: all ease-in-out 0.25s;
+    color: $--texto-alternativo;
+}
+
+.main-item svg {
+    stroke: $--item-no-hover;
+    transition: all ease-in-out 0.25s;
+}
+
+.main-item:hover svg {
+    stroke: $--item-principal;
+}
+
+.main-item--open {
+    border-radius: 8px;
+    background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
+    transition: all 200ms;
+}
+
+.main-item--open:hover {
+    color: $--texto;
+    border-radius: 8px;
+    background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
+}
+
+.main-item--open svg {
+    stroke: $--item-principal;
+}
+
+.accordion-container > ul {
+    max-height: 0;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 14px;
+    opacity: 0;
+    font-size: smaller;
+    visibility: hidden;
+    transition: all ease-in-out 0.2s;
+    font-size: 1.3rem;
+    color: $--texto;
+}
+
+.main-item--open + ul {
+    visibility: visible;
+    max-height: 400px;
+    padding-left: 22px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.accordion-container > ul > li {
+    height: 48px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.accordion-container > ul > li > a {
+    padding: 16px 8px;
+    height: 38px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 8px;
+
+    color: $--texto-alternativo;
+}
+
+.accordion-container > ul > li:hover {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.accordion-container > ul > li:hover > a {
+    background-color: $--item-fondo;
+    width: 100%;
+}
+
+.expand-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+}
+
+.main-item--open > .expand-icon {
+    transform: rotate(-90deg);
+}
+
+.line-vertical {
+    display: block;
+    background-color: $--item-fondo;
+    width: 2px;
+    height: 48px;
+}
+
+.accordion-container > ul > 
+li:last-child > .line-vertical {
+    height: 25px;
+    align-self: flex-start;
+}
+
+.line-horizontal {
+    display: block;
+    background-color: $--item-fondo;
+    height: 2px;
+    min-width: 12px;
+}

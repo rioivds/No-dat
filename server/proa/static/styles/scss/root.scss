@@ -3,6 +3,7 @@ $--celeste: #2393fc;
 $--primario-luminoso: #0f5aa1;
 $--primario-oscuro: #17223b;
 $--texto: #ffffff;
+$--texto-alternativo: #1e1e1e;
 
 /* root: login.scss */
 $--secundario-login: #1D1D1D;
@@ -18,4 +19,12 @@ $--primary-dark2: #141a70;
 $--filtro-blanco: invert(50%) brightness(500%);
 
 /* root: base.css */
-$--tablas-principal: #4a38b0;                   
+$--tablas-principal: #4a38b0;
+
+/* root: calificaciones.scss */
+$--item-principal: #3B3E40;
+$--item-gris: #D5D4D5;
+$--fondo: #2C2C2C;
+$--item-no-hover: #92969A;
+$--item-fondo: #0665be;
+

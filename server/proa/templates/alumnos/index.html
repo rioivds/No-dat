@@ -7,7 +7,74 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+  <div class="container">
+    <article>
+      <nav class="accordion-container">
+        <div class="main-item">
+            <h2> Alumnos 👨‍🎓👩‍🎓 </h2>
+            <svg xmlns="http://www.w3.org/2000/svg"class="expand-icon"width="44"height="44" viewBox="0 0 24 24"stroke-width="1.5" stroke="currentColor"fill="none" stroke-linecap="round"stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M9 6l6 6l-6 6" />
+            </svg>
+        </div>
+        <ul>
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="#">
+                  1er Año 📘
+              </a>
+            </li>
+    
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="#">
+                  2do Año 📗
+              </a>
+            </li>
+    
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="#">
+                  3er Año 📒
+              </a>
+            </li>
+    
+            <li>
+              <div class="line-vertical"></div>
+                <div class="line-horizontal"></div>
+                <a href="#">
+                    4to Año 📙
+                </a>
+            </li>
+    
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="#">
+                  5to Año 📕
+              </a>
+            </li>
+    
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="#">
+                  6to Año 🎓
+              </a>
+            </li>
+    
+        </ul>
+      </nav>
+    </article>
+    
+    <script src="{% static 'js/calificaciones.js' %}"></script>
+  </div>
+{% endblock %}
+
+<!-- MDO MDO MDO (TABLAS ORIGINALES)
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -49,10 +116,11 @@
                       <option value="6">6to</option>
                     </select>
                   </div>
+
                   <div class="list-group-item">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="repitio" name="repitio">
-                      <label class="form-check-label" for="repitio"> ¿Repitió?</label>
+                      <label class="form-check-label" for="repitio"> ¿Repitió? </label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Nuevo</button>
@@ -91,19 +159,19 @@
   {% endif %}
 
 
-  <!-- MDO MDO MDO -->
+  < MDO MDO MDO >
     <div class="btn-responsive"> 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Alumno 👨‍🎓 </button>
 
         <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <button type="submit" class="btn btn-primary"> Importar Alumnos </button>
+          <a href="{% url 'importar_alumnos' %}" class="btn btn-success">Importar Alumnos</a>
         </form>
 
-        <!-- Botón de exportar a Excel -->
+        < Botón de exportar a Excel >
         <a href="{% url 'exportar_alumnos' %}" class="btn btn-success"> Exportar a Excel 📁 </a>
     </div>
-  <!-- MDO MDO MDO -->
+  < MDO MDO MDO >
   
   <div class="table-responsive">
     <table class="table">
@@ -116,31 +184,30 @@
           <th scope="col">Fecha de Nacimiento</th>
           <th scope="col">Año</th>
           <th scope="col">¿Repitente?</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         {% for alumno in alumnos %}
           <tr>
             {% if alumno.dni == alumnos_edit.dni %}
-            <form action="/proa/alumnos/guardar/?id={{alumno.dni}}" method="POST">
+            <form action="/proa/alumnos/guardar/?id={{alumno.dni}}" method="POST" style="display: flex; align-items: center;">
               {% csrf_token %}
-              <td>
+              <td style="padding-right: 10px;">
                 <input class="form-control" name="nombre" type="text" value="{{alumno.nombre}}">
               </td>
-              <td>
+              <td style="padding-right: 10px;">
                 <input class="form-control" name="apellido" type="text" value="{{alumno.apellido}}">
               </td>
-              <td>
+              <td style="padding-right: 10px;">
                 <input class="form-control" name="email" type="email" value="{{alumno.email}}">
               </td>
-              <td>
+              <td style="padding-right: 10px;">
                 <input class="form-control" name="DNI" type="text" value="{{alumno.dni}}">
               </td>
-              <td>
+              <td style="padding-right: 10px;">
                 <input class="form-control" name="fecha_nacimiento" type="text" value="{{alumno.fecha_nacimiento}}">
               </td>
-              <td>
+              <td style="padding-right: 10px;">
                 <select class="form-control" name="curso">
                   <option value="1" {% if alumno.curso.id == 1 %}selected{% endif %}>1ro</option>
                   <option value="2" {% if alumno.curso.id == 2 %}selected{% endif %}>2do</option>
@@ -150,20 +217,23 @@
                   <option value="6" {% if alumno.curso.id == 6 %}selected{% endif %}>6to</option>
                 </select>
               </td>
-              <td>
-                <input class="form-check-input" type="checkbox" name="repitio" {% if alumno.repitio %}checked{% endif %}>
+            
+              < Edición del Checkbox de Repitió >
+              <td style="padding-right: 10px;">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="repitio" id="repitio_{{ alumno.dni }}" {% if alumno.repitio %}checked{% endif %}>
+                  <label class="form-check-label" for="repitio_{{ alumno.dni }}"> ¿Repitió? </label>
+                </div>
               </td>
-
-              <!-- MDO MDO MDO -->
-              <div class="btn-responsive"> 
-                <td class="btn-responsive">
-                  <button type="submit" class="btn btn-success"> Guardar 🟢 </button>
-                  <a class="btn btn-danger" href="/proa/alumnos"> Cancelar 🔴</a>
-                </td>
-              </div>
-              <!-- MDO MDO MDO -->
-
+            
+              <td style="padding-right: 10px;">
+                <button type="submit" class="btn btn-success"> Guardar 🟢 </button>
+              </td>
+              <td>
+                <a class="btn btn-danger" href="/proa/alumnos"> Cancelar 🔴</a>
+              </td>
             </form>
+            
             {% else %}
             <td data-label="Nombre">{{alumno.nombre}}</td>
             <td data-label="Apellido">{{alumno.apellido}}</td>
@@ -172,6 +242,16 @@
             <td data-label="Cumpleaños">{{alumno.fecha_nacimiento}}</td>
             <td data-label="Año">{{alumno.curso.anio}}</td>
             <td data-label="¿Repitente?">
+
+            <td data-label="¿Repitente?">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="repitio" {% if alumno.repitio %}checked{% endif %} disabled>
+                <label class="form-check-label" for="repitio_{{ alumno.dni }}">
+                  {% if alumno.repitio %}Sí{% else %}No{% endif %}
+                </label>
+              </div>
+            </td>
+              
             
             <div class="btn-responsive"> 
               <td>
@@ -195,5 +275,5 @@
       </tbody>
     </table>
   </div>
-</div>
-{% endblock %}
+MDO MDO MDO -->
+

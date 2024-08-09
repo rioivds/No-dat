@@ -1,24 +1,22 @@
 {% extends "base_template.html" %}
 {% load static %}
-
-{% block title %}Importar Profesores{% endblock %}
-
+{% block title %}Proa - Importar Alumnos{% endblock %}
 {% block content %}
 <div class="container">
-  <h1>Importar Profesores</h1>
-  {% if mensaje %}
-    <div class="alert alert-primary" role="alert">
-      {{ mensaje }}
-    </div>
+  <h1 class="mb-4">Importar Alumnos</h1>
+  {% if mensajes is not None %}
+    {% for mensaje in mensajes %}
+    <div class="alert alert-primary" role="alert">{{ mensaje }}</div>
+    {% endfor %}
   {% endif %}
-  
-  <form action="/profesores/importar_profesores/" method="post" enctype="multipart/form-data">
+
+  <form action="{% url 'importar_alumnos' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
-      <label for="archivo_excel" class="form-label">Seleccione el archivo Excel:</label>
-      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx" required>
+      <label for="archivo_excel" class="form-label">Seleccione el archivo (Excel o PDF):</label>
+      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
     </div>
-    <button type="submit" class="btn btn-primary">Importar Profesores</button>
+    <button type="submit" class="btn btn-primary">Importar Alumnos</button>
   </form>
 </div>
 {% endblock %}

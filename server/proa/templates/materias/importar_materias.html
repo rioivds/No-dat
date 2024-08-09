@@ -1,22 +1,29 @@
-{% extends "base_template.html" %}
-{% load static %}
-
-{% block title %}Importar Materias{% endblock %}
-
-{% block content %}
+{% extends "base_template.html" %} {% load static %} {% block title %}Importar
+Materias{% endblock %} {% block content %}
 <div class="container">
   <h1>Importar Materias</h1>
   {% if mensaje %}
-    <div class="alert alert-primary" role="alert">
-      {{ mensaje }}
-    </div>
+  <div class="alert alert-primary" role="alert">{{ mensaje }}</div>
   {% endif %}
-  
-  <form action="/materias/importar_materias/" method="post" enctype="multipart/form-data">
+
+  <form
+    action="/materias/importar_materias/"
+    method="post"
+    enctype="multipart/form-data"
+  >
     {% csrf_token %}
     <div class="mb-3">
-      <label for="archivo_excel" class="form-label">Seleccione el archivo Excel:</label>
-      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx" required>
+      <label for="archivo_excel" class="form-label"
+        >Seleccione el archivo Excel:</label
+      >
+      <input
+        type="file"
+        class="form-control"
+        id="archivo_excel"
+        name="archivo_excel"
+        accept=".xlsx"
+        required
+      />
     </div>
     <button type="submit" class="btn btn-primary">Importar Materias</button>
   </form>

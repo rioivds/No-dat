@@ -1,18 +1,16 @@
-@import "./root.scss"; // Url con las variables con estilos ya predefinidos
-
-/* BOTONES RESPONSIVOS */
-
-.btn-responsive{
-    display: flex;
+/* Estilo para alinear los botones horizontalmente */
+.btn-responsive {
+    display: flex; 
 }
 
-.btn-responsive .btn{
+.btn-responsive .btn {
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
 }
 
-/* TABLAS RESPONSIVAS */
+/* Otras configuraciones siguen igual */
 
+/* Tablas Responsivas */
 .table-responsive {
     overflow-x: auto;
 }
@@ -20,7 +18,7 @@
 table {
     max-width: 100%;
     border-collapse: collapse;
-    border: 2px $--tablas-principal solid;
+    border: 2px #4a38b0 solid;
 }
 
 th, td {
@@ -29,11 +27,14 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
+.prueba {
+    border: 5px red solid;
+}
+
 @media screen and (max-width: 768px) {
-    // Estilos de focking tablas 
     table {
         margin-top: 5%;
-        border: 2px $--tablas-principal solid;
+        border: 2px #4a38b0 solid;
     }
 
     th, td {
@@ -53,16 +54,15 @@ th, td {
     th {
         display: none;
     }
-    // Estilos de focking tablas 
 
-    // Descripcion de cada usuario
     td {
         text-align: right;
         padding-left: 50%;
         position: relative;
+        margin-top: 2%;
     }
 
-    td:before { 
+    td:before {
         content: attr(data-label);
         position: absolute;
         left: 10px;
@@ -71,5 +71,8 @@ th, td {
         font-weight: bold;
         text-align: left;
     }
-    // Descripcion de cada usuario
+
+    td {
+        color: rgb(0, 0, 0);
+    }
 }

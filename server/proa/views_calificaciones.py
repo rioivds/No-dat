@@ -102,10 +102,10 @@ def importar_calificaciones_view(request):
     archivo = request.FILES['archivo_excel']
     extension = str(archivo).split('.')[-1]
 
-    logs = []
+    logs = None
     if extension == 'pdf':
         logs = importar_calificaciones_pdf(archivo)
     elif extension == 'xlsx':
         importar_calificaciones(archivo)
 
-    return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs if logs else None})
+    return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs})
