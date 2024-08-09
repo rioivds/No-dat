@@ -100,8 +100,9 @@ def importar_alumnos(archivo):
         )
 
         if not creado:
-            logs.append('SE ACTUALIZÓ A "{nombre} {apellido}" CON DNI "{dni}"')
+            logs.append(f'SE ACTUALIZÓ A "{nombre} {apellido}" CON DNI "{dni}"')
 
+    logs.append('LOS ALUMNOS FUERON CARGADOS CON ÉXITO')
     return logs
 
 # Código para importar los alumnos por los PDF asquerosos del CIDI (PROPENSO A FALLOS, NO CONFÍEN).
@@ -146,10 +147,11 @@ def importar_alumnos_pdf(pdf):
                 )
 
                 if not creado:
-                    logs.append('SE ACTUALIZÓ A "{name} {lastname}" CON DNI "{dni}"')
+                    logs.append(f'SE ACTUALIZÓ A "{name} {lastname}" CON DNI "{dni}"')
             except:
                 pass
 
+    logs.append('LOS ALUMNOS FUERON CARGADOS CON ÉXITO')
     return logs
 
 # Código que hice a las apuradas para leer las calificaciones desde un PDF.
