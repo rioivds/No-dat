@@ -73,6 +73,8 @@ def importar_profesores(archivo):
             print(f'Se actualizó el profesor {nombre} {apellido}.')
 
 def importar_alumnos(archivo):
+    logs = []
+
     df = pandas.read_excel(archivo, engine='openpyxl')
     for _, row in df.iterrows():
         dni = int(row['dni'])
@@ -97,10 +99,10 @@ def importar_alumnos(archivo):
             }
         )
 
-        if creado:
-            print(f'Se creó el alumno {nombre} {apellido}.')
-        else:
-            print(f'Se actualizó el alumno {nombre} {apellido}.')
+        if not creado:
+            logs.append('SE ACTUALIZÓ A "{nombre} {apellido}" CON DNI "{dni}"')
+
+    return logs
 
 # Código para importar los alumnos por los PDF asquerosos del CIDI (PROPENSO A FALLOS, NO CONFÍEN).
 def importar_alumnos_pdf(pdf):
