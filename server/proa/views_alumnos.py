@@ -61,12 +61,13 @@ def guardar_edit(request):
     apellido = request.POST['apellido']
     email = request.POST['email']
     fecha_nacimiento = Common.parse_fecha(None if request.POST['fecha_nacimiento'] == 'None' else request.POST['fecha_nacimiento'])
-    repitio = request.POST.get('repitio')
+    repitio = request.POST.get('repitio') == 'on'
     curso = Curso.objects.get(id=request.POST['curso'])
 
-    alumnos = Alumno.objects.all()
-    Alumno.objects.filter(dni=DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
+    alumno = Alumno.objects.get(dni=DNI)
+    alumno.update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
 
+    alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html', {'mensaje': 'Se editó correctamente', 'alumnos': alumnos})
 
 def importar_alumnos_view(request):
