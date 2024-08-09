@@ -1,6 +1,11 @@
 {% extends "base_template.html" %}
 {% block title %}Proa - Alumnos{% endblock %}
 {% load static %}
+
+{% block resources %}
+  <script src="{% static 'JS/request.js' %}" defer></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,6 +58,23 @@
                   <button type="submit" class="btn btn-primary">Nuevo</button>
                 </ul>
           </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="pedagogical" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Consejo:</h1>
+        </div>
+        <div class="modal-body">
+          <img src="" alt=":(" id="tip">
         </div>
 
         <div class="modal-footer">
@@ -155,9 +177,17 @@
               <td>
                 <a class="btn btn-danger" href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
                 <a class="btn btn-warning" href="/proa/alumnos/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
-                <a class="btn btn-primary"> ProAI 🚽 </a>
+                <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> ProAI 🚽 </a>
               </td>
             </div>
+
+            <script>
+              document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
+                getData("{{alumno.nombre}}", data => {
+                  document.getElementById('tip').src = data.data[0].images.original.url;
+                });
+              })
+            </script>
 
             {% endif %}
           </tr>
