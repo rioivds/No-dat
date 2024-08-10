@@ -1,5 +1,5 @@
 const getData = (query, updateSource) => {
-    const API_KEY = '6iypQbKw0banGwrf4rVDWNE21L1cIShf';
+    const API_KEY = 'INSERT API KEY HERE';
     const URL = `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(query)}&api_key=${API_KEY}&limit=1`;
 
     fetch(URL)

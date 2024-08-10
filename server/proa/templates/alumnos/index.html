@@ -163,10 +163,14 @@
     <div class="btn-responsive"> 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Alumno 👨‍🎓 </button>
 
+<<<<<<< HEAD
         <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <a href="{% url 'importar_alumnos' %}" class="btn btn-success">Importar Alumnos</a>
         </form>
+=======
+        <a href="{% url 'importar_alumnos' %}" class="btn btn-success">Importar Alumnos</a>
+>>>>>>> a5a52ce8ef0d20446033a7d07f38dd7cfe5a46eb
 
         < Botón de exportar a Excel >
         <a href="{% url 'exportar_alumnos' %}" class="btn btn-success"> Exportar a Excel 📁 </a>

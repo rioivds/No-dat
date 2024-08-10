@@ -108,4 +108,8 @@ def importar_calificaciones_view(request):
     elif extension == 'xlsx':
         importar_calificaciones(archivo)
 
+<<<<<<< HEAD
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs})
+=======
+    return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs})
+>>>>>>> a5a52ce8ef0d20446033a7d07f38dd7cfe5a46eb
