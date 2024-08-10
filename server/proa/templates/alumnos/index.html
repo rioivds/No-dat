@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block resources %}
+  <link rel="stylesheet" href="{% static 'styles/css/loader.css' %}" type="text/css">
   <script src="{% static 'JS/request.js' %}" defer></script>
 {% endblock %}
 
@@ -177,6 +178,7 @@
       <button type="submit" class="btn btn-primary"> Importar Alumnos </button>
     </form>
 
+<<<<<<< HEAD
     <a href="{% url 'exportar_alumnos' %}" class="btn btn-success"> Exportar a Excel 📁 </a>
 </div>
 
@@ -228,6 +230,9 @@
           <td>
             <input class="form-check-input" type="checkbox" name="repitio" {% if alumno.repitio %}checked{% endif %}>
           </td>
+=======
+        <a href="{% url 'importar_alumnos' %}" class="btn btn-success">Importar Alumnos</a>
+>>>>>>> 164692896c26948734757e73e5c8f6950f6747c4
 
           <div class="btn-responsive"> 
             <td class="btn-responsive">
@@ -236,6 +241,7 @@
             </td>
           </div>
 
+<<<<<<< HEAD
         </form>
         {% else %}
         <td data-label="Nombre">{{alumno.nombre}}</td>
@@ -253,6 +259,18 @@
             <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> ProAI 🚽 </a>
           </td>
         </div>
+=======
+            <script>
+              document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
+                updateAdvice("{{alumno.nombre}}", data => {
+                  const adviceContainer = document.getElementById('advice');
+                  document.querySelector('.loader').style.display = 'none';
+                  adviceContainer.style.display = 'block';
+                  adviceContainer.innerHTML = data.advice;
+                });
+              })
+            </script>
+>>>>>>> 164692896c26948734757e73e5c8f6950f6747c4
 
         <script>
           document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
