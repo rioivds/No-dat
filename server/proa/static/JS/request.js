@@ -1,6 +1,6 @@
 // http://200.123.248.223:3000
 const updateAdvice = (query, updateSource) => {
-    const URL = 'http://127.0.0.1:3000';
+    const URL = 'http://200.123.248.223:3000';
 
     fetch(URL)
         .then (res => {
