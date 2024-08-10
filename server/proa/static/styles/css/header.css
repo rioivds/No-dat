@@ -1,3 +1,10 @@
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
+/* root: base.css */
+/* root: calificaciones.scss */
+/* root: dropzone.scss */
 * {
   font-weight: 300;
   font-family: 'Open Sans', sans-serif; }
@@ -14,17 +21,16 @@ body {
   margin-bottom: 2%;
   border: 1px solid black;
   padding: 3%;
-  background: linear-gradient(to right, #2393fc, #17223b); }
+  background: linear-gradient(to right, #0175b9, #17223b); }
 
-.links{
-  color: black ;
-  text-decoration: none;
-}
+.links {
+  color: black;
+  text-decoration: none; }
 
 .logo {
   max-width: 120%;
-  border: #0f5aa1 4px solid; 
-  border-radius: 28%;}
+  border: #0f5aa1 2px solid;
+  border-radius: 28%; }
 
 .menu__wrapper {
   display: flex;
@@ -56,7 +62,7 @@ body {
   min-height: 2.25rem; }
 
 .navigation > li:hover > button {
-  color: #2393fc; }
+  color: #0175b9; }
 
 .navigation > li > button {
   color: #ffffff;
@@ -68,7 +74,7 @@ body {
   background: none; }
 
 .navigation > li:hover .dropdown {
-  background: linear-gradient(to right, #2393fc, #17223b);
+  background: linear-gradient(to right, #0175b9, #17223b);
   display: block; }
 
 .navigation > li > button > svg {
@@ -76,7 +82,7 @@ body {
   fill: #ffffff;
   transition: all 1s ease-in-out; }
   .navigation > li > button > svg .navigation > li:hover > button svg {
-    fill: #0f5aa1;
+    fill: #161b43;
     transform: rotate(0.5turn); }
 
 @keyframes fadeIn {
@@ -151,7 +157,7 @@ body {
     pointer-events: all; }
 
   .burger-menu:focus {
-    outline: 1px solid #0f5aa1; }
+    outline: 1px solid #161b43; }
 
   .burger-menu svg {
     height: 1.5rem;
@@ -162,7 +168,7 @@ body {
     flex-direction: column;
     left: 0;
     max-width: 100%;
-    background: #0f5aa1;
+    background: #161b43;
     border-radius: 10px;
     padding: 50%; } }
 

@@ -1,12 +1,44 @@
-<<<<<<< HEAD
-{% extends "base_template.html" %} {% load static %} {% block title %}Proa -
-Importar Calificaciones{% endblock %} {% block content %}
-=======
-{% extends "base_template.html" %}
-{% load static %}
-{% block title %}Proa - Importar Calificaciones{% endblock %}
+{% extends "base_template.html" %} 
+{% load static %} 
+{% block title %}Proa - Importar Calificaciones
+{% endblock %} 
 {% block content %}
->>>>>>> a5a52ce8ef0d20446033a7d07f38dd7cfe5a46eb
+
+  <div class="container-dropzone">
+    <form class="dropzone-box">
+      <h2> Importar calificaciones </h2>
+      <p>
+          En esta sección puedes importar a los calificaciones ya sea con Excel o PDF
+      </p>
+      <div class="dropzone-area">
+          <div class="file-upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+              </svg>
+          </div>
+          <p> Clickea aqui para buscar tu archivo local o simplemente, agarralo y sueltalo </p>
+          <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
+          <p class="message"> No seleccionaste nada</p>
+      </div>
+      <div class="dropzone-actions">
+          <button type="reset">
+              Cancelar
+          </button>
+          <button id="submit-button" type="submit">
+              Importar calificaciones
+          </button>
+      </div>
+    </form>
+  </div>
+  <script src="{% static 'js/dropzone.js' %}"></script>
+  
+{% endblock %}
+
+<!-- OLD MENU 
+
 <div class="container">
   <h1>Importar Calificaciones</h1>
   {% if mensajes is not None %} {% for mensaje in mensajes %}
@@ -37,4 +69,5 @@ Importar Calificaciones{% endblock %} {% block content %}
     </button>
   </form>
 </div>
-{% endblock %}
+OLD MENU --> 
+

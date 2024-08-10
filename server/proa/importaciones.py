@@ -100,14 +100,9 @@ def importar_alumnos(archivo):
         )
 
         if not creado:
-<<<<<<< HEAD
-            logs.append('SE ACTUALIZÓ A "{nombre} {apellido}" CON DNI "{dni}"')
-
-=======
             logs.append(f'SE ACTUALIZÓ A "{nombre} {apellido}" CON DNI "{dni}"')
 
     logs.append('LOS ALUMNOS FUERON CARGADOS CON ÉXITO')
->>>>>>> a5a52ce8ef0d20446033a7d07f38dd7cfe5a46eb
     return logs
 
 # Código para importar los alumnos por los PDF asquerosos del CIDI (PROPENSO A FALLOS, NO CONFÍEN).

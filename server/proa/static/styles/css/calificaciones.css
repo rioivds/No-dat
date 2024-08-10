@@ -4,13 +4,14 @@
 /* root: footer.css */
 /* root: base.css */
 /* root: calificaciones.scss */
+/* root: dropzone.scss */
 .accordion-container {
   min-width: 330px;
   padding: 16px;
   border-radius: 16px;
   overflow: hidden;
   background-color: #eeeeee;
-  border: #2393fc 2px solid; }
+  border: #0175b9 2px solid; }
 
 .main-item {
   border-radius: 8px;
@@ -32,13 +33,13 @@
 
 .main-item--open {
   border-radius: 8px;
-  background: linear-gradient(to right, #2393fc, #17223b);
+  background: linear-gradient(to right, #0175b9, #17223b);
   transition: all 200ms; }
 
 .main-item--open:hover {
   color: #ffffff;
   border-radius: 8px;
-  background: linear-gradient(to right, #2393fc, #17223b); }
+  background: linear-gradient(to right, #0175b9, #17223b); }
 
 .main-item--open svg {
   stroke: #3B3E40; }
