@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block resources %}
+  <link rel="stylesheet" href="{% static 'styles/css/loader.css' %}" type="text/css">
   <script src="{% static 'JS/request.js' %}" defer></script>
 {% endblock %}
 
@@ -74,7 +75,18 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Consejo:</h1>
         </div>
         <div class="modal-body">
-          <img src="" alt=":(" id="tip">
+          <p id="advice" style="display: none;"></p>
+          <div class="loader">
+            <div class="square" id="sq1"></div>
+            <div class="square" id="sq2"></div>
+            <div class="square" id="sq3"></div>
+            <div class="square" id="sq4"></div>
+            <div class="square" id="sq5"></div>
+            <div class="square" id="sq6"></div>
+            <div class="square" id="sq7"></div>
+            <div class="square" id="sq8"></div>
+            <div class="square" id="sq9"></div>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -183,8 +195,11 @@
 
             <script>
               document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
-                getData("{{alumno.nombre}}", data => {
-                  document.getElementById('tip').src = data.data[0].images.original.url;
+                updateAdvice("{{alumno.nombre}}", data => {
+                  const adviceContainer = document.getElementById('advice');
+                  document.querySelector('.loader').style.display = 'none';
+                  adviceContainer.style.display = 'block';
+                  adviceContainer.innerHTML = data.advice;
                 });
               })
             </script>
