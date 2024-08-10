@@ -4,6 +4,7 @@
 /* root: footer.css */
 /* root: base.css */
 /* root: calificaciones.scss */
+/* root: dropzone.scss */
 .footer {
   max-width: 100%;
   color: #ffffff;
@@ -12,7 +13,7 @@
   justify-content: center;
   text-align: center;
   padding: 5.75rem;
-  background: linear-gradient(to right, #2393fc, #17223b);
+  background: linear-gradient(to right, #0175b9, #17223b);
   margin-top: 3%;
   max-width: 100%;
   padding: 5%;

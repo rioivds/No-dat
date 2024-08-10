@@ -21,8 +21,15 @@ body {
     background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
 }
 
-.logo{
-    max-width: 90%;
+.links{
+    color: black ;
+    text-decoration: none;
+}
+
+.logo {
+    max-width: 120%;
+    border: #0f5aa1 2px solid; 
+    border-radius: 28%;
 }
 
 .menu__wrapper {

@@ -29,4 +29,8 @@ const updateAdvice = (query, updateSource) => {
 //         .catch(e => {
 //             console.log(e);
 //         })
+<<<<<<< HEAD
 // }
+=======
+// }
+>>>>>>> 164692896c26948734757e73e5c8f6950f6747c4
