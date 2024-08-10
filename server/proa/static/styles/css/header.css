@@ -1,3 +1,4 @@
+/* root: cards.scss */
 /* root: universal */
 /* root: login.scss */
 /* root: nav.scss */
@@ -5,6 +6,11 @@
 /* root: base.css */
 /* root: calificaciones.scss */
 /* root: dropzone.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
 * {
   font-weight: 300;
   font-family: 'Open Sans', sans-serif; }
@@ -21,7 +27,8 @@ body {
   margin-bottom: 2%;
   border: 1px solid black;
   padding: 3%;
-  background: linear-gradient(to right, #0175b9, #17223b); }
+  background: linear-gradient(to right, #0175b9, #17223b);
+  box-shadow: #111824cb 10px 10px 40px; }
 
 .links {
   color: black;
@@ -30,7 +37,13 @@ body {
 .logo {
   max-width: 120%;
   border: #0f5aa1 2px solid;
-  border-radius: 28%; }
+  border-radius: 28%;
+  box-shadow: #111824cb 10px 10px 40px;
+  transition: .5s all ease-in-out; }
+
+.logo:hover {
+  transform: scale(1.1);
+  box-shadow: #488bffcb 10px 10px 40px; }
 
 .menu__wrapper {
   display: flex;
@@ -54,12 +67,19 @@ body {
   align-items: center;
   gap: 1rem; }
 
-.navigation > li {
+.navigation > li, .navigation > form {
   display: flex;
+  border-radius: 50px;
   position: relative;
   cursor: pointer;
   align-items: center;
-  min-height: 2.25rem; }
+  min-height: 2.25rem;
+  box-shadow: #111824cb 10px 10px 40px;
+  transition: .5s all ease-in-out; }
+
+.navigation > li:hover, .navigation > form:hover {
+  transform: scale(1.1);
+  box-shadow: #488bffcb 10px 10px 40px; }
 
 .navigation > li:hover > button {
   color: #0175b9; }
@@ -82,7 +102,7 @@ body {
   fill: #ffffff;
   transition: all 1s ease-in-out; }
   .navigation > li > button > svg .navigation > li:hover > button svg {
-    fill: #161b43;
+    fill: #022c4c;
     transform: rotate(0.5turn); }
 
 @keyframes fadeIn {
@@ -157,7 +177,7 @@ body {
     pointer-events: all; }
 
   .burger-menu:focus {
-    outline: 1px solid #161b43; }
+    outline: 1px solid #022c4c; }
 
   .burger-menu svg {
     height: 1.5rem;
@@ -168,7 +188,7 @@ body {
     flex-direction: column;
     left: 0;
     max-width: 100%;
-    background: #161b43;
+    background: #022c4c;
     border-radius: 10px;
     padding: 50%; } }
 

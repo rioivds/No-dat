@@ -18,7 +18,8 @@ body {
     margin-bottom: 2%;
     border: 1px solid black;
     padding: 3%;
-    background: linear-gradient(to right, $--celeste, $--primario-oscuro); 
+    background: linear-gradient(to right, $--celeste, $--primario-oscuro);
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px;
 }
 
 .links{
@@ -30,6 +31,13 @@ body {
     max-width: 120%;
     border: #0f5aa1 2px solid; 
     border-radius: 28%;
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px; 
+    transition: .5s all ease-in-out; 
+}
+
+.logo:hover{
+    transform: scale(1.1);
+    box-shadow: $--sombra-cajas 10px 10px 40px; 
 }
 
 .menu__wrapper {
@@ -40,12 +48,13 @@ body {
     width: 100%;
     max-width: 60rem;
     padding: 0px 1rem;
-    align-items: center; 
+    align-items: center;
 }
 
 .menu__bar {
     display: flex;
     align-items: center; 
+    
 }
 
 .navigation {
@@ -54,19 +63,28 @@ body {
     flex-direction: row;
     list-style-type: none;
     align-items: center;
-    gap: 1rem; 
+    gap: 1rem;
+    
 }
 
-.navigation > li {
+.navigation > li, .navigation > form {
     display: flex;
+    border-radius: 50px;
     position: relative;
     cursor: pointer;
     align-items: center;
     min-height: 2.25rem; 
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px;
+    transition: .5s all ease-in-out;  
+}
+
+.navigation > li:hover, .navigation > form:hover{
+    transform: scale(1.1);
+    box-shadow: $--sombra-cajas 10px 10px 40px; 
 }
 
 .navigation > li:hover > button {
-    color:$--celeste; 
+    color: $--celeste; 
 }
 
 .navigation > li > button {
@@ -202,7 +220,6 @@ body {
         max-width: 100%;
         background: $--primario-luminoso;
         border-radius: 10px;
-
         padding: 50%;
     }
 }

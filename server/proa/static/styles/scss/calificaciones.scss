@@ -7,6 +7,13 @@
     overflow: hidden;
     background-color: #eeeeee;
     border: $--celeste 2px solid;
+
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px;
+    transition: .5s all ease-in-out; 
+}
+
+.accordion-container:hover{
+    box-shadow: $--sombra-cajas 10px 10px 40px;
 }
 
 .main-item {

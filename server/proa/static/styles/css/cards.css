@@ -1,15 +1,19 @@
 @charset "UTF-8";
-:root {
-  --background22: #F8F8FF;
-  --text22: #2C2C2C; }
-
-html {
-  scroll-behavior: smooth; }
-
+/* root: cards.scss */
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
+/* root: base.css */
+/* root: calificaciones.scss */
+/* root: dropzone.scss */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth; }
 
 .articles {
   display: flex;
@@ -30,12 +34,17 @@ html {
   transition: all 0.4s ease-in-out;
   overflow: hidden;
   border-radius: 1rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; }
+  box-shadow: #111824cb 10px 10px 40px;
+  transition: .5s all ease-in-out; }
+
+.articles article:hover {
+  box-shadow: #488bffcb 10px 10px 40px;
+  transform: scale(1.1); }
 
 .articles article h2 {
   margin: 0 0 0.5rem 0;
   font-size: 1.6rem;
-  color: var(--text2);
+  color: #2C2C2C;
   transition: color 0.3s ease-out; }
 
 .articles article img {

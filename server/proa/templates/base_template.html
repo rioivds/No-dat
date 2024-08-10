@@ -5,10 +5,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSS MAP -->
+        <!-- Header and Nav -->
         <link rel="stylesheet" href="{% static 'styles/css/header.css' %}" type="text/css">
+
+        <!-- Footer -->
         <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
+
+        <!-- Cards -->
         <link rel="stylesheet" href="{% static 'styles/css/cards.css' %}" type="text/css">
+
+        <!-- Responsive -->
         <link rel="stylesheet" href="{% static 'styles/css/responsive.css' %}" type="text/css">
 
         <!-- Calificaciones -->
@@ -84,22 +90,22 @@
                                             <ul class="list-items-with-description">
                                                 <li>
                                                     <div class="item-title">
-                                                        <a href="/proa/alumnos"> Alumnos </a>
+                                                        <a href="/proa/alumnos"> Alumnos 👨‍🎓 </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a href="/proa/profesores"> Profesores </a>
+                                                        <a href="/proa/profesores"> Profesores 👨‍🏫 </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a href="/proa/materias"> Materias </a>
+                                                        <a href="/proa/materias"> Materias 📚 </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="item-title">
-                                                        <a href="/proa/calificaciones"> Calificaciones </a>
+                                                        <a href="/proa/calificaciones"> Calificaciones 🤠 </a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -108,28 +114,28 @@
                                 </li>
 
                                 <li>
-                                    <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes </a>
+                                    <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes 📝 </a>
                                 </li>
                                 <li>
-                                    <a href="/proa/graficos" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias </a>
+                                    <a href="/proa/graficos" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias 📊 </a>
                                 </li>
                                 <li>
-                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia </a>
+                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia 📊 </a>
                                 </li>
 
                                 {% if user.is_superuser %}
                                 <li>
-                                    <a href="/admin" title="Armin" class="btn btn-danger btn-sm"> Administrar django </a>
+                                    <a href="/admin" title="Armin" class="btn btn-warning btn-sm"> Administrar Django 🚧 </a>
                                 </li>
                                 <li>
-                                    <a href="/proa/adminred" title="Armin" class="btn btn-danger btn-sm"> Administrar Red </a>
+                                    <a href="/proa/adminred" title="Armin" class="btn btn-warning btn-sm"> Administrar Red 🛠️ </a>
                                 </li>
                                 {% endif %}
                                 
                                 <!-- Boton de cerrar sesion creado por la eminencia -->
                                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-sm">Cerrar Sesión</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"> Cerrar Sesión ⛔ </button>
                                 </form>
 
                             </ul>
@@ -155,7 +161,6 @@
                     <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
                 </a>
                 <h4> Todos los derechos reservados!  <img src="{% static 'img/copyright.png' %}" class="footer-cp"> </h4>
-               
             </div>
         </footer>
         {% endif %}

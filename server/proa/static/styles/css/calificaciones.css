@@ -1,3 +1,4 @@
+/* root: cards.scss */
 /* root: universal */
 /* root: login.scss */
 /* root: nav.scss */
@@ -5,13 +6,23 @@
 /* root: base.css */
 /* root: calificaciones.scss */
 /* root: dropzone.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
 .accordion-container {
   min-width: 330px;
   padding: 16px;
   border-radius: 16px;
   overflow: hidden;
   background-color: #eeeeee;
-  border: #0175b9 2px solid; }
+  border: #0175b9 2px solid;
+  box-shadow: #111824cb 10px 10px 40px;
+  transition: .5s all ease-in-out; }
+
+.accordion-container:hover {
+  box-shadow: #488bffcb 10px 10px 40px; }
 
 .main-item {
   border-radius: 8px;

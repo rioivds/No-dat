@@ -1,6 +1,10 @@
+/* root: cards.scss */
+$--background-cards: #F8F8FF;
+$--texto-cards: #2C2C2C; 
+
 /* root: universal */
 $--celeste: #0175b9;
-$--primario-luminoso: #161b43;
+$--primario-luminoso: #022c4c;
 $--primario-oscuro: #17223b;
 $--texto: #ffffff;
 $--texto-alternativo: #1e1e1e;
@@ -31,4 +35,12 @@ $--item-fondo: #0665be;
 /* root: dropzone.scss */
 $--primario-dropzone: #193157;
 $--background-dropzone: #F8F8FF;
+
 $--sombra-cajas: #488bffcb;
+$--sombra-cajas-oscuro: #111824cb;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}

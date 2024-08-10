@@ -1,12 +1,24 @@
 /* Estilo para alinear los botones horizontalmente */
+
+@import "./root.scss";
+
 .btn-responsive {
-    display: flex; 
+    display: flex;
+
 }
 
 .btn-responsive .btn {
     margin-right: 10px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    box-shadow: $--sombra-cajas-oscuro 5px 5px 40px;
+    transition: .5s all ease-in-out;   
 }
+
+.btn-responsive .btn:hover{
+    transform: scale(1.1);
+    box-shadow: $--sombra-cajas 10px 10px 40px;
+}
+
 
 /* Otras configuraciones siguen igual */
 
@@ -18,7 +30,12 @@
 table {
     max-width: 100%;
     border-collapse: collapse;
-    border: 2px #4a38b0 solid;
+    border: 2px #4d4d4e solid;
+    transition: .5s all ease-in-out; 
+}
+
+table:hover{
+    box-shadow: $--sombra-cajas 25px 3px 20px;
 }
 
 th, td {

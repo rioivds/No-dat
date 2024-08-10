@@ -1,17 +1,7 @@
-:root {
-    --background22: #F8F8FF;
-    --text22: #2C2C2C; 
-}
+@import "./root.scss";
 
 html {
     scroll-behavior: smooth; 
-}
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
 }
 
 .articles {
@@ -34,13 +24,19 @@ html {
     transition: all 0.4s ease-in-out;
     overflow: hidden;
     border-radius: 1rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; 
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px;
+    transition: .5s all ease-in-out; 
+}
+
+.articles article:hover{
+    box-shadow: $--sombra-cajas 10px 10px 40px;
+    transform: scale(1.1);
 }
 
 .articles article h2 {
     margin: 0 0 0.5rem 0;
     font-size: 1.6rem;
-    color: var(--text2);
+    color: $--texto-cards;
     transition: color 0.3s ease-out; 
 }
 
