@@ -1,0 +1,116 @@
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
+/* root: base.css */
+/* root: calificaciones.scss */
+.accordion-container {
+  min-width: 330px;
+  padding: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #eeeeee;
+  border: #2393fc 2px solid; }
+
+.main-item {
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  transition: all ease-in-out 0.25s;
+  color: #1e1e1e; }
+
+.main-item svg {
+  stroke: #92969A;
+  transition: all ease-in-out 0.25s; }
+
+.main-item:hover svg {
+  stroke: #3B3E40; }
+
+.main-item--open {
+  border-radius: 8px;
+  background: linear-gradient(to right, #2393fc, #17223b);
+  transition: all 200ms; }
+
+.main-item--open:hover {
+  color: #ffffff;
+  border-radius: 8px;
+  background: linear-gradient(to right, #2393fc, #17223b); }
+
+.main-item--open svg {
+  stroke: #3B3E40; }
+
+.accordion-container > ul {
+  max-height: 0;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 14px;
+  opacity: 0;
+  font-size: smaller;
+  visibility: hidden;
+  transition: all ease-in-out 0.2s;
+  font-size: 1.3rem;
+  color: #ffffff; }
+
+.main-item--open + ul {
+  visibility: visible;
+  max-height: 400px;
+  padding-left: 22px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+
+.accordion-container > ul > li {
+  height: 48px;
+  display: flex;
+  width: 100%;
+  align-items: center; }
+
+.accordion-container > ul > li > a {
+  padding: 16px 8px;
+  height: 38px;
+  line-height: 38px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 8px;
+  color: #1e1e1e; }
+
+.accordion-container > ul > li:hover {
+  cursor: pointer;
+  font-weight: 700; }
+
+.accordion-container > ul > li:hover > a {
+  background-color: #0665be;
+  width: 100%; }
+
+.expand-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: auto; }
+
+.main-item--open > .expand-icon {
+  transform: rotate(-90deg); }
+
+.line-vertical {
+  display: block;
+  background-color: #0665be;
+  width: 2px;
+  height: 48px; }
+
+.accordion-container > ul >
+li:last-child > .line-vertical {
+  height: 25px;
+  align-self: flex-start; }
+
+.line-horizontal {
+  display: block;
+  background-color: #0665be;
+  height: 2px;
+  min-width: 12px; }
+
+/*# sourceMappingURL=calificaciones.css.map */

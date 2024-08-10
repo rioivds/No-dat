@@ -1,8 +1,6 @@
-import datetime
 from django.shortcuts import render
 from proa.models import Alumno, Curso
-from .forms import ImportarAlumnosForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 import openpyxl
 from .importaciones import importar_alumnos, importar_alumnos_pdf
 from .common import Common
@@ -61,30 +59,28 @@ def guardar_edit(request):
     apellido = request.POST['apellido']
     email = request.POST['email']
     fecha_nacimiento = Common.parse_fecha(None if request.POST['fecha_nacimiento'] == 'None' else request.POST['fecha_nacimiento'])
-    repitio = request.POST.get('repitio')
+    repitio = request.POST.get('repitio') == 'on'
     curso = Curso.objects.get(id=request.POST['curso'])
 
-    alumnos = Alumno.objects.all()
     Alumno.objects.filter(dni=DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
+    alumnos = Alumno.objects.all()
 
     return render(request, 'alumnos/index.html', {'mensaje': 'Se editó correctamente', 'alumnos': alumnos})
 
 def importar_alumnos_view(request):
-    if request.method == 'POST':
-        form = ImportarAlumnosForm(request.POST, request.FILES)
-        if form.is_valid():
-            archivo = request.FILES['archivo_excel']
-            extension = str(archivo).split('.')[-1]
+    if request.method == 'GET':
+        return render(request, 'alumnos/importar_alumnos.html', {'mensajes': None})
 
-            logs = []
-            if extension == 'pdf':
-                importar_alumnos_pdf(archivo)
-            elif extension == 'xlsx':
-                importar_alumnos(archivo)
-            return HttpResponseRedirect('/alumnos')  # Redirigir a la página principal después de la importación
-    else:
-        form = ImportarAlumnosForm()
-    return render(request, 'alumnos/importar_alumnos.html', {'form': form})
+    archivo = request.FILES['archivo_excel']
+    extension = str(archivo).split('.')[-1]
+
+    logs = None
+    if extension == 'pdf':
+        logs = importar_alumnos_pdf(archivo)
+    elif extension == 'xlsx':
+        importar_alumnos(archivo)
+
+    return render(request, 'alumnos/importar_alumnos.html', {'mensajes': logs})
 
 def exportar_alumnos(request):
     alumnos = Alumno.objects.all()

@@ -33,12 +33,12 @@
                 <label for="telefono"> Telefono: </label>
                 <input type="text" class="form-control" placeholder="Ingrese el Telefono" name="telefono" required="required">
               </div>
-              <button type="submit" class="btn btn-success mt-3">Nuevo</button>
+              <button type="submit" class="btn btn-success mt-3"> Nuevo </button>
             </ul>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar </button>
         </div>
       </div>
     </div>
@@ -112,15 +112,17 @@
                   </form>
                 {% else %}
                   <th scope="row">{{profesor.id_profesor}}</th>
-                  <td>{{profesor.nombre}}</td>
-                  <td>{{profesor.apellido}}</td>
-                  <td>{{profesor.email}}</td>
-                  <td>{{profesor.dni}}</td>
-                  <td>{{profesor.telefono}}</td>
+                  <td data-label="Nombre">{{profesor.nombre}}</td>
+                  <td data-label="Apellido">{{profesor.apellido}}</td>
+                  <td data-label="Email">{{profesor.email}}</td>
+                  <td data-label="DNI">{{profesor.dni}}</td>
+                  <td data-label="Telefono">{{profesor.telefono}}</td>
+                  
                   <td>
                     <a class="btn btn-danger" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button"> Eliminar 🔴 </a>
-                    <a class="btn btn-success" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟢 </a>
+                    <a class="btn btn-warning" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟡 </a>
                   </td> 
+
                 {% endif %}
               </tr>
             {% endfor %}

@@ -73,12 +73,12 @@
       {{mensaje}}
     </div>
   {% endif %}
-
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Calificación </button>
-  <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button"> Importar Calificaciones (Excel o PDF) </a>
-
   <!-- MDO MDO MDO -->
-  <button type="button" class="btn btn-primary"> Filtro pedagogía </button>
+  <div class="btn-responsive">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Calificación 📚 </button>
+    <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button"> Importar Calificaciones (Excel o PDF) 📚 </a>
+    <button type="button" class="btn btn-primary"> Filtro pedagogía 🔎 </button>
+  </div>
   <!-- MDO MDO MDO -->
 
   <table class="table">
@@ -94,6 +94,8 @@
               <th scope="col">¿Calificación Final?</th>
           </tr>
       </thead>
+
+      <!-- TABLAS QUE SE VEN -->
       <tbody>
           {% for calificacion in calificaciones %}
             <tr>
@@ -118,6 +120,7 @@
             </tr>
           {% endfor %}
       </tbody>
+      <!-- TABLAS QUE SE VEN -->
   </table>
 </div>
 {% endblock %}
