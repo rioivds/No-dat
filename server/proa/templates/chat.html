@@ -9,27 +9,29 @@
 {% block content %}
 <html>
     <head>
-        <title>Graficos</title>
+        <title > Graficos </title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-        <h2>Chat ProAI200</h2>
-        <p class="container" id="chat"></p>
-        <input type="text" class="form-control p-3 my-3" name="prompt" id="prompt">
-        <button id="request" class="btn btn-primary">Enviar</button>
+        <div class="contenedor-chat"> 
+            <button class="btn badge bg-success"> Chat ProAI200 🦾 </button>
+            <p class="me-200 btn badge" id="chat"></p>
+            <input type="text" class=" form-control p-3 my-3" name="prompt" id="prompt">
+            <button id="request" class="btn badge bg-success"> Enviar </button>
+        </div> 
 
         <script>
             document.getElementById('request').addEventListener('click', () => {
                 const prompt = document.getElementById('prompt').value;
                 const chat = document.getElementById('chat');
-                chat.innerHTML += `<h5>-> You:</h5> ${prompt}\n\n`;
+                chat.innerHTML += `<div class="me-201"><h5> /user 👨‍🎓: </h5> ${prompt}</div>`;
                 document.getElementById('prompt').value = '';
-
+        
                 getChat(prompt, res => {
-                    chat.innerHTML += `<h5>-> ProAI200:</h5> ${res.response}\n\n`;
+                    chat.innerHTML += `<div class="me-201"><h5>=> ProAI200:</h5> ${res.response}</div>`;
                 });
-            })
-        </script>
+            });
+        </script>        
     </body>
 </html>
 {% endblock %}

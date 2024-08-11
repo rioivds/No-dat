@@ -100,13 +100,13 @@
           {% for calificacion in calificaciones %}
             <tr>
                 <th scope="row">{{calificacion.id}}</th>
-                <td>{{calificacion.alumno.nombre}} {{calificacion.alumno.apellido}}</td>
-                <td>{{calificacion.curso.anio}}</td>
-                <td>{{calificacion.materia.nombre}}</td>
-                <td>{{calificacion.profesor.nombre}} {{calificacion.profesor.apellido}}</td>
-                <td>{{calificacion.fecha}}</td>
-                <td>{{calificacion.nota}}</td>
-                <td>
+                <td data-label="Alumno">{{calificacion.alumno.nombre}} {{calificacion.alumno.apellido}}</td>
+                <td data-label="Curso">{{calificacion.curso.anio}}</td>
+                <td data-label="Materia">{{calificacion.materia.nombre}}</td>
+                <td data-label="Profesor">{{calificacion.profesor.nombre}} {{calificacion.profesor.apellido}}</td>
+                <td data-label="Fecha">{{calificacion.fecha}}</td>
+                <td data-label="Nota">{{calificacion.nota}}</td>
+                <td data-label="Calificación Final">
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="final" {% if calificacion.final %}checked disabled{% else %}disabled{% endif %} value="True">
                     <label class="form-check-label" for="final_{{ calificacion.id }}">

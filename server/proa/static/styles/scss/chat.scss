@@ -1,0 +1,48 @@
+@import "./root.scss";
+
+.contenedor-chat button{ 
+    display: flex;   
+    box-shadow: $--sombra-cajas-oscuro 5px 5px 40px;
+    transition: .5s all ease-in-out; 
+    color: $--texto; 
+}
+
+.contenedor-chat button:hover{
+    transform: scale(1.1);
+    box-shadow: $--sombra-cajas-200 5px 5px 40px;
+
+}
+
+.contenedor-chat input{
+    box-shadow: $--sombra-cajas-oscuro 5px 5px 40px;
+    transition: .5s all ease-in-out; 
+}
+
+.contenedor-chat input:hover{
+    box-shadow: $--sombra-cajas-200 5px 5px 40px;
+    transform: scale(1.01);
+}
+
+
+.me-200{
+    margin-top: 2%;
+}
+
+.me-201{
+    margin-bottom: 10px;
+    padding: 5px; 
+    border-radius: 5px; 
+    background-color: #128855;
+    border: black 1px solid;
+    box-shadow: $--sombra-cajas-oscuro 5px 5px 40px;
+    transition: .5s all ease-in-out; 
+    color: $--texto; 
+}
+
+.me-201:hover{
+    box-shadow: $--sombra-cajas-200 5px 5px 40px;
+}
+
+.contenedor-chat p {
+    margin-top: 2%;
+}

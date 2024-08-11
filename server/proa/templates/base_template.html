@@ -11,6 +11,9 @@
         <!-- Footer -->
         <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
 
+        <!-- Chat -->
+        <link rel="stylesheet" href="{% static 'styles/css/chat.css' %}" type="text/css">
+
         <!-- Cards -->
         <link rel="stylesheet" href="{% static 'styles/css/cards.css' %}" type="text/css">
 
@@ -60,16 +63,13 @@
                     <a href="{% url 'inicio' %}" title="Inicio" aria-label="home">
                         <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">  
                     </a> 
-
-
+        
                     <div class="menu__wrapper">
                         <div class="logoNav">
                             <img src="./assets/LOGO-2.png" alt="Logo">
                         </div>
-
+        
                         <!-- BOTON NAV RESPONSIVO NO TOCAR -->
-                        <!-- ### -->
-
                         <button class="burger-menu" aria-label="Toggle navigation">
                             <svg viewBox="0 0 100 80" width="40" height="40">
                                 <rect width="100" height="20"></rect>
@@ -77,74 +77,41 @@
                                 <rect y="60" width="100" height="20"></rect>
                             </svg>
                         </button>
-
-                        <!-- ### -->
                         <!-- BOTON NAV RESPONSIVO NO TOCAR -->
-
+        
                         <nav>
                             <ul class="navigation hide">
                                 <li class="page-item">
-                                    <button type="button"> Registros </button>
+                                    <button type="button" class="dropdown-toggle"> Registros </button>
                                     <div class="dropdown__wrapper">
                                         <div class="dropdown">
                                             <ul class="list-items-with-description">
-                                                <li>
-                                                    <div class="item-title">
-                                                        <a href="/proa/alumnos"> Alumnos 👨‍🎓 </a>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="item-title">
-                                                        <a href="/proa/profesores"> Profesores 👨‍🏫 </a>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="item-title">
-                                                        <a href="/proa/materias"> Materias 📚 </a>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="item-title">
-                                                        <a href="/proa/calificaciones"> Calificaciones 🤠 </a>
-                                                    </div>
-                                                </li>
+                                                <li><a href="/proa/alumnos" class="links"> Alumnos 👨‍🎓 </a></li>
+                                                <li><a href="/proa/profesores" class="links"> Profesores 👨‍🏫 </a></li>
+                                                <li><a href="/proa/materias" class="links"> Materias 📚 </a></li>
+                                                <li><a href="/proa/calificaciones" class="links"> Calificaciones 🤠 </a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </li>
-
-                                <li>
-                                    <a href="/proa/informes" title="Informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes 📝 </a>
-                                </li>
-                                <li>
-                                    <a href="/proa/graficos" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias 📊 </a>
-                                </li>
-                                <li>
-                                    <a href="/proa/graficos/grafico_torta/" title="Graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia 📊 </a>
-                                </li>
-
+                                <li><a href="/proa/informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes 📝 </a></li>
+                                <li><a href="/proa/graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias 📊 </a></li>
+                                <li><a href="/proa/graficos/grafico_torta/" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia 📊 </a></li>
+                                <li><a href="/proa/chat" class="btn btn-warning btn-sm"> ProAI 🦾 </a></li>
                                 {% if user.is_superuser %}
-                                <li>
-                                    <a href="/admin" title="Armin" class="btn btn-warning btn-sm"> Administrar Django 🚧 </a>
-                                </li>
-                                <li>
-                                    <a href="/proa/adminred" title="Armin" class="btn btn-warning btn-sm"> Administrar Red 🛠️ </a>
-                                </li>
+                                <li><a href="/admin" class="btn btn-warning btn-sm"> Administrar Django 🚧 </a></li>
+                                <li><a href="/proa/adminred" class="btn btn-warning btn-sm"> Administrar Red 🛠️ </a></li>
                                 {% endif %}
-                                
-                                <!-- Boton de cerrar sesion creado por la eminencia -->
                                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger btn-sm"> Cerrar Sesión ⛔ </button>
                                 </form>
-
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
         </header>
-
         {% block content %}{% endblock %}
 
         <footer class="footer">
@@ -159,6 +126,10 @@
 
                 <a href="https://www.instagram.com/proa_ds_rioiv/" target="_blank">
                     <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
+                </a>
+
+                <a href="{% static 'img/soyVegan.jpeg'%}" target="_blank">
+                    <img src="{% static 'img/VEGANO.png' %}" class="footer-img" alt="Instagram">
                 </a>
                 <h4> Todos los derechos reservados!  <img src="{% static 'img/copyright.png' %}" class="footer-cp"> </h4>
             </div>

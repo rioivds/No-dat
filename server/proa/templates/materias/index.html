@@ -112,10 +112,10 @@
                 </form>
               {% else %}
                 <th scope="row">{{ materia.id}}</th>
-                <td>{{ materia.nombre}}</td>
-                <td>{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
-                <td>{{ materia.curso.anio}}</td>
-                <td>{{ materia.horas_catedra}}</td>
+                <td data-label="Nombre">{{ materia.nombre}}</td>
+                <td data-label="Profesor">{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
+                <td data-label="Curso">{{ materia.curso.anio}}</td>
+                <td data-label="Horas catedra">{{ materia.horas_catedra}}</td>
                 <td>
                   <a class="btn btn-danger" href="/proa/materias/delete?id={{materia.id}}" role="button"> Eliminar 🔴 </a>
                   <a class="btn btn-warning" href="/proa/materias/editar?id={{materia.id}}" role="button"> Editar 🟡 </a>

@@ -1,0 +1,51 @@
+/* root: cards.scss */
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
+/* root: base.css */
+/* root: calificaciones.scss */
+/* root: dropzone.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.contenedor-chat button {
+  display: flex;
+  box-shadow: #111824cb 5px 5px 40px;
+  transition: .5s all ease-in-out;
+  color: #ffffff; }
+
+.contenedor-chat button:hover {
+  transform: scale(1.1);
+  box-shadow: #12dfa9cb 5px 5px 40px; }
+
+.contenedor-chat input {
+  box-shadow: #111824cb 5px 5px 40px;
+  transition: .5s all ease-in-out; }
+
+.contenedor-chat input:hover {
+  box-shadow: #12dfa9cb 5px 5px 40px;
+  transform: scale(1.01); }
+
+.me-200 {
+  margin-top: 2%; }
+
+.me-201 {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #128855;
+  border: black 1px solid;
+  box-shadow: #111824cb 5px 5px 40px;
+  transition: .5s all ease-in-out;
+  color: #ffffff; }
+
+.me-201:hover {
+  box-shadow: #12dfa9cb 5px 5px 40px; }
+
+.contenedor-chat p {
+  margin-top: 2%; }
+
+/*# sourceMappingURL=chat.css.map */

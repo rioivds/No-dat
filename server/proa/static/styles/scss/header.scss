@@ -28,7 +28,7 @@ body {
 }
 
 .logo {
-    max-width: 120%;
+    max-width: 150%;
     border: #0f5aa1 2px solid; 
     border-radius: 28%;
     box-shadow: $--sombra-cajas-oscuro 10px 10px 40px; 
@@ -142,7 +142,7 @@ body {
     padding: 0.5rem;
     animation: fadeIn 0.2s ease-in-out;
     border: black 1px solid; 
-    z-index: 2;
+    z-index: 5;
 }
 
 .list-items-with-description {
@@ -192,6 +192,7 @@ body {
         flex-direction: column;
         max-width: 100%;
         animation: fadeIn 0.2s ease-in-out;
+        z-index: 5;
     }
 
     .hide {
@@ -206,6 +207,7 @@ body {
 
     .burger-menu:focus {
         outline: 1px solid $--primario-luminoso;
+        
     }
 
     .burger-menu svg {
@@ -217,9 +219,20 @@ body {
         display: flex;
         flex-direction: column;
         left: 0;
-        max-width: 100%;
+        max-width: 20%;
         background: $--primario-luminoso;
         border-radius: 10px;
         padding: 50%;
+        border: black 1px solid;
+    }
+
+    .dropdown__wrapper{
+        position: relative;
+    }
+
+    .dropdown{
+        margin-bottom: 5%;
+        z-index: 5;
+        border: black 1px solid;
     }
 }

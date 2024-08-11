@@ -35,7 +35,7 @@ body {
   text-decoration: none; }
 
 .logo {
-  max-width: 120%;
+  max-width: 150%;
   border: #0f5aa1 2px solid;
   border-radius: 28%;
   box-shadow: #111824cb 10px 10px 40px;
@@ -125,7 +125,7 @@ body {
   padding: 0.5rem;
   animation: fadeIn 0.2s ease-in-out;
   border: black 1px solid;
-  z-index: 2; }
+  z-index: 5; }
 
 .list-items-with-description {
   display: grid;
@@ -166,7 +166,8 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    animation: fadeIn 0.2s ease-in-out; }
+    animation: fadeIn 0.2s ease-in-out;
+    z-index: 5; }
 
   .hide {
     display: none; }
@@ -187,9 +188,18 @@ body {
     display: flex;
     flex-direction: column;
     left: 0;
-    max-width: 100%;
+    max-width: 20%;
     background: #022c4c;
     border-radius: 10px;
-    padding: 50%; } }
+    padding: 50%;
+    border: black 1px solid; }
+
+  .dropdown__wrapper {
+    position: relative; }
+
+  .dropdown {
+    margin-bottom: 5%;
+    z-index: 5;
+    border: black 1px solid; } }
 
 /*# sourceMappingURL=header.css.map */
