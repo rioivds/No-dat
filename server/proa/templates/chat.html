@@ -1,0 +1,35 @@
+{% extends "base_template.html" %}
+{% block title %}Proa - Chat{% endblock %}
+{% load static %}
+
+{% block resources %}
+    <script src="{% static 'JS/request.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<html>
+    <head>
+        <title>Graficos</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <h2>Chat ProAI200</h2>
+        <p class="container" id="chat"></p>
+        <input type="text" class="form-control p-3 my-3" name="prompt" id="prompt">
+        <button id="request" class="btn btn-primary">Enviar</button>
+
+        <script>
+            document.getElementById('request').addEventListener('click', () => {
+                const prompt = document.getElementById('prompt').value;
+                const chat = document.getElementById('chat');
+                chat.innerHTML += `<h5>-> You:</h5> ${prompt}\n\n`;
+                document.getElementById('prompt').value = '';
+
+                getChat(prompt, res => {
+                    chat.innerHTML += `<h5>-> ProAI200:</h5> ${res.response}\n\n`;
+                });
+            })
+        </script>
+    </body>
+</html>
+{% endblock %}

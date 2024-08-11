@@ -1,10 +1,11 @@
 from django.urls import path, re_path
 from django.contrib.auth.views import LogoutView
-from . import views, views_admin, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
+from . import views, views_chat, views_admin, views_alumnos, views_profesores, views_materia, views_calificaciones, views_informes, views_graficos_barra, views_graficos_torta, views_login
 
 urlpatterns = [
     path('', views.index, name='inicio'),
     path('adminred/', views_admin.index),
+    path('chat/', views_chat.index),
     path('alumnos/', views_alumnos.index),
     path('alumnos/new/', views_alumnos.guardar_alumnos),
     path('alumnos/delete/', views_alumnos.eliminar_alumno),
