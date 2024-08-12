@@ -6,33 +6,39 @@ from .importaciones import importar_alumnos, importar_alumnos_pdf
 from .common import Common
 
 def index(request):
-    alumnos = Alumno.objects.all()
-    return render(request, 'alumnos/index.html',{ 'alumnos': alumnos})
+    cursos = Curso.objects.all()
+    return render(request, 'alumnos/index.html', {'cursos': cursos})
 
 def mostrar_alumnos(request, curso):
     alumnos = Alumno.objects.filter(curso_id=curso)
-
     return render(request, 'alumnos/mostrar_alumnos.html', {
         'alumnos': alumnos,
         'curso': curso
     })
 
 def guardar_alumnos(request):
-    alumnos = Alumno.objects.all()
-    DNI = request.POST['DNI']  
+    DNI = request.POST['DNI']
     nombre = request.POST['nombre']
     apellido = request.POST['apellido']
-
     email = request.POST['email']
-    if Common.email_check(email):
-        return render(request, 'alumnos/index.html', {'mensaje': 'Por favor, asegurese que el email sea institucional (@escuelasproa.edu.ar)', 'alumnos': alumnos})
-
     fecha_nacimiento = request.POST['fecha_nacimiento']
     repitio = request.POST.get('repitio') == 'on'  # Conversión a True si está marcado
     curso = request.POST['curso']
 
+    alumnos = Alumno.objects.filter(curso_id=curso)
+    if Common.email_check(email):
+        return render(request, 'alumnos/mostrar_alumnos.html', {
+            'mensaje': 'Por favor, asegurese que el email sea institucional (@escuelasproa.edu.ar)',
+            'alumnos': alumnos,
+            'curso': curso
+        })
+
     if Alumno.objects.filter(dni=DNI).exists():
-        return render(request, 'alumnos/index.html', {'mensaje': 'Este alumno ya existe', 'alumnos': alumnos})
+        return render(request, 'alumnos/mostrar_alumnos.html', {
+            'mensaje': 'Este alumno ya existe',
+            'alumnos': alumnos,
+            'curso': curso
+        })
 
     insert = Alumno(
         nombre=nombre,
@@ -45,21 +51,33 @@ def guardar_alumnos(request):
     )
     insert.save()
 
-    return render(request, 'alumnos/index.html', {'mensaje': 'Se insertó con éxito', 'alumnos': alumnos})
+    return render(request, 'alumnos/mostrar_alumnos.html', {
+        'mensaje': 'Se insertó con éxito',
+        'alumnos': alumnos,
+        'curso': curso
+    })
 
 def eliminar_alumno(request):
     dni = request.GET['DNI']
     alumno = Alumno.objects.get(dni=dni)
     alumno.delete()
 
-    alumnos = Alumno.objects.all()
-    return render(request, 'alumnos/index.html', {'mensaje': 'Se eliminó el alumno con éxito', 'alumnos': alumnos})
+    alumnos = Alumno.objects.filter(curso_id=alumno.curso.anio)
+    return render(request, 'alumnos/mostrar_alumnos.html', {
+        'mensaje': 'Se eliminó el alumno con éxito',
+        'alumnos': alumnos,
+        'curso': alumno.curso.anio
+    })
 
-def editar_alumno(request):
-    DNI = request.GET['DNI']
-    alumnos = Alumno.objects.all()
-    alumnos_editar = Alumno.objects.get(dni=DNI)
-    return render(request, 'alumnos/index.html', {'mensaje': '', 'alumnos': alumnos, 'alumnos_edit': alumnos_editar})
+def editar_alumno(request, curso):
+    alumnos = Alumno.objects.filter(curso_id=curso)
+    alumnos_editar = Alumno.objects.get(dni=int(request.GET['DNI']))
+    return render(request, 'alumnos/mostrar_alumnos.html', {
+        'mensaje': '',
+        'alumnos': alumnos,
+        'alumnos_edit': alumnos_editar,
+        'curso': curso
+    })
 
 def guardar_edit(request):
     DNI = request.POST['DNI']
@@ -71,9 +89,13 @@ def guardar_edit(request):
     curso = Curso.objects.get(id=request.POST['curso'])
 
     Alumno.objects.filter(dni=DNI).update(nombre=nombre, apellido=apellido, email=email, dni=DNI, curso=curso, fecha_nacimiento=fecha_nacimiento, repitio=repitio)
-    alumnos = Alumno.objects.all()
+    alumnos = Alumno.objects.filter(curso_id=curso)
 
-    return render(request, 'alumnos/index.html', {'mensaje': 'Se editó correctamente', 'alumnos': alumnos})
+    return render(request, 'alumnos/mostrar_alumnos.html', {
+        'mensaje': 'Se editó correctamente',
+        'alumnos': alumnos,
+        'curso': curso.anio
+    })
 
 def importar_alumnos_view(request):
     if request.method == 'GET':

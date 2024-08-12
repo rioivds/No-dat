@@ -138,7 +138,7 @@
                 <div class="btn-responsive"> 
                 <td class="btn-responsive botones-dardo">
                     <button type="submit" class="btn btn-success"> Guardar 🟢 </button>
-                    <a class="btn btn-danger" href="/proa/alumnos"> Cancelar 🔴</a>
+                    <a class="btn btn-danger" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}"> Cancelar 🔴</a>
                 </td>
                 </div>
 
@@ -152,12 +152,12 @@
             <td data-label="Año">{{alumno.curso.anio}}</td>
             <td data-label="¿Repitente?">
             
-            <div class="btn-responsive"> 
+            <div class="btn-responsive">
                 <td class="botones-dardo">
                     <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#vocational"> Orientación Vocacional 🌵 </a>
                     <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
                     <a class="btn btn-danger " href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
-                    <a class="btn btn-warning" href="/proa/alumnos/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
+                    <a class="btn btn-warning" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
                 </td>
             </div>
 

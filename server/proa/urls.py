@@ -9,8 +9,9 @@ urlpatterns = [
     path('alumnos/', views_alumnos.index),
     path('alumnos/new/', views_alumnos.guardar_alumnos),
     path('alumnos/delete/', views_alumnos.eliminar_alumno),
-    path('alumnos/editar/', views_alumnos.editar_alumno),
     path('alumnos/guardar/', views_alumnos.guardar_edit),
+    path('alumnos/mostrar/<int:curso>/', views_alumnos.mostrar_alumnos),
+    path('alumnos/mostrar/<int:curso>/editar/', views_alumnos.editar_alumno),
     path('profesores/', views_profesores.index),
     path('profesores/new/', views_profesores.guardar_profesores),
     path('profesores/delete/', views_profesores.eliminar_profesores),
@@ -44,9 +45,4 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
 
     path('calificaciones/mostrar/<int:curso>/', views_calificaciones.mostrar_calificaciones),
-    # MDO MDO MDO
-    
-    path('alumnos/mostrar/<int:curso>/', views_alumnos.mostrar_alumnos)
-
-    # MDO MDO MDO 
 ]
