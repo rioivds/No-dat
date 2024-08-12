@@ -13,7 +13,8 @@ def mostrar_alumnos(request, curso):
     alumnos = Alumno.objects.filter(curso_id=curso)
 
     return render(request, 'alumnos/mostrar_alumnos.html', {
-        'alumnos': alumnos
+        'alumnos': alumnos,
+        'curso': curso
     })
 
 def guardar_alumnos(request):

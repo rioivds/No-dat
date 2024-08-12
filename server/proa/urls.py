@@ -44,6 +44,7 @@ urlpatterns = [
 
     path('calificaciones/mostrar/<int:curso>/', views_calificaciones.mostrar_calificaciones),
     # MDO MDO MDO
+    
     path('alumnos/mostrar/<int:curso>/', views_alumnos.mostrar_alumnos)
 
     # MDO MDO MDO 
