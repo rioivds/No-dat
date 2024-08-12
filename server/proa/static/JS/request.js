@@ -1,6 +1,6 @@
 // http://200.123.248.223:3000
 const updateAdvice = (updateSource, params = {}) => {
-    let URL = `http://127.0.0.1:3000/pedagogical?`;
+    let URL = `http://127.0.0.1:3200/pedagogical?`;
     for (let key in params) {
         URL += `${key}=${encodeURIComponent(params[key])}&`;
     }
@@ -16,7 +16,7 @@ const updateAdvice = (updateSource, params = {}) => {
 }
 
 const getChat = (query, updateChat) => {
-    const URL = `http://127.0.0.1:3000/chat?prompt=${encodeURIComponent(query)}`;
+    const URL = `http://127.0.0.1:3200/chat?prompt=${encodeURIComponent(query)}`;
 
     fetch(URL)
         .then (res => {

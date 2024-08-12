@@ -23,7 +23,7 @@ urlpatterns = [
     path('materias/editar/', views_materia.editar_materia),
     path('materias/guardar/', views_materia.guardar_edit),
     path('calificaciones/', views_calificaciones.index),
-    path('calificaciones/mostrar/<int:curso>/', views_calificaciones.mostrar_calificaciones),
+   
     path('calificaciones/new/', views_calificaciones.guardar_calificaciones),
     path('calificaciones/delete/', views_calificaciones.eliminar_calificaciones),
     path('calificaciones/editar/', views_calificaciones.editar_calificaciones),
@@ -40,5 +40,11 @@ urlpatterns = [
     path('graficos/grafico_torta/', views_graficos_torta.grafico_torta, name='grafico_torta'),
     path('graficos/torta/<int:materia_id>/', views_graficos_torta.grafico_torta_materia, name='grafico_torta_materia'),
     path('iniciar_sesion/', views_login.entrar, name='iniciar_sesion'),
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout')
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+
+    path('calificaciones/mostrar/<int:curso>/', views_calificaciones.mostrar_calificaciones),
+    # MDO MDO MDO
+    path('alumnos/mostrar/<int:curso>/', views_alumnos.mostrar_alumnos)
+
+    # MDO MDO MDO 
 ]

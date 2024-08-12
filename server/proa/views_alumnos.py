@@ -9,6 +9,13 @@ def index(request):
     alumnos = Alumno.objects.all()
     return render(request, 'alumnos/index.html',{ 'alumnos': alumnos})
 
+def mostrar_alumnos(request, curso):
+    alumnos = Alumno.objects.filter(curso_id=curso)
+
+    return render(request, 'alumnos/mostrar_alumnos.html', {
+        'alumnos': alumnos
+    })
+
 def guardar_alumnos(request):
     alumnos = Alumno.objects.all()
     DNI = request.POST['DNI']  
