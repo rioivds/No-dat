@@ -28,6 +28,7 @@ urlpatterns = [
     path('calificaciones/delete/', views_calificaciones.eliminar_calificaciones),
     path('calificaciones/editar/', views_calificaciones.editar_calificaciones),
     path('calificaciones/guardar/', views_calificaciones.guardar_edit),
+    path('advices/<int:dni>/', views_calificaciones.calificaciones_json),
     path('informes/', views_informes.index),
     path('informes/generar/', views_informes.generar_informe),
     path('graficos/', views_graficos_barra.index, name='index'),

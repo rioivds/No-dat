@@ -109,3 +109,18 @@ def importar_calificaciones_view(request):
         importar_calificaciones(archivo)
 
     return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': logs})
+
+def calificaciones_json (request, dni):
+    alumno = Alumno.objects.get(dni = dni).dni
+    calificaciones = Calificaciones.objects.filter(alumno = alumno)
+    res = {}
+
+    for i in calificaciones:
+        try:
+            res[f'{i.materia.nombre}'].append(i.nota);
+        except:
+            res[f'{i.materia.nombre}'] = []
+            res[f'{i.materia.nombre}'].append(i.nota)
+
+    return HttpResponse(json.dumps(res), content_type="application/json")
+

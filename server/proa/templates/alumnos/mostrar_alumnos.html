@@ -168,16 +168,60 @@
                     adviceContainer.style.display = 'none';
                     adviceContainer.innerHTML = '';
                 })
-
+    
+                document.getElementById('close__guidance').addEventListener('click', () => {
+                    const adviceContainer = document.getElementById('guidance');
+                    document.querySelector('.loader__guidance').style.display = 'block';
+                    adviceContainer.style.display = 'none';
+                    adviceContainer.innerHTML = '';
+                })
+    
                 document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
-                updateAdvice(data => {
-                    const adviceContainer = document.getElementById('advice');
-                    document.querySelector('.loader').style.display = 'none';
-                    adviceContainer.style.display = 'block';
-                    adviceContainer.innerHTML = data.advice;
-                }, {
-                    name: "{{alumno.nombre}}"
-                });
+                  getCalificacionesAlumno("{{alumno.dni}}")
+                    .then (d => {
+                      let g = '';
+                      for (let key in d) {
+                        g += `${key}=`;
+                        for (let i of d[key]) {
+                          g += i;
+                        }
+                        g += '&';
+                      }
+    
+                      updateAdvice(data => {
+                        const adviceContainer = document.getElementById('advice');
+                        document.querySelector('.loader').style.display = 'none';
+                        adviceContainer.style.display = 'block';
+                        adviceContainer.innerHTML = data.advice;
+                      }, [
+                        "name={{alumno.nombre}}&",
+                        g
+                      ]);
+                  })
+                })
+    
+                document.getElementById('guidance__req__{{alumno.dni}}').addEventListener('click', () => {
+                  getCalificacionesAlumno("{{alumno.dni}}")
+                    .then (d => {
+                      let g = '';
+                      for (let key in d) {
+                        g += `${key}=`;
+                        for (let i of d[key]) {
+                          g += i;
+                        }
+                        g += '&';
+                      }
+    
+                      vocationalAdvice(data => {
+                        const adviceContainer = document.getElementById('guidance');
+                        document.querySelector('.loader__guidance').style.display = 'none';
+                        adviceContainer.style.display = 'block';
+                        adviceContainer.innerHTML = data.advice;
+                      }, [
+                        "name={{alumno.nombre}}&",
+                        g
+                      ]);
+                  })
                 })
             </script>
 
