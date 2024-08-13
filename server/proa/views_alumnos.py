@@ -97,6 +97,10 @@ def guardar_edit(request):
         'curso': curso.anio
     })
 
+def vocacional(request):
+    alumnos = Alumno.objects.filter(curso_id=6)
+    return render(request, 'vocacional/index.html', {'alumnos': alumnos})
+
 def importar_alumnos_view(request):
     if request.method == 'GET':
         return render(request, 'alumnos/importar_alumnos.html', {'mensajes': None})
