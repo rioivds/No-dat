@@ -5,17 +5,17 @@
 
 <div class="container-dropzone container">
   {% if mensajes is not None %}
+  <div class="alerts-container">
   {% for mensaje in mensajes %}
-    <div class="alert alert-primary" role="alert">
-      {{ mensaje }} 
-    </div>
+    <div class="alert alert-primary" role="alert">{{mensaje}}</div>
   {% endfor %}
+  </div>
   {% endif %}
 
   <form action="/calificaciones/importar_calificaciones/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2> Importar Calificaciones </h2>
-    <p> En esta sección puedes importar a los Calificaciones ya sea con Excel o PDF </p>
+    <p> En esta sección puedes importar a los Calificaciones mediante Excel o PDF </p>
     <div class="dropzone-area">
         <div class="file-upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -25,8 +25,10 @@
                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
             </svg>
         </div>
-        <p> 1 - Sube el archivo clickeando en "Seleccionar Archivo" <br>
-          2 - Clickea en el boton "Importar Calificaciones"! </p>
+        <p>
+          1 - Sube el archivo haciendo click en "Seleccionar Archivo" <br>
+          2 - Haz click en el botón "Importar Calificaciones"
+        </p>
     </div>
     <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
     
