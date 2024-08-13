@@ -124,4 +124,4 @@ def calificaciones_json (request, dni):
             res[f'{i.materia.nombre}'] = []
             res[f'{i.materia.nombre}'].append(i.nota)
 
-    return HttpResponse(json.dumps(res), content_type="application/json")
+    return HttpResponse(json.dumps(res), content_type="application/json", )
