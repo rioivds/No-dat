@@ -1,68 +1,71 @@
 {% extends "base_template.html" %}
 {% block title %}Proa - Calificaciones{% endblock %}
 {% load static %}
+
 {% block content %}
-  <article>
-    <nav class="accordion-container">
-      <div class="main-item">
-          <h2> Cursos 💼 </h2>
-          <svg xmlns="http://www.w3.org/2000/svg"class="expand-icon"width="44"height="44" viewBox="0 0 24 24"stroke-width="1.5" stroke="currentColor"fill="none" stroke-linecap="round"stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M9 6l6 6l-6 6" />
-          </svg>
-      </div>
-      <ul>
-          <li>
-            <div class="line-vertical"></div>
-            <div class="line-horizontal"></div>
-            <a href="/calificaciones/mostrar/1/">
-                1er Año 📘
-            </a>
-          </li>
-
-          <li>
-            <div class="line-vertical"></div>
-            <div class="line-horizontal"></div>
-            <a href="/calificaciones/mostrar/2/">
-                2do Año 📗
-            </a>
-          </li>
-
-          <li>
-            <div class="line-vertical"></div>
-            <div class="line-horizontal"></div>
-            <a href="/calificaciones/mostrar/3/">
-                3er Año 📒
-            </a>
-          </li>
-
-          <li>
-            <div class="line-vertical"></div>
+  <div class="container">
+    <article>
+      <nav class="accordion-container">
+        <div class="main-item">
+            <h2> Cursos 💼 </h2>
+            <svg xmlns="http://www.w3.org/2000/svg"class="expand-icon"width="44"height="44" viewBox="0 0 24 24"stroke-width="1.5" stroke="currentColor"fill="none" stroke-linecap="round"stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M9 6l6 6l-6 6" />
+            </svg>
+        </div>
+        <ul>
+            <li>
+              <div class="line-vertical"></div>
               <div class="line-horizontal"></div>
-              <a href="/calificaciones/mostrar/4/">
-                  4to Año 📙
+              <a href="/calificaciones/mostrar/1/">
+                  1er Año 📘
               </a>
-          </li>
+            </li>
 
-          <li>
-            <div class="line-vertical"></div>
-            <div class="line-horizontal"></div>
-            <a href="/calificaciones/mostrar/5/">
-                5to Año 📕
-            </a>
-          </li>
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="/calificaciones/mostrar/2/">
+                  2do Año 📗
+              </a>
+            </li>
 
-          <li>
-            <div class="line-vertical"></div>
-            <div class="line-horizontal"></div>
-            <a href="/calificaciones/mostrar/6/">
-                6to Año 🎓
-            </a>
-          </li>
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="/calificaciones/mostrar/3/">
+                  3er Año 📒
+              </a>
+            </li>
 
-      </ul>
-    </nav>
-  </article>
-  <script src="{% static 'js/calificaciones.js' %}"></script>
+            <li>
+              <div class="line-vertical"></div>
+                <div class="line-horizontal"></div>
+                <a href="/calificaciones/mostrar/4/">
+                    4to Año 📙
+                </a>
+            </li>
+
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="/calificaciones/mostrar/5/">
+                  5to Año 📕
+              </a>
+            </li>
+
+            <li>
+              <div class="line-vertical"></div>
+              <div class="line-horizontal"></div>
+              <a href="/calificaciones/mostrar/6/">
+                  6to Año 🎓
+              </a>
+            </li>
+
+        </ul>
+      </nav>
+    </article>
+  </div>
+  <script src="{% static 'JS/calificaciones.js' %}"></script>
 {% endblock %}
 
