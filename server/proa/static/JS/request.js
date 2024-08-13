@@ -45,7 +45,7 @@ const getChat = (query, updateChat) => {
 }
 
 const getCalificacionesAlumno = async dni => {
-    const URL = `http://127.0.0.1:8000/advices/${dni}`;
+    const URL = `http://200.123.248.223:8000/advices/${dni}`;
 
     const res = await fetch(URL)
         .then(res => {

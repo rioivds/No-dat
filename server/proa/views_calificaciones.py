@@ -101,6 +101,7 @@ def importar_calificaciones_view(request):
         return render(request, 'calificaciones/importar_calificaciones.html', {'mensajes': None})
 
     archivo = request.FILES['archivo_excel']
+    print(archivo)
     extension = str(archivo).split('.')[-1]
 
     logs = None
@@ -123,4 +124,4 @@ def calificaciones_json (request, dni):
             res[f'{i.materia.nombre}'] = []
             res[f'{i.materia.nombre}'].append(i.nota)
 
-    return HttpResponse(json.dumps(res), content_type="application/json")
+    return HttpResponse(json.dumps(res), content_type="application/json", )
