@@ -25,23 +25,18 @@
   transform: scale(1.1);
   box-shadow: #488bffcb 10px 10px 40px; }
 
-.botones-dardo{
+.botones-dardo {
   display: flex;
-  max-width: 100%;
+  max-width: 100%; }
 
-}
-
-.botones-dardo a, .botones-dardo button{
+.botones-dardo a, .botones-dardo button {
   margin-left: 5%;
   box-shadow: #111824cb 5px 5px 20px;
-  transition: .5s all ease-in-out;
-}
+  transition: .5s all ease-in-out; }
 
-
-.botones-dardo a:hover{
+.botones-dardo a:hover {
   box-shadow: #488bffcb 10px 10px 40px;
-  transform: scale(1.1);
-}
+  transform: scale(1.1); }
 
 /* Otras configuraciones siguen igual */
 /* Tablas Responsivas */

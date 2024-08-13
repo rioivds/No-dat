@@ -1,68 +1,41 @@
 {% extends "base_template.html" %} 
 {% load static %} 
-{% block title %} Importar Materias
-{% endblock %} 
+{% block title %} Importar Materias {% endblock %} 
 {% block content %}
 
-<div class="container-dropzone">
-  <form class="dropzone-box">
-    <h2> Importar materias </h2>
-    <p>
-        En esta sección puedes importar a los materias por medio de Excel 
-    </p>
-    <div class="dropzone-area">
-        <div class="file-upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-            </svg>
-        </div>
-        <p> Clickea aqui para buscar tu archivo local o simplemente, agarralo y sueltalo </p>
-        <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
-        <p class="message"> No seleccionaste nada</p>
-    </div>
-    <div class="dropzone-actions">
-        <button type="reset">
-            Cancelar
-        </button>
-        <button id="submit-button" type="submit">
-            Importar materias
-        </button>
-    </div>
-  </form>
-</div>
-<script src="{% static 'js/dropzone.js' %}"></script>
-
-<!-- OLD MENU 
-<div class="container">
-  <h1>Importar Materias</h1>
-  {% if mensaje %}
-  <div class="alert alert-primary" role="alert">{{ mensaje }}</div>
-  {% endif %}
-
-  <form
-    action="/materias/importar_materias/"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="archivo_excel" class="form-label"
-        >Seleccione el archivo Excel:</label
-      >
-      <input
-        type="file"
-        class="form-control"
-        id="archivo_excel"
-        name="archivo_excel"
-        accept=".xlsx"
-        required
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Importar Materias</button>
-  </form>
-</div>
-OLD MENU --> 
+  <div class="container-dropzone container">
+    {% if mensajes is not None %}
+    {% for mensaje in mensajes %}
+      <div class="alert alert-primary" role="alert">
+        {{ mensaje }} 
+      </div>
+    {% endfor %}
+    {% endif %}
+  
+    <form action="/materias/importar_materias/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2> Importar Materias </h2>
+      <p> En esta sección puedes importar a los Materias ya sea con Excel o PDF </p>
+      <div class="dropzone-area">
+          <div class="file-upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+              </svg>
+          </div>
+          <p> 
+            1 - Sube el archivo clickeando en "Seleccionar Archivo" <br>
+            2 - Clickea en el boton "Importar Materias"! 
+          </p>
+      </div>
+      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
+      
+      <div class="dropzone-actions">
+        <button id="submit-button" type="submit"> Importar Materias </button> 
+      </div>
+  
+    </form>
+  </div>
 {% endblock %}

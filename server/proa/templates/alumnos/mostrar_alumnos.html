@@ -38,7 +38,7 @@
                         <div class="list-group-item">
                             <label for="curso"> Curso: </label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="curso">
-                              <option value="{{ curso }}" selected>{{ curso }}</option>
+                            <option value="{{ curso }}" selected>{{ curso }}</option>
                             </select> 
                         </div>
 
@@ -83,10 +83,8 @@
         <div class="btn-responsive"> 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Alumno 👨‍🎓 </button>
 
-        <form action="/proa/alumnos/importar/" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary"> Importar Alumnos </button>
-        </form>
+
+        <a href="{% url 'importar_alumnos' %}" type="submit" class="btn btn-primary"> Importar Alumnos </a>
 
         <a href="{% url 'exportar_alumnos' %}" class="btn btn-success"> Exportar a Excel 📁 </a>
     </div>

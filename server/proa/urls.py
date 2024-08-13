@@ -24,7 +24,7 @@ urlpatterns = [
     path('materias/editar/', views_materia.editar_materia),
     path('materias/guardar/', views_materia.guardar_edit),
     path('calificaciones/', views_calificaciones.index),
-   
+    
     path('calificaciones/new/', views_calificaciones.guardar_calificaciones),
     path('calificaciones/delete/', views_calificaciones.eliminar_calificaciones),
     path('calificaciones/editar/', views_calificaciones.editar_calificaciones),
