@@ -14,7 +14,7 @@
 
     <form action="{% url 'importar_profesores' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <h2> Importar profesores </h2>
+      <h2> Importar Profesores </h2>
       <p> En esta sección puedes importar a los Profesores mediante Excel o PDF </p>
       <div class="dropzone-area">
           <div class="file-upload-icon">
@@ -33,7 +33,7 @@
       <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
       
       <div class="dropzone-actions">
-        <button id="submit-button" type="submit"> Importar profesores </button> 
+        <button id="submit-button" type="submit"> Importar Profesores </button> 
       </div>
 
     </form>
