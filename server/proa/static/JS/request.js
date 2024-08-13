@@ -1,6 +1,6 @@
-// http://200.123.248.223:3000
+// http://200.123.248.223:3200
 const updateAdvice = (updateSource, params = []) => {
-    let URL = `http://127.0.0.1:3200/pedagogical?`;
+    let URL = `http://200.123.248.223:3200/pedagogical?`;
     for (let i of params) {
         URL += i;
     }
@@ -16,7 +16,7 @@ const updateAdvice = (updateSource, params = []) => {
 }
 
 const vocationalAdvice = (updateSource, params = []) => {
-    let URL = `http://127.0.0.1:3200/vocational?`;
+    let URL = `http://200.123.248.223:3200/vocational?`;
     for (let i of params) {
         URL += i;
     }
@@ -32,7 +32,7 @@ const vocationalAdvice = (updateSource, params = []) => {
 }
 
 const getChat = (query, updateChat) => {
-    const URL = `http://127.0.0.1:3200/chat?prompt=${encodeURIComponent(query)}`;
+    const URL = `http://200.123.248.223:3200/chat?prompt=${encodeURIComponent(query)}`;
 
     fetch(URL)
         .then (res => {
