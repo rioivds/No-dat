@@ -1,5 +1,6 @@
+import json
 import datetime
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from proa.models import Alumno, Curso, Calificaciones, Profesor, Materia
 from datetime import datetime
 from .importaciones import importar_calificaciones, importar_calificaciones_pdf
@@ -124,4 +125,3 @@ def calificaciones_json (request, dni):
             res[f'{i.materia.nombre}'].append(i.nota)
 
     return HttpResponse(json.dumps(res), content_type="application/json")
-
