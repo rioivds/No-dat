@@ -5,12 +5,8 @@ import openpyxl
 
 def index(request):
     materias = Materia.objects.all()
-    for materia in materias:
-        print(materia.profesor)
-
     profesores = Profesor.objects.all()
     cursos = Curso.objects.all()
-
     return render(request, 'materias/index.html', {'materias': materias, 'cursos': cursos, 'profesores': profesores})
 
 def guardar_materia(request):

@@ -4,14 +4,43 @@ from datetime import datetime
 from .models import Alumno, Profesor, Materia, Calificaciones, Curso
 
 def importar_calificaciones(archivo):
+    parser = {
+        'AMS': 10.0, # Aprobado Muy Satisfactoriamente
+        'A': 8.0,    # Aprobado
+        'EP': 6.0    # En Proceso
+    }
+
+    logs = []
+
     df = pandas.read_excel(archivo, engine='openpyxl')
     for _, row in df.iterrows():
-        nota = float(row['nota'])
+        nota = parser.get(row['nota'].upper(), None)
+        if nota is None:
+            nota = float(row['nota'])
         final = row['final'].lower() == 'si'
         fecha = row['fecha']
-        alumno = Alumno.objects.get(dni=int(row['alumno_dni']))
-        profesor = Profesor.objects.get(dni=int(row['profesor_dni']))
-        materia = Materia.objects.get(nombre=row['materia_nombre'], curso=alumno.curso)
+
+        alumno = None
+        try:
+            alumno = Alumno.objects.get(dni=int(row['alumno_dni']))
+        except:
+            logs.append(f'EL ALUMNO CON DNI \'{row["alumno_dni"]}\' NO ESTÁ EN LOS REGISTROS')
+            continue
+
+        profesor = None
+        try:
+            profesor = Profesor.objects.get(dni=int(row['profesor_dni']))
+        except:
+            logs.append(f'EL PROFESOR CON DNI \'{row["profesor_dni"]}\' NO ESTÁ EN LOS REGISTROS')
+            continue
+
+        materia = None
+        try:
+            materia = Materia.objects.get(nombre=row['materia'], curso=alumno.curso)
+        except:
+            logs.append(f'LA MATERIA \'{row["materia"]}\' NO ESTÁ EN LOS REGISTROS')
+            continue
+
         curso = alumno.curso
 
         # Crear la calificación.
@@ -27,6 +56,12 @@ def importar_calificaciones(archivo):
         calificacion.save()
 
         print(f'Se creó la calificación con el ID {calificacion.id}.')
+
+    if logs:
+        logs.append('LAS CALIFICACIONES FUERON CARGADAS CON ALGUNAS EXCEPCIONES')
+    else:
+        logs.append('LAS CALIFICACIONES FUERON CARGADAS CON ÉXITO')
+    return logs
 
 def importar_materias(archivo):
     df = pandas.read_excel(archivo, engine='openpyxl')
