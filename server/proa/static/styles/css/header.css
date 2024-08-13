@@ -38,7 +38,8 @@ body {
   text-decoration: none; }
 
 .logo {
-  max-width: 150%;
+  max-width: 100%;
+  width: 256px;
   border: #0f5aa1 2px solid;
   border-radius: 28%;
   box-shadow: #111824cb 10px 10px 40px;
