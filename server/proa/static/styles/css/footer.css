@@ -12,7 +12,6 @@
   box-sizing: border-box; }
 
 .footer {
-  max-width: 100%;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -25,7 +24,11 @@
   padding: 5%;
   border: #000000 1px solid;
   box-shadow: #111824cb 10px 10px 40px;
-  transition: .5s all ease-in-out; }
+  transition: .5s all ease-in-out; 
+  /*background-image: url('../../img/banner.png');
+  background-size: 100%;
+  background-repeat: no-repeat;*/
+}
 
 .footer:hover {
   box-shadow: #488bffcb 10px 10px 40px; }

@@ -28,7 +28,10 @@ body {
   border: 1px solid black;
   padding: 3%;
   background: linear-gradient(to right, #0175b9, #17223b);
-  box-shadow: #111824cb 10px 10px 40px; }
+  box-shadow: #111824cb 10px 10px 40px; 
+  /*background-image: url('../../img/banner.png');
+  background-size: cover;*/
+}
 
 .links {
   color: black;
