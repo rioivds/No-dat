@@ -187,7 +187,6 @@
             
             <div class="btn-responsive">
                 <td class="botones-dardo">
-                    <!-- <a class="btn btn-primary" id="guidance__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#vocational__guidance"> Orientación Vocacional 🌵 </a> -->
                     <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
                     <a class="btn btn-danger " href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
                     <a class="btn btn-warning" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
@@ -200,14 +199,7 @@
                     document.querySelector('.loader').style.display = 'block';
                     adviceContainer.style.display = 'none';
                     adviceContainer.innerHTML = '';
-                })
-    
-                document.getElementById('close__guidance').addEventListener('click', () => {
-                    const adviceContainer = document.getElementById('guidance');
-                    document.querySelector('.loader__guidance').style.display = 'block';
-                    adviceContainer.style.display = 'none';
-                    adviceContainer.innerHTML = '';
-                })
+                });
     
                 document.getElementById('ai__req__{{alumno.dni}}').addEventListener('click', () => {
                   getCalificacionesAlumno("{{alumno.dni}}")
@@ -230,32 +222,8 @@
                         "name={{alumno.nombre}}&",
                         g
                       ]);
-                  })
-                })
-    
-                document.getElementById('guidance__req__{{alumno.dni}}').addEventListener('click', () => {
-                  getCalificacionesAlumno("{{alumno.dni}}")
-                    .then (d => {
-                      let g = '';
-                      for (let key in d) {
-                        g += `${key}=`;
-                        for (let i of d[key]) {
-                          g += i;
-                        }
-                        g += '&';
-                      }
-    
-                      vocationalAdvice(data => {
-                        const adviceContainer = document.getElementById('guidance');
-                        document.querySelector('.loader__guidance').style.display = 'none';
-                        adviceContainer.style.display = 'block';
-                        adviceContainer.innerHTML = data.advice;
-                      }, [
-                        "name={{alumno.nombre}}&",
-                        g
-                      ]);
-                  })
-                })
+                  });
+                });
             </script>
 
             {% endif %}

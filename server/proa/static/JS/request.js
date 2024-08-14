@@ -4,7 +4,7 @@ const updateAdvice = (updateSource, params = []) => {
     for (let i of params) {
         URL += i;
     }
-    
+
     fetch(URL.substring(0, URL.length - 1))
         .then (res => {
             return res.json();
