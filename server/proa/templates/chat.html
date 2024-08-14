@@ -22,14 +22,24 @@
 
         <script>
             document.getElementById('request').addEventListener('click', () => {
-                const prompt = document.getElementById('prompt').value;
-                const chat = document.getElementById('chat');
-                chat.innerHTML += `<div class="me-201"><h5> /user 👨‍🎓: </h5> ${prompt}</div>`;
-                document.getElementById('prompt').value = '';
-        
-                getChat(prompt, res => {
-                    chat.innerHTML += `<div class="me-201"><h5> /200 👩‍🦲: </h5> ${res.response}</div>`;
-                });
+                const input = document.getElementById('prompt');
+                const prompt = input.value;
+
+                if (prompt.trim() !== "") {
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'message sent';
+                    newMessage.innerHTML = '<p>' + prompt + '</p>';
+                    document.querySelector('.messages').appendChild(newMessage);
+                    input.value = '';
+                    document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
+                    getChat(prompt, newMessage, (res, msg) => {
+                        msg.className = 'message sent';
+                        msg.innerHTML = '<p>' + res + '</p>';
+                        document.querySelector('.messages').appendChild(msg);
+                        input.value = '';
+                        document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
+                    });
+                }
             });
         </script>        
     </body>

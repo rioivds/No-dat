@@ -31,7 +31,7 @@ const vocationalAdvice = (updateSource, params = []) => {
         .catch (e => console.error);
 }
 
-const getChat = (query, updateChat) => {
+const getChat = (query, msg, updateChat) => {
     const URL = `https://proadsrioiv.dev.ar/api/chat?prompt=${encodeURIComponent(query)}`;
 
     fetch(URL)
@@ -39,7 +39,7 @@ const getChat = (query, updateChat) => {
             return res.json();
         })
         .then (data => {
-            updateChat(data);
+            updateChat(data, msg);
         })
         .catch (e => console.error);
 }
