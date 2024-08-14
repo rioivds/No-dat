@@ -45,7 +45,7 @@ const getChat = (query, updateChat) => {
 }
 
 const getCalificacionesAlumno = async dni => {
-    const URL = `https://proadsrioiv.dev.ar/advices/${dni}`;
+    const URL = `https://proadsrioiv.dev.ar/api/advices/${dni}`;
 
     const res = await fetch(URL)
         .then(res => {
