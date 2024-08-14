@@ -1,21 +1,47 @@
 {% extends "base_template.html" %} 
 {% load static %} 
-{% block title %} Importar Materias {% endblock %} 
+{% block title %} Proa - Importar Materias {% endblock %}
+
 {% block content %}
+  <style>
+    .messages-list {
+      overflow: scroll;
+      padding-top: 12px;
+    }
+
+    .alert {
+      padding: 2px;
+    }
+  </style>
 
   <div class="container-dropzone container">
     {% if mensajes is not None %}
-    {% for mensaje in mensajes %}
-      <div class="alert alert-primary" role="alert">
-        {{ mensaje }} 
-      </div>
-    {% endfor %}
+    <article>
+      <nav class="accordion-container">
+        <div class="main-item">
+          <h2>Eventos ocurridos durante la carga</h2>
+          <svg xmlns="http://www.w3.org/2000/svg"class="expand-icon"width="44"height="44" viewBox="0 0 24 24"stroke-width="1.5" stroke="currentColor"fill="none" stroke-linecap="round"stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 6l6 6l-6 6" />
+        </svg>
+        </div>
+        <ul class="messages-list">
+          {% for mensaje in mensajes %}
+          <li>
+            <div class="line-vertical"></div>
+            <div class="line-horizontal"></div>
+            <div class="alert alert-primary" role="alert">{{mensaje}}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </article>
     {% endif %}
   
     <form action="/materias/importar_materias/" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <h2> Importar Materias </h2>
-      <p> En esta sección puedes importar a los Materias ya sea con Excel o PDF </p>
+      <p> En esta sección puedes importar las Materias mediante Excel o PDF </p>
       <div class="dropzone-area">
           <div class="file-upload-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -26,8 +52,8 @@
               </svg>
           </div>
           <p> 
-            1 - Sube el archivo clickeando en "Seleccionar Archivo" <br>
-            2 - Clickea en el boton "Importar Materias"! 
+            1 - Sube el archivo haciendo click en "Seleccionar Archivo" <br>
+            2 - Haz click en el botón "Importar Materias"
           </p>
       </div>
       <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>

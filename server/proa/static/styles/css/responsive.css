@@ -7,7 +7,6 @@
 /* root: base.css */
 /* root: calificaciones.scss */
 /* root: dropzone.scss */
-
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@
   max-width: 100%; }
 
 .botones-dardo a, .botones-dardo button {
-  margin-left: 3%;
+  margin-left: 5%;
   transition: .5s all ease-in-out; }
 
 .botones-dardo a:hover {

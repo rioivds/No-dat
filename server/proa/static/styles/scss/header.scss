@@ -28,16 +28,44 @@ body {
 }
 
 .logo {
-    max-width: 150%;
-    border: #0f5aa1 2px solid; 
+    max-width: 100%;
+    width: 256px;
+    border: #0f5aa1 2px solid;
     border-radius: 28%;
-    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px; 
-    transition: .5s all ease-in-out; 
+    box-shadow: #111824cb 10px 10px 40px;
+    transition: .5s all ease-in-out;
 }
 
 .logo:hover{
     transform: scale(1.1);
     box-shadow: $--sombra-cajas 10px 10px 40px; 
+}
+
+.contenedor-chat{
+    display: flex;
+    align-items: end;
+    
+}
+
+.ProAI {
+    display: inline-block;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background-color: #0f5aa1;
+    transition: .5s all ease-in-out;
+    margin-top: 5%;
+    border-radius: 5px; 
+}
+
+.ProAI:hover{
+    transform: scale(1.1);
+    box-shadow: $--sombra-cajas 10px 10px 40px;
+}
+
+.ProAI img {
+    transition: .5s all ease-in-out;
+    max-width: 100px;
+    background-color: #0f5aa1;
 }
 
 .menu__wrapper {

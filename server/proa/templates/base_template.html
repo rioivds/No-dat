@@ -40,9 +40,11 @@
 
         <!-- JS -->
         <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/accordion-menu.js' %}" defer></script>
     
         <title>{% block title %}ProA - Inicio{% endblock %}</title>
         <link rel="shortcut icon" href="{% static 'img/ico.ico' %}">
+
 
         {% block resources %}{% endblock %}
     </head>
@@ -54,7 +56,8 @@
             <a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
         </div>
         {% else %}
-        
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         
         <header class="header">
@@ -65,10 +68,6 @@
                     </a> 
         
                     <div class="menu__wrapper">
-                        <div class="logoNav">
-                            <img src="./assets/LOGO-2.png" alt="Logo">
-                        </div>
-        
                         <!-- BOTON NAV RESPONSIVO NO TOCAR -->
                         <button class="burger-menu" aria-label="Toggle navigation">
                             <svg viewBox="0 0 100 80" width="40" height="40">
@@ -94,10 +93,9 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="/proa/informes" class="botones-nav btn btn-dark btn-sm"> Menu Informes 📝 </a></li>
-                                <li><a href="/proa/graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos materias 📊 </a></li>
-                                <li><a href="/proa/graficos/grafico_torta/" class="botones-nav btn btn-dark btn-sm"> Gráficos año/materia 📊 </a></li>
-                                <li><a href="/proa/chat" class="btn btn-warning btn-sm"> Chat 200 🦾 </a></li>
+                                <li><a href="/proa/informes" class="botones-nav btn btn-dark btn-sm"> Menú Informes 📝 </a></li>
+                                <li><a href="/proa/graficos" class="botones-nav btn btn-dark btn-sm"> Gráficos Materias 📊 </a></li>
+                                <li><a href="/proa/graficos/grafico_torta/" class="botones-nav btn btn-dark btn-sm"> Gráficos Año/Materia 📊 </a></li>
                                 {% if user.is_superuser %}
                                 <li><a href="/admin" class="btn btn-warning btn-sm"> Administrar Django 🚧 </a></li>
                                 <li><a href="/proa/adminred" class="btn btn-warning btn-sm"> Administrar Red 🛠️ </a></li>
@@ -112,8 +110,18 @@
                 </div>
             </div>
         </header>
-        {% block content %}{% endblock %}
 
+        {% block content %}{% endblock %}
+        
+        <div class="contenedor-chat">
+            <div class="ProAI">
+                <a href="/proa/chat" class="btn btn-sm chat"> 
+                    <img src="{% static 'img/ProAI.png' %}"> 
+                </a>
+            </div>
+        </div>
+
+        
         <footer class="footer">
             <div class="footer-div col-sm-3">
                 <h5> Roberto Payró 998, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h5>
@@ -125,7 +133,7 @@
                 <!-- <a href="https://www.instagram.com/roman.mddo/" target="_blank"> -->
 
                 <a href="https://www.instagram.com/proa_ds_rioiv/" target="_blank">
-                    <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
+                    
                 </a>
 
                 <h4> Todos los derechos reservados!  <img src="{% static 'img/copyright.png' %}" class="footer-cp"> </h4>
