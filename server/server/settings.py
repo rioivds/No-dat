@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'server.urls'
 
@@ -140,8 +140,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True  # Redirige automáticamente HTTP a HTTPS
-SESSION_COOKIE_SECURE = True  # Solo permite enviar cookies a través de HTTPS
-CSRF_COOKIE_SECURE = True  # Solo permite enviar la cookie CSRF a través de HTTPS
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True  # Redirige automáticamente HTTP a HTTPS
+# SESSION_COOKIE_SECURE = True  # Solo permite enviar cookies a través de HTTPS
+# CSRF_COOKIE_SECURE = True  # Solo permite enviar la cookie CSRF a través de HTTPS
