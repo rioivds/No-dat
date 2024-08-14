@@ -26,7 +26,15 @@ SECRET_KEY = 'django-insecure-8-!o_k5ui0d*(j6y3gz8rb#ofv-(ai9#5o1&vg@%%*y*n@)+j+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '192.168.200.9', '200.123.248.223', '127.0.0.1','proadsrioiv.dev.ar','www.proadsrioiv.dev.ar']
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '192.168.200.9',
+    '200.123.248.223',
+    '127.0.0.1',
+    'proadsrioiv.dev.ar',
+    'www.proadsrioiv.dev.ar'
+]
+
 
 
 # Application definition
@@ -53,8 +61,11 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://proadsrioiv.dev.ar'
+]
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'server.urls'
 
@@ -123,8 +134,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Define el tiempo en segundos (3 minutos)
-SESSION_COOKIE_AGE = 180  # 180 segundos
+# Define el tiempo en segundos (30 minutos)
+SESSION_COOKIE_AGE = 1800  # 1800 segundos
 
 # Expira la sesión cuando el navegador se cierra
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
