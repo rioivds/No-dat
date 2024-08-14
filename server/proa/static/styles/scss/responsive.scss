@@ -9,7 +9,6 @@
 .btn-responsive .btn {
     margin-right: 10px;
     margin-bottom: 10px;
-    box-shadow: $--sombra-cajas-oscuro 5px 5px 40px;
     transition: .5s all ease-in-out;   
 }
 
@@ -20,13 +19,12 @@
 
 .botones-dardo{
     display: flex;
+    margin-left: 3%;
     max-width: 100%;
-
 }
 
 .botones-dardo a, .botones-dardo button{
     margin-left: 5%;
-    box-shadow: #111824cb 5px 5px 20px;
     transition: .5s all ease-in-out;
 }
 
