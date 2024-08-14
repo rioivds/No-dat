@@ -14,7 +14,9 @@
 .container-dropzone {
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  gap: 56px;
+}
 
 .dropzone-box {
   border-radius: 2rem;

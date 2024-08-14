@@ -1,41 +1,67 @@
 {% extends "base_template.html" %} 
 {% load static %} 
 {% block title %} Proa - Importar Calificaciones {% endblock %} 
+
 {% block content %}
+  <style>
+    .messages-list {
+      overflow: scroll;
+      padding-top: 12px;
+    }
 
-<div class="container-dropzone container">
-  {% if mensajes is not None %}
-  <div class="alerts-container">
-  {% for mensaje in mensajes %}
-    <div class="alert alert-primary" role="alert">{{mensaje}}</div>
-  {% endfor %}
-  </div>
-  {% endif %}
+    .alert {
+      padding: 2px;
+    }
+  </style>
 
-  <form action="/calificaciones/importar_calificaciones/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h2> Importar Calificaciones </h2>
-    <p> En esta sección puedes importar las Calificaciones mediante Excel o PDF </p>
-    <div class="dropzone-area">
-        <div class="file-upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-            </svg>
+  <div class="container-dropzone container">
+    {% if mensajes is not None %}
+    <article>
+      <nav class="accordion-container">
+        <div class="main-item">
+          <h2>Eventos ocurridos durante la carga</h2>
+          <svg xmlns="http://www.w3.org/2000/svg"class="expand-icon"width="44"height="44" viewBox="0 0 24 24"stroke-width="1.5" stroke="currentColor"fill="none" stroke-linecap="round"stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 6l6 6l-6 6" />
+        </svg>
         </div>
-        <p>
-          1 - Sube el archivo haciendo click en "Seleccionar Archivo" <br>
-          2 - Haz click en el botón "Importar Calificaciones"
-        </p>
-    </div>
-    <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
-    
-    <div class="dropzone-actions">
-      <button id="submit-button" type="submit"> Importar Calificaciones </button> 
-    </div>
+        <ul class="messages-list">
+          {% for mensaje in mensajes %}
+          <li>
+            <div class="line-vertical"></div>
+            <div class="line-horizontal"></div>
+            <div class="alert alert-primary" role="alert">{{mensaje}}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </article>
+    {% endif %}
 
-  </form>
-</div>
+    <form action="/calificaciones/importar_calificaciones/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2> Importar Calificaciones </h2>
+      <p> En esta sección puedes importar las Calificaciones mediante Excel o PDF </p>
+      <div class="dropzone-area">
+          <div class="file-upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+              </svg>
+          </div>
+          <p>
+            1 - Sube el archivo haciendo click en "Seleccionar Archivo" <br>
+            2 - Haz click en el botón "Importar Calificaciones"
+          </p>
+      </div>
+      <input type="file" class="form-control" id="archivo_excel" name="archivo_excel" accept=".xlsx, .pdf" required>
+      
+      <div class="dropzone-actions">
+        <button id="submit-button" type="submit"> Importar Calificaciones </button> 
+      </div>
+
+    </form>
+  </div>
 {% endblock %}
