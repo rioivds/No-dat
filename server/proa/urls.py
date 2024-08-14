@@ -45,5 +45,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
 
     path('calificaciones/mostrar/<int:curso>/', views_calificaciones.mostrar_calificaciones),
+    path('calificaciones/pedagogia/<int:curso>/', views_calificaciones.pedagogia),
     path('alumnos/vocacional/', views_alumnos.vocacional)
 ]

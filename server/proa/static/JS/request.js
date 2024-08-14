@@ -4,7 +4,7 @@ const updateAdvice = (updateSource, params = []) => {
     for (let i of params) {
         URL += i;
     }
-    
+
     fetch(URL.substring(0, URL.length - 1))
         .then (res => {
             return res.json();
@@ -45,7 +45,7 @@ const getChat = (query, updateChat) => {
 }
 
 const getCalificacionesAlumno = async dni => {
-    const URL = `https://proadsrioiv.dev.ar/api/advices/${dni}`;
+    const URL = `https://proadsrioiv.dev.ar/advices/${dni}`;
 
     const res = await fetch(URL)
         .then(res => {

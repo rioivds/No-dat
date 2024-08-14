@@ -10,6 +10,12 @@ def index(request):
     cursos = Curso.objects.all()
     return render(request, 'calificaciones/index.html', {'cursos': cursos})
 
+def pedagogia(request, curso):
+    alumnos = Alumno.objects.filter(curso_id=curso)
+    return render(request, 'pedagogia/index.html', {
+        'alumnos': alumnos
+    })
+
 def mostrar_calificaciones(request, curso):
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
     alumnos = Alumno.objects.filter(curso_id=curso)
