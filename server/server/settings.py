@@ -65,7 +65,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://proadsrioiv.dev.ar'
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'server.urls'
 
