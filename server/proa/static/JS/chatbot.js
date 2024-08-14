@@ -13,7 +13,7 @@ window.onclick = function(event) {
 }
 
 document.getElementById('sendBtn').onclick = function() {
-    var input = document.getElementById('chatInput');
+    var input = document.getElementById('prompt');
     var message = input.value;
     
     if (message.trim() !== "") {
