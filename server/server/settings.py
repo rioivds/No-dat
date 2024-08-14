@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8-!o_k5ui0d*(j6y3gz8rb#ofv-(ai9#5o1&vg@%%*y*n@)+j+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '192.168.200.9', '200.123.248.223', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.200.9', '200.123.248.223', '127.0.0.1','proadsrioiv.dev.ar','www.proadsrioiv.dev.ar']
 
 
 # Application definition
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'server.urls'
 
@@ -123,6 +123,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Define el tiempo en segundos (3 minutos)
+SESSION_COOKIE_AGE = 180  # 180 segundos
+
+# Expira la sesión cuando el navegador se cierra
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -133,3 +138,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True  # Redirige automáticamente HTTP a HTTPS
+SESSION_COOKIE_SECURE = True  # Solo permite enviar cookies a través de HTTPS
+CSRF_COOKIE_SECURE = True  # Solo permite enviar la cookie CSRF a través de HTTPS

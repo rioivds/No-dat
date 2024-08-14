@@ -1,6 +1,6 @@
 // http://200.123.248.223:3200
 const updateAdvice = (updateSource, params = []) => {
-    let URL = `http://200.123.248.223:3200/pedagogical?`;
+    let URL = `https://api.proadsrioiv.dev.ar/pedagogical?`;
     for (let i of params) {
         URL += i;
     }
@@ -16,7 +16,7 @@ const updateAdvice = (updateSource, params = []) => {
 }
 
 const vocationalAdvice = (updateSource, params = []) => {
-    let URL = `http://200.123.248.223:3200/vocational?`;
+    let URL = `https://api.proadsrioiv.dev.ar/vocational?`;
     for (let i of params) {
         URL += i;
     }
@@ -32,7 +32,7 @@ const vocationalAdvice = (updateSource, params = []) => {
 }
 
 const getChat = (query, updateChat) => {
-    const URL = `http://200.123.248.223:3200/chat?prompt=${encodeURIComponent(query)}`;
+    const URL = `https://api.proadsrioiv.dev.ar/chat?prompt=${encodeURIComponent(query)}`;
 
     fetch(URL)
         .then (res => {
@@ -45,7 +45,7 @@ const getChat = (query, updateChat) => {
 }
 
 const getCalificacionesAlumno = async dni => {
-    const URL = `http://200.123.248.223:8000/advices/${dni}`;
+    const URL = `https://proadsrioiv.dev.ar/advices/${dni}`;
 
     const res = await fetch(URL)
         .then(res => {
