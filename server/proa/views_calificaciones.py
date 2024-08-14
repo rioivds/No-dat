@@ -12,9 +12,24 @@ def index(request):
 
 def pedagogia(request, curso):
     alumnos = Alumno.objects.filter(curso_id=curso)
-    return render(request, 'pedagogia/index.html', {
-        'alumnos': alumnos
-    })
+    calificaciones = Calificaciones.objects.filter(curso_id=curso)
+
+    alumnos_filtro = {}
+    for calificacion in calificaciones:
+        if calificacion.nota > 6:
+            continue
+
+        alumno = calificacion.alumno.dni
+        if alumno not in alumnos_filtro:
+            alumnos_filtro[alumno] = {}
+
+        materia = calificacion.materia.nombre
+        if materia not in alumnos_filtro[alumno]:
+            alumnos_filtro[alumno][materia] = []
+
+        alumnos_filtro[alumno][materia].append(calificacion)
+
+    return render(request, 'pedagogia/index.html', {'alumnos': alumnos, 'alumnos_filtro': alumnos_filtro})
 
 def mostrar_calificaciones(request, curso):
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
