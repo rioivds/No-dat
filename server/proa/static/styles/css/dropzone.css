@@ -6,6 +6,8 @@
 /* root: base.css */
 /* root: calificaciones.scss */
 /* root: dropzone.scss */
+/* root: chat200 */
+/* SOMBRA BOTONES */
 * {
   margin: 0;
   padding: 0;
@@ -14,9 +16,7 @@
 .container-dropzone {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 56px;
-}
+  align-items: center; }
 
 .dropzone-box {
   border-radius: 2rem;

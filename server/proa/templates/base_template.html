@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{% static 'styles/css/footer.css' %}" type="text/css">
 
         <!-- Chat -->
-        <link rel="stylesheet" href="{% static 'styles/css/proAI.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/css/chat200.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'styles/css/chat.css' %}" type="text/css">
 
         <!-- Cards -->
@@ -119,25 +119,16 @@
         <!-- CHAT -->
         <div class="chat-container"> 
             <button id="openModalBtn" class="btn">
-                 <img src="{% static 'img/ProAI.png' %}">
+                <img src="{% static 'img/ProAI.png' %}">
             </button>
-
-            <!-- 
-            <div class="contenedor-chat"> 
-               
-                <input type="text" class=" form-control p-3 my-3" name="prompt" id="prompt">
-                <button id="request" class="btn badge bg-success"> Enviar </button>
-            </div>
-            -->
-    
 
             <div id="chatModal" class="modal">
                 <div class="modal-content">
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn"> &times; </span>  
                     <div class="chat-box">
                         <div class="messages">
-                            <div class="message received">
-                                <p class="me-200 btn badge" id="chat"> asd </p>
+                            <div class="received">
+                                <p class="me-200 btn badge" id="chat"></p>
                             </div>
                         </div>
                         <div class="input-box">
@@ -163,7 +154,7 @@
                     document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
                     const response = document.createElement('div');
                     getChat(prompt, response, (res, msg) => {
-                        msg.className = 'message sent';
+                        msg.className = 'message2';
                         msg.innerHTML = '<p>' + res.response + '</p>';
                         document.querySelector('.messages').appendChild(msg);
                         document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
