@@ -11,7 +11,6 @@ def index(request):
     return render(request, 'calificaciones/index.html', {'cursos': cursos})
 
 def pedagogia(request, curso):
-    alumnos = Alumno.objects.filter(curso_id=curso)
     calificaciones = Calificaciones.objects.filter(curso_id=curso)
 
     alumnos_filtro = {}
@@ -28,6 +27,16 @@ def pedagogia(request, curso):
             alumnos_filtro[alumno][materia] = []
 
         alumnos_filtro[alumno][materia].append(calificacion)
+
+    alumnos_original = Alumno.objects.filter(curso_id=curso)
+    alumnos = []
+    for alumno in alumnos_original:
+        if alumno.dni in alumnos_filtro:
+            alumnos.append(alumno)
+
+    for alumno_dni, data in alumnos_filtro.items():
+        alumnos_filtro[alumno_dni] = data.items()
+    alumnos_filtro = alumnos_filtro.items()
 
     return render(request, 'pedagogia/index.html', {'alumnos': alumnos, 'alumnos_filtro': alumnos_filtro})
 

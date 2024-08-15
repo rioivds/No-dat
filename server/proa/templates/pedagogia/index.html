@@ -47,24 +47,29 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Email</th>
+            <th scope="col">Estudiante</th>
             <th scope="col">DNI</th>
-            <th scope="col">Fecha de Nacimiento</th>
-            <th scope="col">Año</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Materias</th>
         </tr>
         </thead>
         <tbody>
         {% for alumno in alumnos %}
             <tr>
-            <td data-label="Nombre">{{alumno.nombre}}</td>
-            <td data-label="Apellido">{{alumno.apellido}}</td>
-            <td data-label="Email">{{alumno.email}}</td>
+            <td data-label="Estudiante">{{alumno.nombre}} {{alumno.apellido}}</td>
             <td data-label="DNI">{{alumno.dni}}</td>
-            <td data-label="Cumpleaños">{{alumno.fecha_nacimiento}}</td>
-            <td data-label="Año">{{alumno.curso.anio}}</td>
-            
+            <td data-label="Curso">{{alumno.curso.anio}}</td>
+            <td data-label="Materias">
+              {% for alumno_dni, datos in alumnos_filtro %}
+                {% if alumno.dni == alumno_dni %}
+                <ul>
+                  {% for materia, calificaciones in datos %}
+                    <li>{{materia}}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              {% endfor %}
+            </td>
             <div class="btn-responsive">
                 <td class="botones-dardo">
                     <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
