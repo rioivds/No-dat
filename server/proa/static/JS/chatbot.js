@@ -11,17 +11,3 @@ window.onclick = function(event) {
         document.getElementById('chatModal').style.display = 'none';
     }
 }
-
-// document.getElementById('sendBtn').onclick = function() {
-//     const input = document.getElementById('prompt');
-//     const message = input.value;
-    
-//     if (message.trim() !== "") {
-//         const newMessage = document.createElement('div');
-//         newMessage.className = 'message sent';
-//         newMessage.innerHTML = '<p>' + message + '</p>';
-//         document.querySelector('.messages').appendChild(newMessage);
-//         input.value = '';
-//         document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
-//     }
-// }
