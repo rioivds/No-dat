@@ -74,11 +74,13 @@
     </div>
   {% endif %}
   <!-- MDO MDO MDO -->
+  {% if user.is_staff %}
   <div class="btn-responsive">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Calificación 📚 </button>
     <a class="btn btn-primary" href="{% url 'importar_calificaciones' %}" role="button"> Importar Calificaciones (Excel o PDF) 📚 </a>
     <a class="btn btn-primary" href="/proa/calificaciones/pedagogia/{{curso}}/" role="button">Filtro pedagogía 🔎</a>
   </div>
+  {% endif %}
   <!-- MDO MDO MDO -->
 
   <table class="table">
@@ -114,9 +116,11 @@
                     </label>
                   </div>
                 </td>
+                {% if user.is_staff %}
                 <td>
                   <a class="btn btn-danger" href="/proa/calificaciones/delete?id={{calificacion.id}}" role="button">Eliminar</a>
-                </td> 
+                </td>
+                {% endif %}
             </tr>
           {% endfor %}
       </tbody>

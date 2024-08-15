@@ -60,10 +60,12 @@
   {% endif %}
 
   <!-- MDO MDO MDO -->
+  {% if user.is_staff %}
   <div class="btn-responsive"> 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Materia 💼 </button>
     <a class="btn btn-primary" href="{% url 'importar_materias' %}"> Importar Materias </a>
   </div>
+  {% endif %}
 
   <table class="table">
       <thead>
@@ -116,10 +118,12 @@
                 <td data-label="Profesor">{{ materia.profesor.nombre}} {{ materia.profesor.apellido}}</td>
                 <td data-label="Curso">{{ materia.curso.anio}}</td>
                 <td data-label="Horas catedra">{{ materia.horas_catedra}}</td>
+                {% if user.is_staff %}
                 <td class="botones-dardo">
                   <a class="btn btn-danger" href="/proa/materias/delete?id={{materia.id}}" role="button"> Eliminar 🔴 </a>
                   <a class="btn btn-warning" href="/proa/materias/editar?id={{materia.id}}" role="button"> Editar 🟡 </a>
-                </td> 
+                </td>
+                {% endif %}
               {% endif %}
             </tr>
           {% endfor %}

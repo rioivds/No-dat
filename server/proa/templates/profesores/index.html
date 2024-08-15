@@ -52,10 +52,12 @@
   {% endif %}
   
   <!-- MDO MDO MDO -->
+  {% if user.is_superuser %}
   <div class="btn-responsive"> 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Profesor 👨‍🏫 </button>
     <a class="btn btn-primary" href="{% url 'importar_profesores' %}"> Importar Profesores </a>
   </div>
+  {% endif %}
 
   <!-- MDO MDO MDO -->
   
@@ -118,12 +120,12 @@
                   <td data-label="Email">{{profesor.email}}</td>
                   <td data-label="DNI">{{profesor.dni}}</td>
                   <td data-label="Telefono">{{profesor.telefono}}</td>
-                  
+                  {% if user.is_superuser %}
                   <td class="botones-dardo">
                     <a class="btn btn-danger" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button"> Eliminar 🔴 </a>
                     <a class="btn btn-warning" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟡 </a>
-                  </td> 
-
+                  </td>
+                  {% endif %}
                 {% endif %}
               </tr>
             {% endfor %}

@@ -121,14 +121,16 @@
         </div>
         {% endif %}
 
-        <div class="btn-responsive"> 
+        <div class="btn-responsive">
+        {% if user.is_superuser %}
         <button type="button" class="btn btn-primary shadow-blue " data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Alumno 👨‍🎓 </button>
-
-
         <a href="{% url 'importar_alumnos' %}" type="submit" class="btn btn-primary shadow-blue"> Importar Alumnos </a>
+        {% endif %}
 
+        {% if user.is_staff %}
         <a href="{% url 'exportar_alumnos' %}" class="btn btn-success shadow-green"> Exportar a Excel 📁 </a>
-    </div>
+        {% endif %}
+        </div>
 
     <div class="table-responsive">
     <table class="table">
@@ -188,8 +190,10 @@
             <div class="btn-responsive">
                 <td class="botones-dardo">
                     <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
+                    {% if user.is_superuser %}
                     <a class="btn btn-danger " href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
                     <a class="btn btn-warning" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
+                    {% endif %}
                 </td>
             </div>
 
