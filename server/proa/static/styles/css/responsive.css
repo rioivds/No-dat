@@ -23,8 +23,7 @@
   transition: .5s all ease-in-out; }
 
 .btn-responsive .btn:hover {
-  transform: scale(1.1);
-  box-shadow: #488bffcb 10px 10px 40px; }
+  transform: scale(1.1); }
 
 .botones-dardo {
   display: flex;

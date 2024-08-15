@@ -1,0 +1,34 @@
+/* root: cards.scss */
+/* root: universal */
+/* root: login.scss */
+/* root: nav.scss */
+/* root: footer.css */
+/* root: base.css */
+/* root: calificaciones.scss */
+/* root: dropzone.scss */
+/* root: chat200 */
+/* SOMBRA BOTONES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.shadow-dark, .shadow-blue, .shadow-green, .shadow-yellow, .shadow-red {
+  transition: .5s all ease-in-out; }
+
+.shadow-dark:hover {
+  box-shadow: #1e1e1e 10px 10px 40px; }
+
+.shadow-blue:hover {
+  box-shadow: #1272dfcb 10px 10px 40px; }
+
+.shadow-green:hover {
+  box-shadow: #0da358f8 10px 10px 40px; }
+
+.shadow-yellow:hover {
+  box-shadow: #d4e309 10px 10px 40px; }
+
+.shadow-red:hover {
+  box-shadow: #df1212cb 10px 10px 40px; }
+
+/*# sourceMappingURL=shadows.css.map */
