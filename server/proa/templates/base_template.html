@@ -68,6 +68,60 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         
         <header class="header">
+
+        <!-- CHAT -->
+            <div class="chat-container"> 
+                <button id="openModalBtn" class="btn">
+                    <img src="{% static 'img/ProAI.png' %}">
+                </button>
+        
+                <div id="chatModal" class="modal animated-text">
+                    <div class="modal-content">
+                        <span class="close-btn"> &times; </span>  
+                        <div class="chat-box">
+                            <div class="messages">
+                                <div class="received">
+                                    <p class="me-200 btn badge" id="chat"></p>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" id="prompt" placeholder="Escribe un mensaje...">
+                                <button id="sendBtn"> Enviar </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <script>
+                document.getElementById('sendBtn').addEventListener('click', () => {
+                    const input = document.getElementById('prompt');
+                    const prompt = input.value;
+        
+                    if (prompt.trim() !== "") {
+                        const newMessage = document.createElement('div');
+                        newMessage.className = 'message sent';
+                        newMessage.innerHTML = '<p>' + prompt + '</p>';
+                        document.querySelector('.messages').appendChild(newMessage);
+                        input.value = '';
+                        document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
+                        const response = document.createElement('div');
+                        getChat(prompt, response, (res, msg) => {
+                            msg.className = 'message2 animated-text';
+                            if (res.response) {
+                                msg.innerHTML = '<p>' + res.response + '</p>';
+                            } else {
+                                msg.innerHTML = '<p>' + res.err + '</p>';
+                            }
+                            document.querySelector('.messages').appendChild(msg);
+                            document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
+                        });
+                    }
+                });
+            </script>
+
+            <!-- CHAT -->
+
             <div class="menu__wrapper">
                 <div class="menu__bar">
                     <a href="{% url 'inicio' %}" title="Inicio" aria-label="home">
@@ -119,60 +173,7 @@
         </header>
 
         {% block content %}{% endblock %}
-        
-        <!-- CHAT -->
-        <div class="chat-container"> 
-            <button id="openModalBtn" class="btn">
-                <img src="{% static 'img/ProAI.png' %}">
-            </button>
-
-            <div id="chatModal" class="modal">
-                <div class="modal-content">
-                    <span class="close-btn"> &times; </span>  
-                    <div class="chat-box">
-                        <div class="messages">
-                            <div class="received">
-                                <p class="me-200 btn badge" id="chat"></p>
-                            </div>
-                        </div>
-                        <div class="input-box">
-                            <input type="text" id="prompt" placeholder="Escribe un mensaje...">
-                            <button id="sendBtn"> Enviar </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <script>
-            document.getElementById('sendBtn').addEventListener('click', () => {
-                const input = document.getElementById('prompt');
-                const prompt = input.value;
-
-                if (prompt.trim() !== "") {
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'message sent';
-                    newMessage.innerHTML = '<p>' + prompt + '</p>';
-                    document.querySelector('.messages').appendChild(newMessage);
-                    input.value = '';
-                    document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
-                    const response = document.createElement('div');
-                    getChat(prompt, response, (res, msg) => {
-                        msg.className = 'message2';
-                        if (res.response) {
-                            msg.innerHTML = '<p>' + res.response + '</p>';
-                        } else {
-                            msg.innerHTML = '<p>' + res.err + '</p>';
-                        }
-                        document.querySelector('.messages').appendChild(msg);
-                        document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
-                    });
-                }
-            });
-        </script>
-
-        <!-- CHAT -->
-        
+    
         <footer class="footer">
             <div class="footer-div col-sm-3">
                 <h5> Roberto Payró 998, Río Cuarto, Córdoba riocuarto.ds@escuelasproa.edu.ar </h5>
@@ -184,7 +185,7 @@
                 <!-- <a href="https://www.instagram.com/roman.mddo/" target="_blank"> -->
 
                 <a href="https://www.instagram.com/proa_ds_rioiv/" target="_blank">
-                    
+                    <img src="{% static 'img/igLOGO.png' %}" class="footer-img" alt="Instagram">
                 </a>
 
                 <h4> Todos los derechos reservados!  <img src="{% static 'img/copyright.png' %}" class="footer-cp"> </h4>

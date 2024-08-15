@@ -13,13 +13,12 @@
   padding: 0;
   box-sizing: border-box; }
 
+/* Boton del chat */
 .chat-container {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  margin: 2%;
-  border-radius: 5px;
-  transition: .5s all ease-in-out; }
+  top: 20px;
+  left: 20px;
+  margin-right: 2%;
+  border-radius: 5px; }
 
 .chat-container img {
   padding: 10%;
@@ -28,6 +27,7 @@
 #openModalBtn {
   margin-top: 5%;
   border: 1px solid black;
+  background-color: #017b30c9;
   box-shadow: #111824cb 10px 10px 40px;
   transition: .5s all ease-in-out; }
 
@@ -35,25 +35,22 @@
   transform: scale(1.1);
   box-shadow: #488bffcb 10px 10px 40px; }
 
+/* Chat - Abierto */
 .modal {
-  display: none;
   position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); }
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #00000051;
+  box-shadow: #111824cb 10px 10px 40px;
+  max-width: 30%; }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
+  padding: 1%;
   border: 1px solid #888;
-  width: 400px;
+  width: 10%;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: #488bffcb 10px 10px 40px; }
+  box-shadow: #111824cb 10px 10px 40px; }
 
 .close-btn {
   color: #000000;
@@ -71,8 +68,9 @@
 .chat-box {
   display: flex;
   flex-direction: column;
-  height: 300px; }
+  max-height: 100%; }
 
+/* Mensajes */
 .messages {
   flex-grow: 1;
   overflow-y: auto;
@@ -86,13 +84,17 @@
   max-width: 70%;
   transition: .5s all ease-in-out; }
 
+/* Mensaje usuario */
 .message {
   align-self: flex-end;
-  background-color: #8FB796; }
+  background-color: #8fb796b6;
+  margin-left: auto; }
 
+/* Mensaje Chat200 */
 .message2 {
   align-self: flex-start;
-  background-color: #81B9EF; }
+  background-color: #81B9EF;
+  margin-right: auto; }
 
 .message:hover {
   box-shadow: #08760ccb 10px 10px 40px; }
@@ -105,17 +107,15 @@
   justify-content: space-between; }
 
 #prompt {
-  box-shadow: #488bffcb 10px 10px 40px;
-  transition: .5s all ease-in-out; }
-
-#prompt:hover {
-  box-shadow: #12dfa9cb 10px 10px 40px; }
-
-input[type="text"] {
   width: 80%;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc; }
+  border: 1px solid #ccc;
+  box-shadow: #000000 10px 10px 40px;
+  transition: .5s all ease-in-out; }
+
+#prompt:hover {
+  box-shadow: #08760ccb 10px 10px 40px; }
 
 button#sendBtn {
   padding: 10px;
@@ -131,6 +131,35 @@ button#sendBtn {
 
 button#sendBtn:hover {
   background-color: #45a049;
-  box-shadow: #12dfa9cb 10px 10px 40px; }
+  box-shadow: #08760ccb 10px 10px 40px; }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0; }
+  to {
+    transform: translateX(0);
+    opacity: 1; } }
+.animated-text {
+  display: inline-block;
+  animation: slideIn 1s ease-out; }
+
+@media screen and (max-width: 768px) {
+  /* Chat - Abierto */
+  .modal {
+    position: fixed;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #00000051;
+    box-shadow: #111824cb 10px 10px 40px;
+    max-width: 80%; }
+
+  .modal-content {
+    background-color: #fefefe;
+    padding: 1%;
+    border: 1px solid #888;
+    width: 10%;
+    border-radius: 10px;
+    box-shadow: #111824cb 10px 10px 40px; } }
 
 /*# sourceMappingURL=chat200.css.map */
