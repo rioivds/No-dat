@@ -1,0 +1,25 @@
+@import "./root.scss";
+
+.shadow-dark, .shadow-blue, .shadow-green, .shadow-yellow, .shadow-red{
+    transition: .5s all ease-in-out;
+}
+
+.shadow-dark:hover{
+    box-shadow: $--shadow-dark 10px 10px 40px;
+}
+
+.shadow-blue:hover{
+    box-shadow: $--shadow-blue 10px 10px 40px;
+}
+
+.shadow-green:hover{
+    box-shadow: $--shadow-green 10px 10px 40px; 
+}
+
+.shadow-yellow:hover{
+    box-shadow: $--shadow-yellow 10px 10px 40px;
+}
+
+.shadow-red:hover{
+    box-shadow: $--shadow-red 10px 10px 40px;
+}
