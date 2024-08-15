@@ -1,0 +1,146 @@
+@import "./root.scss";
+
+.chat-container{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    margin: 2%;
+    border-radius: 5px;
+    transition: .5s all ease-in-out; 
+}
+
+.chat-container img{
+    padding: 10%;
+    width: 100px;
+}
+
+#openModalBtn{
+    margin-top: 5%;
+    border: 1px solid black;
+    box-shadow: #111824cb 10px 10px 40px;
+    transition: .5s all ease-in-out; 
+}
+
+#openModalBtn:hover{
+    transform: scale(1.1);
+    box-shadow: #488bffcb 10px 10px 40px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $--sombra-cajas 10px 10px 40px;
+}
+
+.close-btn {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.messages { // Mensajes
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+
+.message, .message2 {
+    border: 2px black solid;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    transition: .5s all ease-in-out;
+}
+
+.message{ // Mensaje usuario
+    align-self: flex-end;
+    background-color: #8FB796;
+}
+
+.message2{ // Mensaje Chat200
+    align-self: flex-start;
+    background-color: #81B9EF;
+}
+
+.message:hover{
+    box-shadow: $--sombra-me 10px 10px 40px;
+}
+
+.message2:hover{
+    box-shadow: $--sombra-ia 10px 10px 40px;
+}
+
+
+.input-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+#prompt{
+    box-shadow: $--sombra-cajas 10px 10px 40px;
+    transition: .5s all ease-in-out;
+}
+
+#prompt:hover{
+    box-shadow: $--sombra-cajas-200 10px 10px 40px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button#sendBtn {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    color: #000;
+    border: 1px solid black;
+
+    box-shadow: $--sombra-cajas-oscuro 10px 10px 40px;
+    transition: .5s all ease-in-out;
+}
+
+button#sendBtn:hover {
+    background-color: #45a049;
+    box-shadow: $--sombra-cajas-200 10px 10px 40px;
+}
