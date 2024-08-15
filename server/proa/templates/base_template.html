@@ -158,7 +158,7 @@
                     const response = document.createElement('div');
                     getChat(prompt, response, (res, msg) => {
                         msg.className = 'message2';
-                        msg.innerHTML = '<p>' + res + '</p>';
+                        msg.innerHTML = '<p>' + res.response + '</p>';
                         document.querySelector('.messages').appendChild(msg);
                         document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
                     });
