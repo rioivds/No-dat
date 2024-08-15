@@ -43,8 +43,9 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
         <!-- JS -->
-        <script src="{% static 'js/script.js' %}"></script>
-        <script src="{% static 'js/request.js' %}"></script>
+        <script src="{% static 'js/script.js' %}" defer></script>
+        <script src="{% static 'js/request.js' %}" defer></script>
+        <script src="{% static 'js/chatbot.js' %}" defer></script>
         <script src="{% static 'js/accordion-menu.js' %}" defer></script>
         
     
@@ -165,8 +166,6 @@
                 }
             });
         </script>
-
-        <script src="{% static 'js/chatbot.js' %}"></script>
 
         <!-- CHAT -->
         
