@@ -1,0 +1,27 @@
+.graficos{
+    margin-top: 1%;
+    border: rgb(34, 34, 34) 1px solid;
+    box-shadow: #111824cb 10px 10px 40px;
+    transition: .5s all ease-in-out;
+}
+
+.graficos:hover{
+    box-shadow: #488bffcb 10px 10px 40px;
+}
+
+.selectMateria{
+    max-width: max-content;
+    box-shadow: #111824cb 10px 10px 40px;
+    transition: .5s all ease-in-out;
+}
+
+.selectMateria:hover{
+    box-shadow: #488bffcb 10px 10px 40px;
+}
+
+@media screen and (max-width: 768px) {
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}

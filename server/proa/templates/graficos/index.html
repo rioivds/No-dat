@@ -2,35 +2,29 @@
 {% block title %}Proa - Graficos{% endblock %}
 {% load static %}
 {% block content %}
-
-<html>
-    <head>
-        <title> Graficos </title>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
-    <body>
-        <div class="titulos">
-            <h1> 
-                <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
-                    Graficos por Materias 📊
-                </span> 
-            </h1>
-        </div>
-
-        <h3> 
-            <span class="badge rounded-pill bg-primary shadow-blue titulos">
-                Seleccioná una materia 📚: 
-            </span>
-        </h3>
     
-    <select id="selectMateria">
-        <option value=""> Seleccionar Materia </option>
-        {% for materia in materias %}
-            <option value="{{ materia }}">{{ materia }}</option>
-        {% endfor %}
-    </select>
+<div class="titulos">
+    <h1> 
+        <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
+            Graficos por Materias 📊
+        </span> 
+    </h1>
+</div>
 
-    <canvas id="graficoBarra" width="800" height="500"></canvas>
+<h3> 
+    <span class="badge rounded-pill bg-primary shadow-blue titulos">
+        Seleccioná una materia 📚: 
+    </span>
+</h3>
+    
+<select id="selectMateria" class="selectMateria">
+    <option value=""> Seleccionar Materia </option>
+    {% for materia in materias %}
+        <option value="{{ materia }}">{{ materia }}</option>
+    {% endfor %}
+</select>
+
+<canvas id="graficoBarra" class="graficos" width="2080" height="860"> 
     <script>
         var selectMateria = document.getElementById('selectMateria');
         var grafico = null; // Variable para almacenar el gráfico actual
@@ -51,7 +45,6 @@
                     }
 
                     var ctx = document.getElementById('graficoBarra').getContext('2d');
-
                     var datosPorMateria = {};
 
                     datos.forEach(dato => {
@@ -123,15 +116,15 @@
         });
 
         function getColorByPromedio(promedio) {
-            // Convertir el promedio a un valor entre 0 y 1
+            // Normalizamos el promedio entre 0 y 1
             var normalizedPromedio = (promedio - 1) / 9;
 
-            // Calcular los valores RGB en función del promedio
-            var r = 255 * (1 - normalizedPromedio);
-            var g = 255 * normalizedPromedio;
-            var b = 0;
+            // Definimos los valores RGB
+            var r = 0;
+            var g = 142 * (1 - normalizedPromedio); // Verde decrece a medida que el promedio aumenta
+            var b = 246; // Azul fijo para tonos azules
 
-            // Convertir los valores RGB a formato hexadecimal
+            // Convertimos los valores RGB a formato hexadecimal
             var hexColor = rgbToHex(r, g, b);
 
             return hexColor;
@@ -144,8 +137,8 @@
 
             return `#${rHex}${gHex}${bHex}`;
         }
+   
     </script>
-    </body>
-</html>
+</canvas>
 
 {% endblock %}
