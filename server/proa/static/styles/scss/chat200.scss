@@ -2,10 +2,12 @@
 
 /* Boton del chat */
 .chat-container {
+    position: fixed;
     top: 20px; 
     left: 20px;
-    margin-right: 2%;
+    margin: 1% 1%;
     border-radius: 5px;
+    z-index: 1000;
 }
 
 .chat-container img {
@@ -16,7 +18,6 @@
 #openModalBtn {
     margin-top: 5%;
     border: 1px solid black;
-    background-color: #017b30c9;
     box-shadow: #111824cb 10px 10px 40px;
     transition: .5s all ease-in-out; 
 }
@@ -31,9 +32,10 @@
     position: fixed;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: #00000051;
+    background-color: #00000079;
     box-shadow: #111824cb 10px 10px 40px;
     max-width: 30%;
+    z-index: 1001;
 }
 
 .modal-content {

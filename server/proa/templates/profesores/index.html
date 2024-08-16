@@ -3,12 +3,20 @@
 {% load static %}
 {% block content %}
 
+<div class="titulos">
+  <h1> 
+    <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
+      Registro Profesores 👨‍🏫
+    </span> 
+  </h1>
+</div>
+
 <div class="container">
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir profesor</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Añadir profesor </h1>
         </div>
         <div class="modal-body">
           <form action="/profesores/new/" method="POST">
@@ -54,8 +62,8 @@
   <!-- MDO MDO MDO -->
   {% if user.is_superuser %}
   <div class="btn-responsive"> 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Profesor 👨‍🏫 </button>
-    <a class="btn btn-primary" href="{% url 'importar_profesores' %}"> Importar Profesores </a>
+    <button type="button" class="btn btn-primary shadow-blue" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Profesor 👨‍🏫 </button>
+    <a class="btn btn-primary shadow-blue" href="{% url 'importar_profesores' %}"> Importar Profesores </a>
   </div>
   {% endif %}
 
@@ -108,8 +116,8 @@
                       </div>
                     </td>
                     <td class="botones-dardo">
-                      <button type="submit" class="btn btn-success"> Guardar 🟢 </button>
-                      <a class="btn btn-danger" href="/proa/profesores" role="button"> Cancelar 🔴 </a>
+                      <button type="submit" class="btn btn-success shadow-green"> Guardar 🟢 </button>
+                      <a class="btn btn-danger shadow-red" href="/proa/profesores" role="button"> Cancelar 🔴 </a>
                     </td>
                   </div>
                   </form>
@@ -122,8 +130,8 @@
                   <td data-label="Telefono">{{profesor.telefono}}</td>
                   {% if user.is_superuser %}
                   <td class="botones-dardo">
-                    <a class="btn btn-danger" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button"> Eliminar 🔴 </a>
-                    <a class="btn btn-warning" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟡 </a>
+                    <a class="btn btn-danger shadow-red" href="/proa/profesores/delete?DNI={{profesor.dni}}" role="button"> Eliminar 🔴 </a>
+                    <a class="btn btn-warning shadow-yellow" href="/proa/profesores/editar?DNI={{profesor.dni}}" role="button"> Editar 🟡 </a>
                   </td>
                   {% endif %}
                 {% endif %}

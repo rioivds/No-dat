@@ -8,6 +8,14 @@
 
 {% block content %}
 
+    <div class="titulos">
+      <h1> 
+        <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
+          Registro Alumnos 👨‍🎓
+        </span> 
+      </h1>
+    </div>
+  
     <div class="container">
         <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -173,8 +181,8 @@
 
                 <div class="btn-responsive"> 
                 <td class="btn-responsive botones-dardo">
-                    <button type="submit" class="btn btn-success"> Guardar 🟢 </button>
-                    <a class="btn btn-danger" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}"> Cancelar 🔴</a>
+                    <button type="submit" class="btn btn-success shadow-green"> Guardar 🟢 </button>
+                    <a class="btn btn-danger shadow-red" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}"> Cancelar 🔴</a>
                 </td>
                 </div>
 
@@ -189,10 +197,10 @@
             
             <div class="btn-responsive">
                 <td class="botones-dardo">
-                    <a class="btn btn-primary" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
+                    <a class="btn btn-primary shadow-blue" id="ai__req__{{alumno.dni}}" data-bs-toggle="modal" data-bs-target="#pedagogical"> Consejo 😎 </a>
                     {% if user.is_superuser %}
-                    <a class="btn btn-danger " href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
-                    <a class="btn btn-warning" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
+                    <a class="btn btn-danger shadow-red " href="/proa/alumnos/delete?DNI={{alumno.dni}}"> Eliminar 🔴 </a>
+                    <a class="btn btn-warning shadow-yellow" href="/proa/alumnos/mostrar/{{alumno.curso.anio}}/editar?DNI={{alumno.dni}}"> Editar 🟡 </a>
                     {% endif %}
                 </td>
             </div>

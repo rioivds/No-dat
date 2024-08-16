@@ -17,18 +17,23 @@
   transition: .5s all ease-in-out; }
 
 .shadow-dark:hover {
-  box-shadow: #1e1e1e 10px 10px 40px; }
+  box-shadow: #1e1e1e 10px 10px 40px;
+  transform: scale(1.1); }
 
 .shadow-blue:hover {
-  box-shadow: #1272dfcb 10px 10px 40px; }
+  box-shadow: #1272dfcb 10px 10px 40px;
+  transform: scale(1.1); }
 
 .shadow-green:hover {
-  box-shadow: #0da358f8 10px 10px 40px; }
+  box-shadow: #0da358f8 10px 10px 40px;
+  transform: scale(1.1); }
 
 .shadow-yellow:hover {
-  box-shadow: #d4e309 10px 10px 40px; }
+  box-shadow: #d4e309 10px 10px 40px;
+  transform: scale(1.1); }
 
 .shadow-red:hover {
-  box-shadow: #df1212cb 10px 10px 40px; }
+  box-shadow: #df1212cb 10px 10px 40px;
+  transform: scale(1.1); }
 
 /*# sourceMappingURL=shadows.css.map */

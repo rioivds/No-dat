@@ -8,7 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h3>Seleccioná un curso:</h3>
+    <div class="titulos">
+        <h1> 
+            <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
+                Graficos por Materias y Cursos 📊
+            </span> 
+        </h1>
+    </div>
+
+    <h3> 
+        <span class="badge rounded-pill bg-primary shadow-blue titulos">
+            Seleccioná un curso 🎓: 
+        </span>
+    </h3>
+
     <form action="{% url 'grafico_torta' %}" method="GET">
         <select name="curso" id="curso">
             <option value="">-- Seleccioná un curso --</option>
@@ -19,7 +32,12 @@
         <input type="submit" value="Aplicar" style="background-color:rgb(13, 110, 253); color:white; border-radius: 15% ">
     </form>
 
-    <h3>Seleccioná una materia:</h3>
+    <h3> 
+        <span class="badge rounded-pill bg-primary shadow-blue titulos">
+            Seleccioná una materia 💼: 
+        </span>
+    </h3>
+
     <select id="selectMateria">
         <option value="">-- Seleccionar Materia --</option>
         {% for materia in materias %}

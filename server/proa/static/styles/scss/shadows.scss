@@ -6,20 +6,25 @@
 
 .shadow-dark:hover{
     box-shadow: $--shadow-dark 10px 10px 40px;
+    transform: scale(1.1);
 }
 
 .shadow-blue:hover{
     box-shadow: $--shadow-blue 10px 10px 40px;
+    transform: scale(1.1);
 }
 
 .shadow-green:hover{
     box-shadow: $--shadow-green 10px 10px 40px; 
+    transform: scale(1.1);
 }
 
 .shadow-yellow:hover{
     box-shadow: $--shadow-yellow 10px 10px 40px;
+    transform: scale(1.1);
 }
 
 .shadow-red:hover{
     box-shadow: $--shadow-red 10px 10px 40px;
+    transform: scale(1.1);
 }

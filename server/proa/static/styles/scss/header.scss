@@ -41,10 +41,21 @@ body {
     box-shadow: $--sombra-cajas 10px 10px 40px; 
 }
 
+/* Titulos de las secciones */
+
+.titulos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+    margin-top: 1%;  
+}
+
+/* Titulos de las secciones */
+
 .contenedor-chat{
     display: flex;
     align-items: end;
-    
 }
 
 .ProAI {

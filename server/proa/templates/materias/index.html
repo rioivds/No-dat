@@ -3,6 +3,14 @@
 {% load static %}
 {% block content %}
 
+<div class="titulos">
+  <h1> 
+    <span class="badge rounded-pill bg-primary shadow-blue titulos"> 
+      Registro Materias 📚
+    </span> 
+  </h1>
+</div>
+
 <div class="container">
   <div class="modal fade" id="add__form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -62,8 +70,8 @@
   <!-- MDO MDO MDO -->
   {% if user.is_staff %}
   <div class="btn-responsive"> 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Materia 💼 </button>
-    <a class="btn btn-primary" href="{% url 'importar_materias' %}"> Importar Materias </a>
+    <button type="button" class="btn btn-primary shadow-blue" data-bs-toggle="modal" data-bs-target="#add__form"> Añadir Materia 💼 </button>
+    <a class="btn btn-primary shadow-blue" href="{% url 'importar_materias' %}"> Importar Materias </a>
   </div>
   {% endif %}
 
@@ -108,8 +116,8 @@
                     <input type="text" class="form-control" placeholder="Horas cátedra" name="horas-catedra" value="{{materia.horas_catedra}}">
                   </td>
                   <td class="botones-dardo">
-                    <button class="btn btn-success"> Guardar 🟢 </button>
-                    <a class="btn btn-danger" href="/proa/materias" role="button"> Cancelar 🔴 </a>
+                    <button class="btn btn-success shadow-green"> Guardar 🟢 </button>
+                    <a class="btn btn-danger shadow-red" href="/proa/materias" role="button"> Cancelar 🔴 </a>
                   </td>
                 </form>
               {% else %}
@@ -120,8 +128,8 @@
                 <td data-label="Horas catedra">{{ materia.horas_catedra}}</td>
                 {% if user.is_staff %}
                 <td class="botones-dardo">
-                  <a class="btn btn-danger" href="/proa/materias/delete?id={{materia.id}}" role="button"> Eliminar 🔴 </a>
-                  <a class="btn btn-warning" href="/proa/materias/editar?id={{materia.id}}" role="button"> Editar 🟡 </a>
+                  <a class="btn btn-danger shadow-red" href="/proa/materias/delete?id={{materia.id}}" role="button"> Eliminar 🔴 </a>
+                  <a class="btn btn-warning shadow-yellow" href="/proa/materias/editar?id={{materia.id}}" role="button"> Editar 🟡 </a>
                 </td>
                 {% endif %}
               {% endif %}
