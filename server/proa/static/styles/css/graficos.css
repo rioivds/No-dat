@@ -1,12 +1,19 @@
-.graficos{
+.graficos, .graficos-torta{
     margin-top: 1%;
     border: rgb(34, 34, 34) 1px solid;
+    border-radius: 20px;
     box-shadow: #111824cb 10px 10px 40px;
     transition: .5s all ease-in-out;
 }
 
-.graficos:hover{
+.graficos:hover, .graficos-torta:hover{
     box-shadow: #488bffcb 10px 10px 40px;
+}
+
+.graficos-torta{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .selectMateria{
@@ -17,6 +24,16 @@
 
 .selectMateria:hover{
     box-shadow: #488bffcb 10px 10px 40px;
+}
+
+.boton-aplicar{
+    box-shadow: #111824cb 10px 10px 40px;
+    transition: .5s all ease-in-out;
+}
+
+.boton-aplicar:hover{
+    box-shadow: #488bffcb 10px 10px 40px;
+    transform: scale(1.1);
 }
 
 @media screen and (max-width: 768px) {
