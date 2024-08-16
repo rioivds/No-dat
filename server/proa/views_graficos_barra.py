@@ -14,7 +14,8 @@ def index(request):
     nombres_materias_unicas = set()
 
     for materia in todas_materias:
-        nombres_materias_unicas.add(materia.nombre)
+        nombre = materia.nombre.upper()
+        nombres_materias_unicas.add(nombre)
 
     datos_grafico = []
     for curso in cursos:

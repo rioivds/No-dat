@@ -66,7 +66,7 @@
         
                 <div id="chatModal" class="modal animated-text">
                     <div class="modal-content">
-                        <span class="close-btn"> &times; </span>  
+                        <span id="closeModalBtn" class="close-btn"> &times; </span>  
                         <div class="chat-box">
                             <div class="messages">
                                 <div class="received">
@@ -83,7 +83,15 @@
             </div>
                 
             <script>
-                document.getElementById('sendBtn').addEventListener('click', () => {
+                let chatOpen = false;
+                document.getElementById('openModalBtn').addEventListener('click', () => {
+                    chatOpen = true;
+                });
+                document.getElementById('closeModalBtn').addEventListener('click', () => {
+                    chatOpen = false;
+                });
+
+                function sendQuery() {
                     const input = document.getElementById('prompt');
                     const prompt = input.value;
         
@@ -106,6 +114,16 @@
                             document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight;
                         });
                     }
+                }
+
+                document.addEventListener('keydown', evt => {
+                    if (evt.key === 'Enter' && chatOpen) {
+                        sendQuery();
+                    }
+                });
+
+                document.getElementById('sendBtn').addEventListener('click', () => {
+                    sendQuery();
                 });
             </script>
 
